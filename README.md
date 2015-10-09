@@ -1,4 +1,10 @@
-# Poll
+## Team Name: Poll
+
+## Project Description
+
+This application allows users to create polls to gather data. Poll creators can look at the results (including demographic breakdown) and analyze trends over time. Poll takers can comment on polls, and may be referred to related polls after completion. (More features to come.)
+
+## Team Members
 
 Akhil Nadendla
 (insert photo here)
@@ -12,4 +18,6 @@ Kyle Plutchak
 Ashish Lal
 (insert photo here)
 
-Pivotal tracker link: [https://www.pivotaltracker.com/n/projects/1446726]
+## Pivotal tracker
+
+https://www.pivotaltracker.com/n/projects/1446726
