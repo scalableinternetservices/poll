@@ -16,7 +16,7 @@ Kyle Plutchak
 (insert photo here)
 
 Ashish Lal
-![alt tag](https://raw.githubusercontent.com/scalableinternetservices/poll/master/assets/pictures/ashishPicture.jpg)
+<img src="https://raw.githubusercontent.com/scalableinternetservices/poll/master/assets/pictures/ashishPicture.jpg" alt="Ashish Lal" style="width: 200px;"/>
 
 ## Pivotal tracker
 
