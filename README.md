@@ -7,7 +7,8 @@ This application allows users to create polls to gather data. Poll creators can 
 ## Team Members
 
 Akhil Nadendla
-(insert photo here)
+<br><img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/8/005/0b6/16e/318cbd6.jpg" width="200" height="200"/>
+
 
 Roy Xia
 (insert photo here)
