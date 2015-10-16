@@ -20,8 +20,16 @@
     <%= user_poll_form.text_area :description %>
   </div>
   <% (0...@poll_options.length).each do |index| %>
-    <%= user_poll_form.fields_for(@poll_options[index], index: @poll_options[index].id) do |poll_option_form| %>
-      <div class="field">
+    <%= user_poll_form.fields_for(@poll_options[index], index: index) do |poll_option_form| %>
+      <div class="field" id=<%= "field#{index}" %>>
+        <%= poll_option_form.label "Option #{index+1}" %><br>
+        <%= poll_option_form.text_area :text %>
+      </div>
+    <% end %>
+  <% end %>
+  <% (@poll_options.length...@max_num_options).each do |index| %>
+    <%= user_poll_form.fields_for(PollOption.new, index: index) do |poll_option_form| %>
+      <div class="hidden_field" id=<%= "field#{index}" %> style="display: none;">
         <%= poll_option_form.label "Option #{index+1}" %><br>
         <%= poll_option_form.text_area :text %>
       </div>
@@ -31,3 +39,9 @@
     <%= user_poll_form.submit %>
   </div>
 <% end %>
+
+<button id="add_poll_option_button" onclick="addPollOption()"
+  <%= raw('style="display: none;"') if @poll_options.length == @max_num_options %>
+        >
+  Add poll option
+</button>

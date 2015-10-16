@@ -16,22 +16,23 @@ class UserPollsController < ApplicationController
   # GET /user_polls/new
   def new
     @user_poll = UserPoll.new
-    # TODO: Allow arbitrary number of poll options (up to a limit), not just 4
+    @max_num_options = UserPoll.MAX_POLL_OPTIONS
     @poll_options = Array.new(4) { PollOption.new }
-    print @user_poll.persisted?
+    @blank_poll_option = PollOption.new
   end
 
   # GET /user_polls/1/edit
   def edit
-    @poll_options = @user_poll.poll_options + [PollOption.new]
-    print @user_poll.persisted?
+    @max_num_options = UserPoll.MAX_POLL_OPTIONS
+    @poll_options = @user_poll.poll_options
+    @blank_poll_option = PollOption.new
   end
 
   # POST /user_polls
   # POST /user_polls.json
   def create
     @user_poll = current_user.user_polls.new(user_poll_params)
-    poll_option_params.each { |poll_option| @user_poll.poll_options.new(poll_option) if poll_option[:text] != '' }
+    poll_option_params.each { |index, poll_option_args| print poll_option_args; @user_poll.poll_options.new(poll_option_args) if poll_option_args[:text] != '' }
 
     respond_to do |format|
       if @user_poll.save
@@ -47,6 +48,7 @@ class UserPollsController < ApplicationController
 
   # PATCH/PUT /user_polls/1
   # PATCH/PUT /user_polls/1.json
+  # DISABLED
   def update
     respond_to do |format|
       if @user_poll.update(user_poll_params)
