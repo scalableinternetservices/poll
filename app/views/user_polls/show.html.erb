@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @user_poll.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @user_poll.description %>
+</p>
+
+<p>
+  <strong>Options</strong> <br>
+  <% @user_poll.poll_options.each do |poll_option| %>
+    <%= poll_option.text %> <br>
+  <% end %>
+</p>
+
+
+<%= link_to 'Back', user_polls_path %>
