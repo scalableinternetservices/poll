@@ -1,2 +1,6 @@
+language: ruby
+cache: bundler
+rvm:
+  - 2.2.1
 notifications:
   slack: cs188-poll:mgAz7nOmEsGtWTyAgOGjnkSP
