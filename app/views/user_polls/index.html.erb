@@ -7,7 +7,6 @@
     <tr>
       <th>Title</th>
       <th>Description</th>
-      <th>Creation date</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,7 +16,6 @@
       <tr>
         <td><%= user_poll.title %></td>
         <td><%= user_poll.description %></td>
-        <td><%= user_poll.create_date %></td>
         <td><%= link_to 'Show', user_poll %></td>
         <td><%= link_to 'Edit', edit_user_poll_path(user_poll) %></td>
         <td><%= link_to 'Destroy', user_poll, method: :delete, data: { confirm: 'Are you sure?' } %></td>

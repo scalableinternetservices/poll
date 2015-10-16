@@ -11,16 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151016014854) do
-
-  create_table "poll_entries", force: :cascade do |t|
-    t.integer  "user_poll_id"
-    t.text     "text"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "poll_entries", ["user_poll_id"], name: "index_poll_entries_on_user_poll_id"
+ActiveRecord::Schema.define(version: 20151016040118) do
 
   create_table "poll_options", force: :cascade do |t|
     t.integer  "user_poll_id"

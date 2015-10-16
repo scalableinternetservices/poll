@@ -17,25 +17,23 @@ class UserPollsController < ApplicationController
     @user_poll = UserPoll.new
     # TODO: Allow arbitrary number of poll options (up to a limit), not just 4
     @poll_options = Array.new(4) { PollOption.new }
+    print @user_poll.persisted?
   end
 
   # GET /user_polls/1/edit
   def edit
+    @poll_options = @user_poll.poll_options + [PollOption.new]
+    print @user_poll.persisted?
   end
 
   # POST /user_polls
   # POST /user_polls.json
   def create
     @user_poll = UserPoll.new(user_poll_params)
-    @poll_options = poll_option_params.map { |poll_option| PollOption.new(poll_option) }
+    poll_option_params.each { |poll_option| @user_poll.poll_options.new(poll_option) if poll_option[:text] != '' }
 
     respond_to do |format|
-      @user_poll.create_date = Time.now.getutc
-
-      success = @user_poll.save
-      @poll_options.each { |poll_option| success = success and poll_option.save }
-
-      if success
+      if @user_poll.save
         format.html { redirect_to @user_poll, notice: 'User poll was successfully created.' }
         format.json { render :show, status: :created, location: @user_poll }
       else
@@ -82,6 +80,6 @@ class UserPollsController < ApplicationController
     end
 
     def poll_option_params
-      params.permit(:text => [])
+      params.require(:user_poll).permit(:poll_option => [:text]).require(:poll_option)
     end
 end

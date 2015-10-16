@@ -11,9 +11,12 @@
 </p>
 
 <p>
-  <strong>Create date:</strong>
-  <%= @user_poll.create_date %>
+  <strong>Options</strong> <br>
+  <% @user_poll.poll_options.each do |poll_option| %>
+    <%= poll_option.text %> <br>
+  <% end %>
 </p>
+
 
 <%= link_to 'Edit', edit_user_poll_path(@user_poll) %> |
 <%= link_to 'Back', user_polls_path %>
