@@ -1,5 +1,6 @@
-class DeviseCreateUsers < ActiveRecord::Migration
+class Initialization < ActiveRecord::Migration
   def change
+    # Setup Users (from the "devise" gem)
     create_table(:users) do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
@@ -38,5 +39,30 @@ class DeviseCreateUsers < ActiveRecord::Migration
     add_index :users, :reset_password_token, unique: true
     # add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,         unique: true
+
+    # Setup UserPolls
+    create_table :user_polls do |t|
+      t.references :user, index: true, foreign_key: true
+      t.string :title
+      t.text :description
+
+      t.timestamps null: false
+    end
+
+    # Setup PollQuestions
+    create_table :poll_questions do |t|
+      t.references :user_poll, index: true, foreign_key: true
+      t.text :text
+
+      t.timestamps null: false
+    end
+
+    # Setup Answers
+    create_table :answers do |t|
+      t.references :poll_question, index: true, foreign_key: true
+      t.text :text
+
+      t.timestamps null: false
+    end
   end
 end

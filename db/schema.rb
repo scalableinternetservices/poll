@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151016191931) do
+ActiveRecord::Schema.define(version: 20151016221415) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "poll_question_id"
@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20151016191931) do
   add_index "answers", ["poll_question_id"], name: "index_answers_on_poll_question_id"
 
   create_table "poll_questions", force: :cascade do |t|
-    t.text     "text"
     t.integer  "user_poll_id"
+    t.text     "text"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
@@ -32,12 +32,11 @@ ActiveRecord::Schema.define(version: 20151016191931) do
   add_index "poll_questions", ["user_poll_id"], name: "index_poll_questions_on_user_poll_id"
 
   create_table "user_polls", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "title"
     t.text     "description"
-    t.datetime "create_date"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "user_id"
   end
 
   add_index "user_polls", ["user_id"], name: "index_user_polls_on_user_id"
