@@ -15,6 +15,8 @@ class UserPollsController < ApplicationController
   # GET /user_polls/new
   def new
     @user_poll = UserPoll.new
+    # TODO: Allow arbitrary number of poll options (up to a limit), not just 4
+    @poll_options = Array.new(4) { PollOption.new }
   end
 
   # GET /user_polls/1/edit
@@ -25,12 +27,19 @@ class UserPollsController < ApplicationController
   # POST /user_polls.json
   def create
     @user_poll = UserPoll.new(user_poll_params)
+    @poll_options = poll_option_params.map { |poll_option| PollOption.new(poll_option) }
 
     respond_to do |format|
-      if @user_poll.save
+      @user_poll.create_date = Time.now.getutc
+
+      success = @user_poll.save
+      @poll_options.each { |poll_option| success = success and poll_option.save }
+
+      if success
         format.html { redirect_to @user_poll, notice: 'User poll was successfully created.' }
         format.json { render :show, status: :created, location: @user_poll }
       else
+        # TODO: Need to make sure that if one of the saves fails, then both don't occur
         format.html { render :new }
         format.json { render json: @user_poll.errors, status: :unprocessable_entity }
       end
@@ -70,5 +79,9 @@ class UserPollsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_poll_params
       params.require(:user_poll).permit(:title, :description, :create_date)
+    end
+
+    def poll_option_params
+      params.permit(:text => [])
     end
 end

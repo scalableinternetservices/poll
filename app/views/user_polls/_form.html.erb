@@ -1,4 +1,4 @@
-<%= form_for(@user_poll) do |f| %>
+<%= form_for(@user_poll) do |user_poll_form| %>
   <% if @user_poll.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user_poll.errors.count, "error") %> prohibited this user_poll from being saved:</h2>
@@ -12,18 +12,22 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= user_poll_form.label :title %><br>
+    <%= user_poll_form.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
+    <%= user_poll_form.label :description %><br>
+    <%= user_poll_form.text_area :description %>
   </div>
-  <div class="field">
-    <%= f.label :create_date %><br>
-    <%= f.datetime_select :create_date %>
-  </div>
+  <% (0...@poll_options.length).each do |index| %>
+    <%= user_poll_form.fields_for(@poll_options[index], index:@poll_options[index].id) do |poll_option_form| %>
+      <div class="field">
+        <%= poll_option_form.label "Option #{index+1}" %><br>
+        <%= poll_option_form.text_area :text %>
+      </div>
+    <% end %>
+  <% end %>
   <div class="actions">
-    <%= f.submit %>
+    <%= user_poll_form.submit %>
   </div>
 <% end %>
