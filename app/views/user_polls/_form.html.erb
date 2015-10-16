@@ -19,10 +19,14 @@
     <%= user_poll_form.label :description %><br>
     <%= user_poll_form.text_area :description %>
   </div>
-  <div class="field">
-    
-  </div>
-
+  <% (0...@poll_options.length).each do |index| %>
+    <%= user_poll_form.fields_for(@poll_options[index], index: @poll_options[index].id) do |poll_option_form| %>
+      <div class="field">
+        <%= poll_option_form.label "Option #{index+1}" %><br>
+        <%= poll_option_form.text_area :text %>
+      </div>
+    <% end %>
+  <% end %>
   <div class="actions">
     <%= user_poll_form.submit %>
   </div>
