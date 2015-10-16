@@ -64,10 +64,14 @@ class UserPollsController < ApplicationController
   # DELETE /user_polls/1
   # DELETE /user_polls/1.json
   def destroy
-    @user_poll.destroy
     respond_to do |format|
-      format.html { redirect_to user_polls_url, notice: 'User poll was successfully destroyed.' }
-      format.json { head :no_content }
+      if User.find(@user_poll.user_id) == current_user and @user_poll.destroy
+        format.html { redirect_to user_polls_url, notice: 'User poll was successfully destroyed.' }
+        format.json { head :no_content }
+      else
+        format.html { render :index }
+        format.json { render json: @user_poll.errors, status: unprocessable_entity }
+      end
     end
   end
 
