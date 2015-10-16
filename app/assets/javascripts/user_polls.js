@@ -1,5 +1,5 @@
-function addPollOption() {
-    $(".hidden_field").each( function(index) {
+function addPollQuestion() {
+    $(".hidden_question_field").each( function(index) {
         // Just a little hacky
         if ($(this).css("display") == "block")
             return true;
@@ -10,9 +10,9 @@ function addPollOption() {
 
     // Also a little hacky; hide the button once all options are displayed
     $("#add_poll_option_button").css("display", "none");
-    $(".hidden_field").each( function(index) {
+    $(".hidden_question_field").each( function(index) {
         if ($(this).css("display") == "none") {
-            $("#add_poll_option_button").css("display", "block");
+            $("#add_poll_question_button").css("display", "block");
             return false;
         }
     });

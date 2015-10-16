@@ -16,30 +16,35 @@ class UserPollsController < ApplicationController
   # GET /user_polls/new
   def new
     @user_poll = UserPoll.new
-    @max_num_options = UserPoll.MAX_POLL_OPTIONS
-    @poll_options = Array.new(4) { PollOption.new }
-    @blank_poll_option = PollOption.new
+    @poll_questions = [ PollQuestion.new ]
+    @max_num_questions = UserPoll.MAX_NUM_POLL_QUESTIONS
+    @max_num_answers = PollQuestion.MAX_NUM_ANSWERS
   end
 
   # GET /user_polls/1/edit
   def edit
-    @max_num_options = UserPoll.MAX_POLL_OPTIONS
-    @poll_options = @user_poll.poll_options
-    @blank_poll_option = PollOption.new
+    @poll_questions = @user_poll.poll_questions
+    @max_num_questions = UserPoll.MAX_NUM_POLL_QUESTIONS
+    @max_num_answers = PollQuestion.MAX_NUM_ANSWERS
   end
 
   # POST /user_polls
   # POST /user_polls.json
   def create
     @user_poll = current_user.user_polls.new(user_poll_params)
-    poll_option_params.each { |index, poll_option_args| print poll_option_args; @user_poll.poll_options.new(poll_option_args) if poll_option_args[:text] != '' }
+    @user_poll.poll_questions.each { |poll_question|
+      empty_answers = poll_question.answers.select { |answer| answer.text == "" }
+      empty_answers.each { |answer| answer.destroy }
+    }
 
+    empty_questions = @user_poll.poll_questions.select { |poll_question| poll_question.text == "" or poll_question.answers.length == 0 }
+    empty_questions.each { |question| question.destroy }
+    
     respond_to do |format|
       if @user_poll.save
         format.html { redirect_to @user_poll, notice: 'User poll was successfully created.' }
         format.json { render :show, status: :created, location: @user_poll }
       else
-        # TODO: Need to make sure that if one of the saves fails, then both don't occur
         format.html { render :new }
         format.json { render json: @user_poll.errors, status: :unprocessable_entity }
       end
@@ -83,10 +88,7 @@ class UserPollsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_poll_params
-      params.require(:user_poll).permit(:title, :description, :create_date)
+      params.require(:user_poll).permit(:title, :description, :create_date, :poll_questions_attributes => [:text, :answers_attributes => [:text]])
     end
 
-    def poll_option_params
-      params.require(:user_poll).permit(:poll_option => [:text]).require(:poll_option)
-    end
 end

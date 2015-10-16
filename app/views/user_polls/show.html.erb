@@ -11,9 +11,14 @@
 </p>
 
 <p>
-  <strong>Options</strong> <br>
-  <% @user_poll.poll_options.each do |poll_option| %>
-    <%= poll_option.text %> <br>
+  <strong>Questions</strong> <br>
+  <% @user_poll.poll_questions.each_with_index do |poll_question, index| %>
+    Question <%= "#{index+1}" %>. <%= poll_question.text %> <br>
+    <list>
+      <% poll_question.answers.each do |answer| %>
+        <li><%= answer.text %></li>
+      <% end %>
+    </list> </br>
   <% end %>
 </p>
 

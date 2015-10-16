@@ -1,0 +1,12 @@
+<%= poll_question_form.label "Options" %><br>
+<% poll_question.answers.each_with_index do |answer, index| %>
+  <%= poll_question_form.fields_for :answers, answer do |answer_form| %>
+    <%= answer_form.text_area :text %>
+  <% end %>
+<% end %>
+
+<% (poll_question.answers.length...@max_num_answers).each do |index| %>
+  <%= poll_question_form.fields_for :answers, Answer.new do |answer_form| %>
+    <%= answer_form.text_area :text %>
+  <% end %>
+<% end %>
