@@ -1,5 +1,6 @@
 class UserPollsController < ApplicationController
   before_action :set_user_poll, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /user_polls
   # GET /user_polls.json
@@ -29,7 +30,7 @@ class UserPollsController < ApplicationController
   # POST /user_polls
   # POST /user_polls.json
   def create
-    @user_poll = UserPoll.new(user_poll_params)
+    @user_poll = current_user.user_polls.new(user_poll_params)
     poll_option_params.each { |poll_option| @user_poll.poll_options.new(poll_option) if poll_option[:text] != '' }
 
     respond_to do |format|
@@ -71,7 +72,7 @@ class UserPollsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_poll
-      @user_poll = UserPoll.find(params[:id])
+      @user_poll = current_user.user_polls.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
