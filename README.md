@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/scalableinternetservices/poll.svg?branch=master)](https://travis-ci.org/scalableinternetservices/poll)
+
 ## Team Name: Poll
 
 ## Project Description
