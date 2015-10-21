@@ -2,8 +2,8 @@
 
 one:
   text: MyText
-  user_poll_id: 
+  user_poll_id: 1
 
 two:
   text: MyText
-  user_poll_id: 
+  user_poll_id: 2
