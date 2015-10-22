@@ -5,7 +5,8 @@ class UserPollsController < ApplicationController
   # GET /user_polls
   # GET /user_polls.json
   def index
-    @user_polls = UserPoll.all
+    @news_feed_polls = get_news_feed_polls
+    @current_user_polls = UserPoll.where(user_id: current_user.id)
   end
 
   # GET /user_polls/1
@@ -89,6 +90,13 @@ class UserPollsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_poll_params
       params.require(:user_poll).permit(:title, :description, :create_date, :poll_questions_attributes => [:text, :answers_attributes => [:text]])
+    end
+
+    # Algorithm for choosing news feed polls
+    def get_news_feed_polls
+      # For now, nothing fancy. Just choose the newest polls that are not yours.
+      # Cap to 10 polls.
+      UserPoll.where.not(user_id: current_user.id).order(updated_at: :desc).limit(10)
     end
 
 end
