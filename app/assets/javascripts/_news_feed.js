@@ -1,6 +1,3 @@
-// For whatever reason, loading this script via <script> tags forces AJAX
-// queries to run synchronously, so explicitly set them to be asynchronous.
-
 $( function() {
     setupOnClick();
 });
