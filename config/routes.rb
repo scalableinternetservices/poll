@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
         registrations: 'users/registrations'
       }
+
+  get 'user_polls/news_feed(.:format)' => 'user_polls#news_feed'
   resources :user_polls
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,34 +1,43 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing User Polls</h1>
+<h2>News Feed</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Poll Owner</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
+<div id="newsfeedtable">
+<%= render 'news_feed' %>
+</div>
 
-  <tbody>
-    <% @user_polls.each do |user_poll| %>
+<h2>Your Polls</h2>
+
+<% if @current_user_polls.length == 0 %>
+  <p>You don't have any polls yet! <%= link_to 'Make a poll', new_user_poll_path %> </p>
+<% else %>
+  <table>
+    <thead>
       <tr>
-        <td><%= user_poll.title %></td>
-        <td><%= user_poll.description %></td>
-        <td><%= User.find(user_poll.user_id).email %></td>
-        <td><%= link_to 'Show', user_poll %></td>
-        <% if User.find(user_poll.user_id) == current_user %>
-          <td><%= link_to 'Destroy', user_poll, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Poll Owner</th>
+        <th colspan="2"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @current_user_polls.each do |user_poll| %>
+        <tr>
+          <td><%= user_poll.title %></td>
+          <td><%= user_poll.description %></td>
+          <td><%= User.find(user_poll.user_id).email %></td>
+          <td><%= link_to 'Show', user_poll %></td>
+          <td><%= link_to 'Destroy', user_poll, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New User poll', new_user_poll_path %>
+  <br>
+
+  <%= link_to 'New poll', new_user_poll_path %>
+<% end %>
+
 <br> <br>
 <%= render 'sign_in_out' %>
