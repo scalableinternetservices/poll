@@ -1,0 +1,25 @@
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Poll Owner</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @news_feed_polls.each do |user_poll| %>
+      <tr>
+        <td><%= user_poll.title %></td>
+        <td><%= user_poll.description %></td>
+        <td><%= User.find(user_poll.user_id).email %></td>
+        <td><%= link_to 'Show', user_poll %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if @can_request_more_polls %>
+  <button data-more-polls-request-size=<%= "#{@next_request_size}" %>>Show more</button>
+<% end %>

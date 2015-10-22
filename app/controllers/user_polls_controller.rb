@@ -5,8 +5,20 @@ class UserPollsController < ApplicationController
   # GET /user_polls
   # GET /user_polls.json
   def index
-    @news_feed_polls = get_news_feed_polls
+    num_polls = 5
     @current_user_polls = UserPoll.where(user_id: current_user.id)
+    @news_feed_polls = get_news_feed_polls(num_polls)
+    @can_request_more_polls = can_request_more_polls?(num_polls)
+    @next_request_size = 10
+  end
+
+  # GET /user_polls/news_feed
+  def news_feed
+    num_polls = news_feed_params[:num_polls].to_i
+    @news_feed_polls = get_news_feed_polls(num_polls)
+    @can_request_more_polls = can_request_more_polls?(num_polls)
+    @next_request_size = num_polls + 5
+    render(layout: false)
   end
 
   # GET /user_polls/1
@@ -92,11 +104,17 @@ class UserPollsController < ApplicationController
       params.require(:user_poll).permit(:title, :description, :create_date, :poll_questions_attributes => [:text, :answers_attributes => [:text]])
     end
 
-    # Algorithm for choosing news feed polls
-    def get_news_feed_polls
-      # For now, nothing fancy. Just choose the newest polls that are not yours.
-      # Cap to 10 polls.
-      UserPoll.where.not(user_id: current_user.id).order(updated_at: :desc).limit(10)
+    def news_feed_params
+      params.permit(:num_polls)
     end
 
+    # Algorithm for choosing news feed polls
+    def get_news_feed_polls(max_num_polls)
+      # For now, nothing fancy. Just choose the newest polls that are not yours.
+      UserPoll.where.not(user_id: current_user.id).order(updated_at: :desc).limit(max_num_polls)
+    end
+
+    def can_request_more_polls?(num_polls)
+      num_polls < UserPoll.where.not(user_id: current_user.id).count
+    end
 end
