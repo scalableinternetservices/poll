@@ -57,20 +57,39 @@ class UserPollsController < ApplicationController
   # POST /user_polls
   # POST /user_polls.json
   def create
-    @user_poll = current_user.user_polls.new(user_poll_params)
-    @user_poll.poll_questions.each { |poll_question|
-      empty_answers = poll_question.answers.select { |answer| answer.text == "" }
-      empty_answers.each { |answer| answer.destroy }
+    # Convert the poll_questions_attributes hash into an array
+    cleaned_user_poll_params = user_poll_params
+    poll_questions_array = Array.new(user_poll_params[:poll_questions_attributes].length)
+    cleaned_user_poll_params[:poll_questions_attributes].each { |index, attributes|
+      poll_questions_array[index.to_i] = attributes
     }
 
-    empty_questions = @user_poll.poll_questions.select { |poll_question| poll_question.text == "" or poll_question.answers.length == 0 }
-    empty_questions.each { |question| question.destroy }
+    poll_questions_array.each { |question_attributes|
+      answers_array = Array.new(question_attributes[:answers_attributes].length)
+      question_attributes[:answers_attributes].each { |index, answer_attributes|
+        answers_array[index.to_i] = answer_attributes
+      }
+      question_attributes[:answers_attributes] = answers_array
+    }
+
+    # Delete empty fields
+    (0...poll_questions_array.length).each { |index|
+      poll_questions_array[index][:answers_attributes] = poll_questions_array[index][:answers_attributes].reject { |attributes| attributes[:text] == "" }
+    }
+
+    cleaned_user_poll_params[:poll_questions_attributes] = poll_questions_array.reject { |attributes| attributes[:answers_attributes].length == 0 }
+
+    @user_poll = current_user.user_polls.new(cleaned_user_poll_params)
     
     respond_to do |format|
       if @user_poll.save
         format.html { redirect_to @user_poll, notice: 'User poll was successfully created.' }
         format.json { render :show, status: :created, location: @user_poll }
       else
+        @poll_questions = @user_poll.poll_questions.length == 0 ? [PollQuestion.new] : @user_poll.poll_questions
+        @max_num_questions = UserPoll.MAX_NUM_POLL_QUESTIONS
+        @max_num_answers = PollQuestion.MAX_NUM_ANSWERS
+        
         format.html { render :new }
         format.json { render json: @user_poll.errors, status: :unprocessable_entity }
       end
