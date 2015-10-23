@@ -1,7 +1,7 @@
 <% if @current_user_polls.length == 0 %>
-  <p>You don't have any polls yet! <%= link_to 'Make a poll', new_user_poll_path %> </p>
+  <p>You don't have any polls yet!</p>
 <% else %>
-  <table>
+  <table class="table table-striped">
     <thead>
       <tr>
         <th>Title</th>
@@ -24,6 +24,4 @@
   <% if @can_show_more_current_user_polls %>
     <button data-current-user-polls-request-size=<%= "#{@next_current_user_polls_request_size}" %>>Show more</button>
   <% end %>
-
-  <%= link_to 'New poll', new_user_poll_path %>
 <% end %>
