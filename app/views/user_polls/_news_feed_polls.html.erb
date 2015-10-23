@@ -2,19 +2,18 @@
   <thead>
     <tr>
       <th>Title</th>
-      <th>Description</th>
       <th>Poll Owner</th>
-      <th colspan="1"></th>
+      <th>Creation Date</th>
     </tr>
   </thead>
 
   <tbody>
     <% @news_feed_polls.each do |user_poll| %>
       <tr>
-        <td><%= user_poll.title %></td>
-        <td><%= user_poll.description %></td>
-        <td><%= User.find(user_poll.user_id).email %></td>
-        <td><%= link_to 'Show', user_poll %></td>
+        <td><%= link_to user_poll.title, user_poll %></td>
+        <% user_poll_owner = User.find(user_poll.user_id) %>
+        <td><%= "#{user_poll_owner.first_name} #{user_poll_owner.last_name}" %></td>
+        <td><%= user_poll.created_at.to_s(:long) %></td>
       </tr>
     <% end %>
   </tbody>

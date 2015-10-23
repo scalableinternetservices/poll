@@ -128,7 +128,7 @@ class UserPollsController < ApplicationController
     # Algorithm for choosing news feed polls
     def get_news_feed_polls(max_num_polls)
       # For now, nothing fancy. Just choose the newest polls that are not yours.
-      UserPoll.where.not(user_id: current_user.id).order(updated_at: :desc).limit(max_num_polls)
+      ::UserPoll.where.not(user_id: current_user.id).order(updated_at: :desc).limit(max_num_polls)
     end
 
     def get_current_user_polls(max_num_polls)
