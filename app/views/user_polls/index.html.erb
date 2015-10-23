@@ -19,58 +19,16 @@
             <div class="col-lg-8 col-lg-offset-2">
                 <p id="notice"><%= notice %></p>
                 <h2>News Feed</h2>
-                <div class="table-responsive">   
-                    <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Poll Owner</th>
-                            <th>Click to View Poll</th>
-                            <th>Click to Destroy Poll</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% @news_feed_polls.each do |news_feed_poll| %>
-                        <tr>
-                            <td><%= news_feed_poll.title %></td>
-                            <td><%= news_feed_poll.description %></td>
-                            <td><%= User.find(news_feed_poll.user_id).email %></td>
-                            <td><%= link_to 'Show', news_feed_poll %></td>
-                            <td><%= link_to 'Destroy', news_feed_poll, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                        </tr>
-                     <% end %>
-                    </tbody>
-                    </table>
+                <div class="table-responsive" id="news-feed-polls">   
+                  <%= render 'news_feed_polls' %>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Your Polls</h2>
-                <div class="table-responsive">   
-                    <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Poll Owner</th>
-                            <th>View Poll</th>
-                            <th>Destroy Poll</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% @current_user_polls.each do |user_poll| %>
-                        <tr>
-                            <td><%= user_poll.title %></td>
-                            <td><%= user_poll.description %></td>
-                            <td><%= User.find(user_poll.user_id).email %></td>
-                            <td><%= link_to 'Show', user_poll %></td>
-                            <td><%= link_to 'Destroy', user_poll, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                        </tr>
-                     <% end %>
-                    </tbody>
-                    </table>
+                <div class="table-responsive" id="current-user-polls">   
+                  <%= render 'current_user_polls' %>
                 </div>
             </div>
         </div>
