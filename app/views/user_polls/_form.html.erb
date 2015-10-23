@@ -41,13 +41,11 @@
       </div>
     <% end %>
   <% end %>
-  <div class="actions">
-    <%= user_poll_form.submit %>
-  </div>
+  <button id="actions" class= "btn btn-primary">
+    <%= user_poll_form.submit %> 
+  </button>
 <% end %>
-
-<button id="add_poll_question_button" onclick="addPollQuestion()"
-  <%= raw('style="display: none;"') if @poll_questions.length == @max_num_questions %>
-        >
-  Add poll question
-</button>
+<br>
+<button id="add_poll_question_button" class= "btn btn-primary" onclick="addPollQuestion()" 
+    <%= raw('style="display: none;"') if @poll_questions.length == @max_num_questions %>>
+  Add poll question </button>
