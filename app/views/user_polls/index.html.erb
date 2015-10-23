@@ -2,42 +2,15 @@
 
 <h2>News Feed</h2>
 
-<div id="newsfeedtable">
-<%= render 'news_feed' %>
+<div id="news-feed-polls">
+<%= render 'news_feed_polls' %>
 </div>
 
 <h2>Your Polls</h2>
 
-<% if @current_user_polls.length == 0 %>
-  <p>You don't have any polls yet! <%= link_to 'Make a poll', new_user_poll_path %> </p>
-<% else %>
-  <table>
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Poll Owner</th>
-        <th colspan="2"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @current_user_polls.each do |user_poll| %>
-        <tr>
-          <td><%= user_poll.title %></td>
-          <td><%= user_poll.description %></td>
-          <td><%= User.find(user_poll.user_id).email %></td>
-          <td><%= link_to 'Show', user_poll %></td>
-          <td><%= link_to 'Destroy', user_poll, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <br>
-
-  <%= link_to 'New poll', new_user_poll_path %>
-<% end %>
+<div id="current-user-polls">
+<%= render 'current_user_polls' %>
+</div>
 
 <br> <br>
 <%= render 'sign_in_out' %>
