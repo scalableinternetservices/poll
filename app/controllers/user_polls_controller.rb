@@ -5,19 +5,32 @@ class UserPollsController < ApplicationController
   # GET /user_polls
   # GET /user_polls.json
   def index
-    num_polls = 5
-    @current_user_polls = UserPoll.where(user_id: current_user.id)
-    @news_feed_polls = get_news_feed_polls(num_polls)
-    @can_request_more_polls = can_request_more_polls?(num_polls)
-    @next_request_size = 10
+    num_news_feed_polls = 5
+    @news_feed_polls = get_news_feed_polls(num_news_feed_polls)
+    @can_show_more_news_feed_polls = can_request_more_news_feed_polls?(num_news_feed_polls)
+    @next_news_feed_polls_request_size = 10
+
+    num_current_user_polls = 5
+    @current_user_polls = get_current_user_polls(num_current_user_polls)
+    @can_show_more_current_user_polls = can_request_more_current_user_polls?(num_current_user_polls)
+    @next_current_user_polls_request_size = 10
   end
 
-  # GET /user_polls/news_feed
-  def news_feed
-    num_polls = news_feed_params[:num_polls].to_i
-    @news_feed_polls = get_news_feed_polls(num_polls)
-    @can_request_more_polls = can_request_more_polls?(num_polls)
-    @next_request_size = num_polls + 5
+  # GET /user_polls/news_feed_polls
+  def news_feed_polls
+    num_news_feed_polls = news_feed_polls_params[:num_news_feed_polls].to_i
+    @news_feed_polls = get_news_feed_polls(num_news_feed_polls)
+    @can_show_more_news_feed_polls = can_request_more_news_feed_polls?(num_news_feed_polls)
+    @next_news_feed_polls_request_size = num_news_feed_polls + 5
+    render(layout: false)
+  end
+
+  # GET /user_polls/current_user_polls
+  def current_user_polls
+    num_current_user_polls = current_user_polls_params[:num_current_user_polls].to_i
+    @current_user_polls = get_current_user_polls(num_current_user_polls)
+    @can_show_more_current_user_polls = can_request_more_current_user_polls?(num_current_user_polls)
+    @next_current_user_polls_request_size = num_current_user_polls + 5
     render(layout: false)
   end
 
@@ -96,7 +109,7 @@ class UserPollsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_poll
-      @user_poll = current_user.user_polls.find(params[:id])
+      @user_poll = UserPoll.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -104,8 +117,12 @@ class UserPollsController < ApplicationController
       params.require(:user_poll).permit(:title, :description, :create_date, :poll_questions_attributes => [:text, :answers_attributes => [:text]])
     end
 
-    def news_feed_params
-      params.permit(:num_polls)
+    def news_feed_polls_params
+      params.permit(:num_news_feed_polls)
+    end
+    
+    def current_user_polls_params
+      params.permit(:num_current_user_polls)
     end
 
     # Algorithm for choosing news feed polls
@@ -114,7 +131,15 @@ class UserPollsController < ApplicationController
       UserPoll.where.not(user_id: current_user.id).order(updated_at: :desc).limit(max_num_polls)
     end
 
-    def can_request_more_polls?(num_polls)
+    def get_current_user_polls(max_num_polls)
+      UserPoll.where(user_id: current_user.id).order(updated_at: :desc).limit(max_num_polls)
+    end
+
+    def can_request_more_news_feed_polls?(num_polls)
       num_polls < UserPoll.where.not(user_id: current_user.id).count
+    end
+
+    def can_request_more_current_user_polls?(num_polls)
+      num_polls < UserPoll.where(user_id: current_user.id).count
     end
 end

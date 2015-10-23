@@ -20,6 +20,6 @@
   </tbody>
 </table>
 
-<% if @can_request_more_polls %>
-  <button data-more-polls-request-size=<%= "#{@next_request_size}" %>>Show more</button>
+<% if @can_show_more_news_feed_polls %>
+  <button data-news-feed-polls-request-size=<%= "#{@next_news_feed_polls_request_size}" %>>Show more</button>
 <% end %>
