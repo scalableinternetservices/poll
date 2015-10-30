@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151022053325) do
+ActiveRecord::Schema.define(version: 20151030040614) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "poll_question_id", limit: 4
@@ -23,10 +23,12 @@ ActiveRecord::Schema.define(version: 20151022053325) do
   add_index "answers", ["poll_question_id"], name: "index_answers_on_poll_question_id", using: :btree
 
   create_table "poll_questions", force: :cascade do |t|
-    t.integer  "user_poll_id", limit: 4
-    t.text     "text",         limit: 65535
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.integer  "user_poll_id",           limit: 4
+    t.text     "text",                   limit: 65535
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.boolean  "optional"
+    t.boolean  "allow_multiple_answers"
   end
 
   add_index "poll_questions", ["user_poll_id"], name: "index_poll_questions_on_user_poll_id", using: :btree

@@ -12,4 +12,10 @@
   <%= poll_question_form.fields_for :answers, Answer.new do |answer_form| %>
     <%= answer_form.text_area :text %>
   <% end %>
-<% end %>
+<% end %><br>
+
+<%= poll_question_form.label "Optional?" %>
+<%= poll_question_form.check_box :optional %><br>
+
+<%= poll_question_form.label "Allow multiple answers?" %>
+<%= poll_question_form.check_box :allow_multiple_answers %>

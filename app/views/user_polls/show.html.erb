@@ -14,6 +14,12 @@
   <strong>Questions</strong> <br>
   <% @user_poll.poll_questions.each_with_index do |poll_question, index| %>
     Question <%= "#{index+1}" %>. <%= poll_question.text %> <br>
+    <% if poll_question.optional %>
+      <i>Is optional</i><br>
+    <% end %>
+    <% if poll_question.allow_multiple_answers %>
+      <i>Allows multiple answers</i><br>
+    <% end %>
     <list>
       <% poll_question.answers.each do |answer| %>
         <li><%= answer.text %></li>

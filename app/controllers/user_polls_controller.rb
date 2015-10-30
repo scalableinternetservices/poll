@@ -133,7 +133,7 @@ class UserPollsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_poll_params
-      params.require(:user_poll).permit(:title, :description, :create_date, :poll_questions_attributes => [:text, :answers_attributes => [:text]])
+      params.require(:user_poll).permit(:title, :description, :create_date, :poll_questions_attributes => [:text, :optional, :allow_multiple_answers, :answers_attributes => [:text]])
     end
 
     def news_feed_polls_params
