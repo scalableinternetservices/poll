@@ -1,0 +1,11 @@
+<h6>Friends</h6>
+<% if @current_user_friends.length == 0 %>
+  <p>You have no friends!</p>
+<% else %>
+  
+<% end %>
+<%= link_to "Add a friend", new_friend_request_path %>
+
+<% if @current_user_friend_requests.length > 0 %>
+  <h6>Friend Requests</h6>
+<% end %>

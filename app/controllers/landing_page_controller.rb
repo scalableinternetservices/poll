@@ -12,6 +12,13 @@ class LandingPageController < ApplicationController
     @current_user_polls = get_current_user_polls(num_current_user_polls)
     @can_show_more_current_user_polls = can_request_more_current_user_polls?(num_current_user_polls)
     @next_current_user_polls_request_size = 10
+
+    num_current_user_friends = 5
+    @current_user_friends = get_current_user_friends(num_current_user_friends)
+    @can_show_more_current_user_Friends = can_request_more_current_user_friends?(num_current_user_friends)
+    @next_current_user_friends_request_size = 10
+
+    @current_user_friend_requests = get_current_user_friend_requests
   end
 
   # GET /news_feed_polls
@@ -33,35 +40,61 @@ class LandingPageController < ApplicationController
   end
 
   private
-  # DEPRECATED
     def news_feed_polls_params
       params.permit(:num_news_feed_polls)
     end
     
-  # DEPRECATED
     def current_user_polls_params
       params.permit(:num_current_user_polls)
     end
 
-  # DEPRECATED
     # Algorithm for choosing news feed polls
     def get_news_feed_polls(max_num_polls)
       # For now, nothing fancy. Just choose the newest polls that are not yours.
       ::UserPoll.where.not(user_id: current_user.id).order(updated_at: :desc).limit(max_num_polls)
     end
 
-  # DEPRECATED
     def get_current_user_polls(max_num_polls)
       UserPoll.where(user_id: current_user.id).order(updated_at: :desc).limit(max_num_polls)
     end
 
-  # DEPRECATED
+    def get_current_user_friends(max_num_friends)
+      # For now show some arbitrary number of friends.
+
+      # If friendships_to is large enough, just return the first max_num_friends entries from that.
+      if current_user.friendships_to.length >= max_num_friends
+        return current_user.friendships_to[0...max_num_friends].map { |friendship|
+          User.where(user_id: friendship.friend_id)
+        }
+      end
+
+      # Otherwise, first use as many friendships_to as you can...
+      friends = current_user.friendships_to.map { |friendship|
+        User.where(user_id: friendship.friend_id)
+      }
+
+      # ...and fill the rest with as many friendships_from as you can
+      rangeEnd = [current_user.friendships_from.length, max_num_friends - friends.length].min
+      otherFriends = current_user.friendships_from[0...rangeEnd].map { |friendship|
+        User.where(user_id: friendship.user_id)
+      }
+
+      return friends + otherFriends
+    end
+
+    def get_current_user_friend_requests
+      PendingFriendship.where(receiver_id: current_user.id)
+    end
+
     def can_request_more_news_feed_polls?(num_polls)
       num_polls < UserPoll.where.not(user_id: current_user.id).count
     end
 
-  # DEPRECATED
     def can_request_more_current_user_polls?(num_polls)
       num_polls < UserPoll.where(user_id: current_user.id).count
+    end
+
+    def can_request_more_current_user_friends?(num_friends)
+      num_friends < current_user.friendships_to.length + current_user.friendships_from.length
     end
 end

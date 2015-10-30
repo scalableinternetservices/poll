@@ -1,0 +1,7 @@
+<h1>Add a friend</h1>
+
+<%= form_tag create_friend_request_path do %>
+  <%= label_tag :name %><br>
+  <%= text_area_tag :name %><br>
+  <%= submit_tag "Add friend" %>
+<% end %>
