@@ -11,23 +11,41 @@
             background-color: #1ABC9C;
         }
     </style>
+
 </head>
 <body class="MainBG">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h1>Let's create a new survey!</h1>
-                <%= render 'form' %>
+                <p id="notice"><%= notice %></p>
+                <h2>News Feed</h2>
+                <div class="table-responsive" id="news-feed-polls">   
+                  <%= render 'news_feed_polls' %>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>Your Polls</h2>
+                <div class="table-responsive" id="current-user-polls">   
+                  <%= render 'current_user_polls' %>
+                </div>
+            </div>
+        </div>
+        <br> <br>
+        <div class="row">
+            <div class="col-lg-2 col-lg-offset-2">
+                <%= link_to "New poll", new_user_poll_path, :class => "btn btn-primary white center-block" %>
             </div>
         </div>
         <br>
         <div class="row">
             <div class="col-lg-2 col-lg-offset-2">
-                <%= link_to "Back", root_path, :class => "btn btn-primary white center-block" %>
+                <%= render "sign_in_out" %>
             </div>
-        </div>
+        </div>         
+        <%= render "friends_pane" %>
     </div>
-    
     <%= yield %>
      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

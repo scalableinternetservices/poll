@@ -3,7 +3,7 @@ $(document).on("page:change", setupShowMoreCurrentUserPolls);
 function setupShowMoreCurrentUserPolls() {
     $("button[data-current-user-polls-request-size]").click(function () {
         // Submit an AJAX request for a new poll table
-        $.get("user_polls/current_user_polls",
+        $.get("/current_user_polls",
              { num_current_user_polls: this.getAttribute("data-current-user-polls-request-size") },
              function(data) {
                  $("#current-user-polls").html(data)
