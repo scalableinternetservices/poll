@@ -8,4 +8,6 @@ services:
   - mysql
 
 before_script:
+  - cd db
   - mysql -e 'create database IF NOT EXISTS test;' -uroot
+  - cd ..
