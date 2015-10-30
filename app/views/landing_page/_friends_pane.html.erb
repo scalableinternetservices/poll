@@ -1,11 +1,37 @@
-<h6>Friends</h6>
+<h3>Friends</h3>
 <% if @current_user_friends.length == 0 %>
   <p>You have no friends!</p>
 <% else %>
-  
+  <table class="table table-striped">
+    <tbody>
+      <% @current_user_friends.each do |friend| %>
+        <tr>
+          <td><%= "#{friend.first_name} #{friend.last_name}" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>
 <%= link_to "Add a friend", new_friend_request_path %>
 
 <% if @current_user_friend_requests.length > 0 %>
-  <h6>Friend Requests</h6>
+  <h4>Friend Requests</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Actions</th>
+        <th colspan="1"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @current_user_friend_requests.each do |friend_request| %>
+        <tr>
+          <td><%= friend_request[0] %></td>
+          <td><%= link_to 'Accept', accept_friend_request_path(friend_request[1]), method: :post %></td>
+          <td><%= link_to 'Reject', reject_friend_request_path(friend_request[1]), method: :post %></td>
+        </tr>
+      <% end %>
+    </tbody>
 <% end %>

@@ -15,10 +15,16 @@ class LandingPageController < ApplicationController
 
     num_current_user_friends = 5
     @current_user_friends = get_current_user_friends(num_current_user_friends)
-    @can_show_more_current_user_Friends = can_request_more_current_user_friends?(num_current_user_friends)
+    @can_show_more_current_user_friends = can_request_more_current_user_friends?(num_current_user_friends)
     @next_current_user_friends_request_size = 10
 
-    @current_user_friend_requests = get_current_user_friend_requests
+    @current_user_friend_requests = get_current_user_pending_friendships.map { |friendship|
+      requestor = User.find(friendship.requestor_id)
+      tuple = Array.new(2)
+      tuple[0] = "#{requestor.first_name} #{requestor.last_name}"
+      tuple[1] = friendship.id
+      tuple
+    }
   end
 
   # GET /news_feed_polls
@@ -64,25 +70,25 @@ class LandingPageController < ApplicationController
       # If friendships_to is large enough, just return the first max_num_friends entries from that.
       if current_user.friendships_to.length >= max_num_friends
         return current_user.friendships_to[0...max_num_friends].map { |friendship|
-          User.where(user_id: friendship.friend_id)
+          User.find(friendship.friend_id)
         }
       end
 
       # Otherwise, first use as many friendships_to as you can...
       friends = current_user.friendships_to.map { |friendship|
-        User.where(user_id: friendship.friend_id)
+        User.find(friendship.friend_id)
       }
 
       # ...and fill the rest with as many friendships_from as you can
-      rangeEnd = [current_user.friendships_from.length, max_num_friends - friends.length].min
-      otherFriends = current_user.friendships_from[0...rangeEnd].map { |friendship|
-        User.where(user_id: friendship.user_id)
+      range_end = [current_user.friendships_from.length, max_num_friends - friends.length].min
+      other_friends = current_user.friendships_from[0...range_end].map { |friendship|
+        User.find(friendship.user_id)
       }
 
-      return friends + otherFriends
+      return friends + other_friends
     end
 
-    def get_current_user_friend_requests
+    def get_current_user_pending_friendships
       PendingFriendship.where(receiver_id: current_user.id)
     end
 

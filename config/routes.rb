@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   get '/current_user_polls(.:format)' => 'landing_page#current_user_polls'
 
   get '/friend_request/new' => 'friendships#new', as: 'new_friend_request'
-  post '/friend_request/create' => 'friendships#create', as: 'create_friend_request'
+  post '/friend_request/create(.:format)' => 'friendships#create', as: 'create_friend_request'
+  post '/friend_request/accept/:id(.:format)' => 'friendships#accept', as: 'accept_friend_request'
+  post '/friend_request/reject/:id(.:format)' => 'friendships#reject', as: 'reject_friend_request'
 
   # DEPRECATED ROUTES
   get 'user_polls/news_feed_polls(.:format)' => 'user_polls#news_feed_polls'

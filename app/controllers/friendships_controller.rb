@@ -35,8 +35,41 @@ class FriendshipsController < ApplicationController
     end
   end
 
+  # POST /friend_request/accept
+  def accept
+    pending_friendship = PendingFriendship.find(accept_reject_params)
+
+    accepted_friendship = Friendship.new
+    accepted_friendship.user_id = pending_friendship.requestor_id
+    accepted_friendship.friend_id = pending_friendship.receiver_id
+
+    respond_to do |format|
+      if accepted_friendship.save
+        pending_friendship.destroy
+
+        format.html { redirect_to root_path, notice: 'Successfully accepted friend request' }
+      else
+        format.html { redirect_to root_path, notice: 'Failure to accept friend request' }
+      end
+    end
+  end
+
+  # POST /friend_request/reject
+  def reject
+    pending_friendship = PendingFriendship.find(accept_reject_params)
+    pending_friendship.destroy
+
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: 'Successfully rejected friend request' }
+    end
+  end
+
   private
   def friend_request_params
     params.require(:name)
+  end
+
+  def accept_reject_params
+    params.require(:id)
   end
 end
