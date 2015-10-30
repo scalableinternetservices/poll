@@ -20,34 +20,22 @@
     <%= user_poll_form.text_area :description %>
   </div>
   <% @poll_questions.each_with_index do |poll_question, index| %>
-    <%= user_poll_form.fields_for :poll_questions, poll_question do |poll_question_form| %>
-      <div class="field" id=<%= "field#{index}" %>>
-        <%= poll_question_form.label "Question #{index+1}" %><br>
-        <%= poll_question_form.text_area :text %><br>
-
-        <%= render :partial => "answer_form", :locals => {:poll_question_form => poll_question_form, :poll_question => poll_question} %><br>
-
+    <%= user_poll_form.fields_for "poll_questions", poll_question do |poll_question_form| %>
+      <div class="question-field" id=<%= "field#{index}" %>>
+        <%= render partial: "answer_form", locals: {index: index, poll_question_form: poll_question_form, poll_question: poll_question} %><br>
       </div>
     <% end %>
   <% end %>
-  <% (@poll_questions.length...@max_num_questions).each do |index| %>
-    <% poll_question = PollQuestion.new %>
-    <%= user_poll_form.fields_for :poll_questions, poll_question do |poll_question_form| %>
-      <div class="hidden_question_field" id=<%= "field#{index}" %> style="display: none;">
-        <%= poll_question_form.label "Question #{index+1}" %><br>
-        <%= poll_question_form.text_area :text %> <br>
 
-        <%= render :partial => "answer_form", :locals => {:poll_question_form => poll_question_form, :poll_question => poll_question } %><br>
-      </div>
-    <% end %>
+  <% poll_question = PollQuestion.new %>
+  <%= user_poll_form.fields_for :poll_questions, poll_question do |poll_question_form| %>
+    <div class="question-field" id="template-field" style="display: none;">
+      <%= render partial: "answer_form", locals: {index: 0, poll_question_form: poll_question_form, poll_question: poll_question} %><br>
+    </div>
   <% end %>
-  <div class="actions">
-    <%= user_poll_form.submit %>
-  </div>
+  <button id="actions" class= "btn btn-primary">
+    <%= user_poll_form.submit %> 
+  </button>
 <% end %>
-
-<button id="add_poll_question_button" onclick="addPollQuestion()"
-  <%= raw('style="display: none;"') if @poll_questions.length == @max_num_questions %>
-        >
-  Add poll question
-</button>
+<br>
+<button id="add_poll_question_button" class= "btn btn-primary" onclick="addPollQuestion()" data-max-questions=<%= raw("\"#{@max_num_questions}\"") %>> Add poll question </button>

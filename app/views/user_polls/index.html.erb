@@ -1,34 +1,54 @@
-<p id="notice"><%= notice %></p>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Poll</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .MainBG {
+            background-color: #1ABC9C;
+        }
+    </style>
 
-<h1>Listing User Polls</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Poll Owner</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @user_polls.each do |user_poll| %>
-      <tr>
-        <td><%= user_poll.title %></td>
-        <td><%= user_poll.description %></td>
-        <td><%= User.find(user_poll.user_id).email %></td>
-        <td><%= link_to 'Show', user_poll %></td>
-        <% if User.find(user_poll.user_id) == current_user %>
-          <td><%= link_to 'Destroy', user_poll, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New User poll', new_user_poll_path %>
-<br> <br>
-<%= render 'sign_in_out' %>
+</head>
+<body class="MainBG">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <p id="notice"><%= notice %></p>
+                <h2>News Feed</h2>
+                <div class="table-responsive" id="news-feed-polls">   
+                  <%= render 'news_feed_polls' %>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>Your Polls</h2>
+                <div class="table-responsive" id="current-user-polls">   
+                  <%= render 'current_user_polls' %>
+                </div>
+            </div>
+        </div>
+        <br> <br>
+        <div class="row">
+            <div class="col-lg-2 col-lg-offset-2">
+                <%= link_to "New poll", new_user_poll_path, :class => "btn btn-primary white center-block" %>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-lg-2 col-lg-offset-2">
+                <%= render "sign_in_out" %>
+            </div>
+        </div>         
+    </div>
+    <%= yield %>
+     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
