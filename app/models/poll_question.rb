@@ -1,6 +1,6 @@
 class PollQuestion < ActiveRecord::Base
   @@MIN_NUM_ANSWERS = 2
-  @@MAX_NUM_ANSWERS = 4
+  @@MAX_NUM_ANSWERS = 10
 
   belongs_to :user_poll
   has_many :answers, dependent: :destroy
