@@ -4,6 +4,7 @@ class UserPollsController < ApplicationController
 
   # GET /user_polls
   # GET /user_polls.json
+  # DEPRECATED
   def index
     num_news_feed_polls = 5
     @news_feed_polls = get_news_feed_polls(num_news_feed_polls)
@@ -17,6 +18,7 @@ class UserPollsController < ApplicationController
   end
 
   # GET /user_polls/news_feed_polls
+  # DEPRECATED
   def news_feed_polls
     num_news_feed_polls = news_feed_polls_params[:num_news_feed_polls].to_i
     @news_feed_polls = get_news_feed_polls(num_news_feed_polls)
@@ -26,6 +28,7 @@ class UserPollsController < ApplicationController
   end
 
   # GET /user_polls/current_user_polls
+  # DEPRECATED
   def current_user_polls
     num_current_user_polls = current_user_polls_params[:num_current_user_polls].to_i
     @current_user_polls = get_current_user_polls(num_current_user_polls)
@@ -45,6 +48,7 @@ class UserPollsController < ApplicationController
     @poll_questions = [ PollQuestion.new ]
     @max_num_questions = UserPoll.MAX_NUM_POLL_QUESTIONS
     @max_num_answers = PollQuestion.MAX_NUM_ANSWERS
+    @max_num_results = Answer.MAX_NUM_RESULTS
   end
 
   # GET /user_polls/1/edit
@@ -52,6 +56,7 @@ class UserPollsController < ApplicationController
     @poll_questions = @user_poll.poll_questions
     @max_num_questions = UserPoll.MAX_NUM_POLL_QUESTIONS
     @max_num_answers = PollQuestion.MAX_NUM_ANSWERS
+    @max_num_results = Answer.MAX_NUM_RESULTS
   end
 
   # POST /user_polls
@@ -68,6 +73,7 @@ class UserPollsController < ApplicationController
       answers_array = Array.new(question_attributes[:answers_attributes].length)
       question_attributes[:answers_attributes].each { |index, answer_attributes|
         answers_array[index.to_i] = answer_attributes
+        #answer_attributes[:results_attributes] = Result.new
       }
       question_attributes[:answers_attributes] = answers_array
     }
@@ -98,7 +104,7 @@ class UserPollsController < ApplicationController
 
   # PATCH/PUT /user_polls/1
   # PATCH/PUT /user_polls/1.json
-  # DISABLED
+  # DEPRECATED
   def update
     respond_to do |format|
       if @user_poll.update(user_poll_params)
@@ -133,7 +139,7 @@ class UserPollsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_poll_params
-      params.require(:user_poll).permit(:title, :description, :create_date, :poll_questions_attributes => [:text, :optional, :allow_multiple_answers, :answers_attributes => [:text]])
+      params.require(:user_poll).permit(:title, :description, :create_date, :poll_questions_attributes => [:text, :optional, :allow_multiple_answers, :answers_attributes => [:text, :results_attributes => [:number]]])
     end
 
     def news_feed_polls_params

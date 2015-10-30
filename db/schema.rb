@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151030073939) do
+ActiveRecord::Schema.define(version: 20151030152634) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "poll_question_id", limit: 4
@@ -21,6 +21,36 @@ ActiveRecord::Schema.define(version: 20151030073939) do
   end
 
   add_index "answers", ["poll_question_id"], name: "index_answers_on_poll_question_id", using: :btree
+
+  create_table "comments", force: :cascade do |t|
+    t.string   "commenter",    limit: 255
+    t.text     "body",         limit: 65535
+    t.integer  "user_poll_id", limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "comments", ["user_poll_id"], name: "index_comments_on_user_poll_id", using: :btree
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "friend_id",  limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "friendships", ["friend_id"], name: "index_friendships_on_friend_id", using: :btree
+  add_index "friendships", ["user_id"], name: "index_friendships_on_user_id", using: :btree
+
+  create_table "pending_friendships", force: :cascade do |t|
+    t.integer  "requestor_id", limit: 4
+    t.integer  "receiver_id",  limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "pending_friendships", ["receiver_id"], name: "index_pending_friendships_on_receiver_id", using: :btree
+  add_index "pending_friendships", ["requestor_id"], name: "index_pending_friendships_on_requestor_id", using: :btree
 
   create_table "poll_questions", force: :cascade do |t|
     t.integer  "user_poll_id",           limit: 4
@@ -74,6 +104,10 @@ ActiveRecord::Schema.define(version: 20151030073939) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "answers", "poll_questions"
+  add_foreign_key "comments", "user_polls"
+  add_foreign_key "friendships", "users"
+  add_foreign_key "friendships", "users", column: "friend_id"
+  add_foreign_key "pending_friendships", "users", column: "receiver_id"
   add_foreign_key "poll_questions", "user_polls"
   add_foreign_key "results", "answers"
   add_foreign_key "user_polls", "users"
