@@ -5,8 +5,9 @@ Rails.application.routes.draw do
 
   root 'landing_page#index'
 
-  get '/news_feed_polls(.:format)' => 'landing_page#news_feed_polls'
-  get '/current_user_polls(.:format)' => 'landing_page#current_user_polls'
+  get '/news_feed_polls(.:format)' => 'landing_page#news_feed_polls', as: 'news_feed_polls'
+  get '/current_user_polls(.:format)' => 'landing_page#current_user_polls', as: 'current_user_polls'
+  get '/friends_pane(.:format)' => 'landing_page#friends_pane', as: 'friends_pane'
 
   get '/friend_request/new' => 'friendships#new', as: 'new_friend_request'
   post '/friend_request/create(.:format)' => 'friendships#create', as: 'create_friend_request'
