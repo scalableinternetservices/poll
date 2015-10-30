@@ -15,6 +15,12 @@
 </head>
 <body class="MainBG">
     <div class="container">
+        <div>
+            <%= form_tag(user_polls_path, :method => "get", id: "search-form") do %>
+            <%= text_field_tag :search, params[:search], placeholder: "Search Polls" %>
+            <%= submit_tag "Search" %>
+            <% end %>
+        </div>
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <p id="notice"><%= notice %></p>
