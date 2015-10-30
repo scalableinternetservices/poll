@@ -3,6 +3,7 @@ Rails.application.routes.draw do
         registrations: 'users/registrations'
       }
 
+  # DEPRECATED ROUTES
   get 'user_polls/news_feed_polls(.:format)' => 'user_polls#news_feed_polls'
   get 'user_polls/current_user_polls(.:format)' => 'user_polls#current_user_polls'
   resources :user_polls
@@ -10,7 +11,9 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'user_polls#index'
+  get '/news_feed_polls(.:format)' => 'landing_page#news_feed_polls'
+  get '/current_user_polls(.:format)' => 'landing_page#current_user_polls'
+  root 'landing_page#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
