@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  requestor_id_id: 
-  receiver_id_id: 
+  requestor_id: 
+  receiver_id: 
 
 two:
-  requestor_id_id: 
-  receiver_id_id: 
+  requestor_id: 
+  receiver_id: 
