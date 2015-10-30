@@ -1,3 +1,6 @@
+<%= poll_question_form.label "Question #{index+1}" %><br>
+<%= poll_question_form.text_area :text %><br>
+
 <%= poll_question_form.label "Options" %><br>
 <% poll_question.answers.each_with_index do |answer, index| %>
   <%= poll_question_form.fields_for :answers, answer do |answer_form| %>
