@@ -85,7 +85,14 @@ class UserPollsController < ApplicationController
     cleaned_user_poll_params[:poll_questions_attributes] = poll_questions_array.reject { |attributes| attributes[:answers_attributes].length == 0 }
 
     @user_poll = current_user.user_polls.new(cleaned_user_poll_params)
-    
+
+    # Make results for every poll option
+    @user_poll.poll_questions.each { |poll_question|
+      poll_question.answers.each { |answer|
+        result = answer.results.new
+      }
+    }
+
     respond_to do |format|
       if @user_poll.save
         format.html { redirect_to @user_poll, notice: 'User poll was successfully created.' }
