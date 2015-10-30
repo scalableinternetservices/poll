@@ -7,12 +7,12 @@ class UserPollsController < ApplicationController
   # DEPRECATED
   def index
     num_news_feed_polls = 5
-    @news_feed_polls = get_news_feed_polls(num_news_feed_polls)
+    @news_feed_polls = get_news_feed_polls(num_news_feed_polls, params[:search])
     @can_show_more_news_feed_polls = can_request_more_news_feed_polls?(num_news_feed_polls)
     @next_news_feed_polls_request_size = 10
 
     num_current_user_polls = 5
-    @current_user_polls = get_current_user_polls(num_current_user_polls)
+    @current_user_polls = get_current_user_polls(num_current_user_polls, params[:search])
     @can_show_more_current_user_polls = can_request_more_current_user_polls?(num_current_user_polls)
     @next_current_user_polls_request_size = 10
   end
@@ -21,7 +21,7 @@ class UserPollsController < ApplicationController
   # DEPRECATED
   def news_feed_polls
     num_news_feed_polls = news_feed_polls_params[:num_news_feed_polls].to_i
-    @news_feed_polls = get_news_feed_polls(num_news_feed_polls)
+    @news_feed_polls = get_news_feed_polls(num_news_feed_polls, params[:search])
     @can_show_more_news_feed_polls = can_request_more_news_feed_polls?(num_news_feed_polls)
     @next_news_feed_polls_request_size = num_news_feed_polls + 5
     render(layout: false)
@@ -31,7 +31,7 @@ class UserPollsController < ApplicationController
   # DEPRECATED
   def current_user_polls
     num_current_user_polls = current_user_polls_params[:num_current_user_polls].to_i
-    @current_user_polls = get_current_user_polls(num_current_user_polls)
+    @current_user_polls = get_current_user_polls(num_current_user_polls, params[:search])
     @can_show_more_current_user_polls = can_request_more_current_user_polls?(num_current_user_polls)
     @next_current_user_polls_request_size = num_current_user_polls + 5
     render(layout: false)
@@ -151,13 +151,39 @@ class UserPollsController < ApplicationController
     end
 
     # Algorithm for choosing news feed polls
-    def get_news_feed_polls(max_num_polls)
+    def get_news_feed_polls(max_num_polls, search)
+      if (search and search.length > 0)
+        #Break search string into words
+        words = search.blank? ? [] : search.split(' ')
+        conditions = [[]] # Why this way? You'll know soon
+        words.each do |word|
+          conditions[0] << ["title LIKE ?"]
+          conditions << "%#{word}%"
+        end
+        conditions[0] = conditions.first.join(" OR ") # Converts condition string to include " OR " easily ;-)
+        conditions[0] << "AND user_id != #{current_user.id}"
+        UserPoll.where(conditions)
+      else
       # For now, nothing fancy. Just choose the newest polls that are not yours.
       ::UserPoll.where.not(user_id: current_user.id).order(updated_at: :desc).limit(max_num_polls)
+      end
     end
 
-    def get_current_user_polls(max_num_polls)
+    def get_current_user_polls(max_num_polls, search)
+      if (search and search.length > 0)
+        #Break search string into words
+        words = search.blank? ? [] : search.split(' ')
+        conditions = [[]] # Why this way? You'll know soon
+        words.each do |word|
+          conditions[0] << ["title LIKE ?"]
+          conditions << "%#{word}%"
+        end
+        conditions[0] = conditions.first.join(" OR ") # Converts condition string to include " OR " easily ;-)
+        conditions[0] << "AND user_id = #{current_user.id}"
+        UserPoll.where(conditions)
+      else
       UserPoll.where(user_id: current_user.id).order(updated_at: :desc).limit(max_num_polls)
+      end
     end
 
     def can_request_more_news_feed_polls?(num_polls)
