@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'user_polls/current_user_polls(.:format)' => 'user_polls#current_user_polls'
   resources :user_polls do
       resources :comments
+      resources :results
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

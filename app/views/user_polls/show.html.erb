@@ -48,13 +48,16 @@
                       </list> </br>
                     <% end %>
                   </p>
-                  <h3><strong>Poll Results:</strong></h3>
+                  <h3><strong>Current Poll Results:</strong></h3>
                   <p>
                     <% @user_poll.poll_questions.each_with_index do |poll_question, index| %>
                       Question <%= "#{index+1}" %>. <%= poll_question.text %> <br>
                       <list>
                         <% poll_question.answers.each do |answer| %>
-                          <li>OPTION: <%= answer.text %> RESULT:</li>
+                          <li>OPTION: <%= answer.text %> 
+                              RESULT: <%= answer.results.each do |result| %>
+                                        <%=result.votes%>
+                                        <% end %></li>
                         <% end %>
                       </list> </br>
                     <% end %>
