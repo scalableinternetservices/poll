@@ -27,12 +27,6 @@
     <% end %>
   <% end %>
 
-  <% poll_question = PollQuestion.new %>
-  <%= user_poll_form.fields_for :poll_questions, poll_question do |poll_question_form| %>
-    <div class="question-field" id="template-field" style="display: none;">
-      <%= render partial: "answer_form", locals: {index: 0, poll_question_form: poll_question_form, poll_question: poll_question} %><br>
-    </div>
-  <% end %>
   <button id="actions" class= "btn btn-primary">
     <%= user_poll_form.submit %> 
   </button>

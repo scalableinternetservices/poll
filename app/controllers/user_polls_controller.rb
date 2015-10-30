@@ -47,6 +47,7 @@ class UserPollsController < ApplicationController
     @user_poll = UserPoll.new
     @poll_questions = [ PollQuestion.new ]
     @max_num_questions = UserPoll.MAX_NUM_POLL_QUESTIONS
+    @default_num_answers = 4
     @max_num_answers = PollQuestion.MAX_NUM_ANSWERS
   end
 
@@ -54,6 +55,7 @@ class UserPollsController < ApplicationController
   def edit
     @poll_questions = @user_poll.poll_questions
     @max_num_questions = UserPoll.MAX_NUM_POLL_QUESTIONS
+    @default_num_answers = 4
     @max_num_answers = PollQuestion.MAX_NUM_ANSWERS
   end
 
@@ -91,6 +93,7 @@ class UserPollsController < ApplicationController
       else
         @poll_questions = @user_poll.poll_questions.length == 0 ? [PollQuestion.new] : @user_poll.poll_questions
         @max_num_questions = UserPoll.MAX_NUM_POLL_QUESTIONS
+        @default_num_answers = 4
         @max_num_answers = PollQuestion.MAX_NUM_ANSWERS
         
         format.html { render :new }
