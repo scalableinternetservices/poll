@@ -48,7 +48,6 @@ class UserPollsController < ApplicationController
     @poll_questions = [ PollQuestion.new ]
     @max_num_questions = UserPoll.MAX_NUM_POLL_QUESTIONS
     @max_num_answers = PollQuestion.MAX_NUM_ANSWERS
-    @max_num_results = Answer.MAX_NUM_RESULTS
   end
 
   # GET /user_polls/1/edit
@@ -56,7 +55,6 @@ class UserPollsController < ApplicationController
     @poll_questions = @user_poll.poll_questions
     @max_num_questions = UserPoll.MAX_NUM_POLL_QUESTIONS
     @max_num_answers = PollQuestion.MAX_NUM_ANSWERS
-    @max_num_results = Answer.MAX_NUM_RESULTS
   end
 
   # POST /user_polls
@@ -73,7 +71,6 @@ class UserPollsController < ApplicationController
       answers_array = Array.new(question_attributes[:answers_attributes].length)
       question_attributes[:answers_attributes].each { |index, answer_attributes|
         answers_array[index.to_i] = answer_attributes
-        #answer_attributes[:results_attributes] = Result.new
       }
       question_attributes[:answers_attributes] = answers_array
     }
@@ -139,7 +136,7 @@ class UserPollsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_poll_params
-      params.require(:user_poll).permit(:title, :description, :create_date, :poll_questions_attributes => [:text, :optional, :allow_multiple_answers, :answers_attributes => [:text, :results_attributes => [:number]]])
+      params.require(:user_poll).permit(:title, :description, :create_date, :poll_questions_attributes => [:text, :optional, :allow_multiple_answers, :answers_attributes => [:text]])
     end
 
     def news_feed_polls_params
