@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151030040614) do
+ActiveRecord::Schema.define(version: 20151030073939) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "poll_question_id", limit: 4
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(version: 20151030040614) do
   end
 
   add_index "poll_questions", ["user_poll_id"], name: "index_poll_questions_on_user_poll_id", using: :btree
+
+  create_table "results", force: :cascade do |t|
+    t.integer  "votes",      limit: 4
+    t.integer  "answer_id",  limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "results", ["answer_id"], name: "index_results_on_answer_id", using: :btree
 
   create_table "user_polls", force: :cascade do |t|
     t.integer  "user_id",     limit: 4
@@ -66,5 +75,6 @@ ActiveRecord::Schema.define(version: 20151030040614) do
 
   add_foreign_key "answers", "poll_questions"
   add_foreign_key "poll_questions", "user_polls"
+  add_foreign_key "results", "answers"
   add_foreign_key "user_polls", "users"
 end
