@@ -29,7 +29,7 @@ class LandingPageController < ApplicationController
 
   # GET /news_feed_polls
   def news_feed_polls
-    num_news_feed_polls = news_feed_polls_params[:num_news_feed_polls].to_i
+    num_news_feed_polls = news_feed_polls_params.to_i
     @news_feed_polls = get_news_feed_polls(num_news_feed_polls)
     @can_show_more_news_feed_polls = can_request_more_news_feed_polls?(num_news_feed_polls)
     @next_news_feed_polls_request_size = num_news_feed_polls + 5
@@ -38,20 +38,42 @@ class LandingPageController < ApplicationController
 
   # GET /current_user_polls
   def current_user_polls
-    num_current_user_polls = current_user_polls_params[:num_current_user_polls].to_i
+    num_current_user_polls = current_user_polls_params.to_i
     @current_user_polls = get_current_user_polls(num_current_user_polls)
     @can_show_more_current_user_polls = can_request_more_current_user_polls?(num_current_user_polls)
     @next_current_user_polls_request_size = num_current_user_polls + 5
     render(layout: false)
   end
 
+  # GET /friends_pane
+  def friends_pane
+    num_current_user_friends = friends_pane_params.to_i
+    @current_user_friends = get_current_user_friends(num_current_user_friends)
+    @can_show_more_current_user_friends = can_request_more_current_user_friends?(num_current_user_friends)
+    @next_current_user_friends_request_size = num_current_user_friends + 5
+
+    @current_user_friend_requests = get_current_user_pending_friendships.map { |friendship|
+      requestor = User.find(friendship.requestor_id)
+      tuple = Array.new(2)
+      tuple[0] = "#{requestor.first_name} #{requestor.last_name}"
+      tuple[1] = friendship.id
+      tuple
+    }
+
+    render(layout: false)
+  end
+
   private
     def news_feed_polls_params
-      params.permit(:num_news_feed_polls)
+      params.require(:num_news_feed_polls)
     end
     
     def current_user_polls_params
-      params.permit(:num_current_user_polls)
+      params.require(:num_current_user_polls)
+    end
+
+    def friends_pane_params
+      params.require(:num_current_user_friends)
     end
 
     # Algorithm for choosing news feed polls

@@ -1,4 +1,4 @@
-$(document).on("page:change", setupShowMoreNewsFeedPolls);
+$(document).on("ready page:change", setupShowMoreNewsFeedPolls);
 
 function setupShowMoreNewsFeedPolls() {
     $("button[data-news-feed-polls-request-size]").off().click(function () {

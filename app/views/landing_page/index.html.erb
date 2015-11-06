@@ -4,6 +4,9 @@
     <title>Poll</title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'landing_page/_current_user_polls', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'landing_page/_news_feed_polls', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'landing_page/_friends_pane', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -50,7 +53,9 @@
                 <%= render "sign_in_out" %>
             </div>
         </div>         
-        <%= render "friends_pane" %>
+        <div id="friends_pane">
+          <%= render "friends_pane" %>
+        </div>
     </div>
     <%= yield %>
      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

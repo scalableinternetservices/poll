@@ -11,6 +11,10 @@
       <% end %>
     </tbody>
   </table>
+
+  <% if @can_show_more_current_user_friends %>
+    <button data-current-user-friends-request-size=<%= raw("\"#{@next_current_user_friends_request_size}\"") %>>Show more</button>
+  <% end %>
 <% end %>
 <%= link_to "Add a friend", new_friend_request_path %>
 

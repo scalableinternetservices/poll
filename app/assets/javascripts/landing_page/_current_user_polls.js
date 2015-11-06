@@ -1,4 +1,4 @@
-$(document).on("page:change", setupShowMoreCurrentUserPolls);
+$(document).on("ready page:change", setupShowMoreCurrentUserPolls);
 
 function setupShowMoreCurrentUserPolls() {
     $("button[data-current-user-polls-request-size]").click(function () {
