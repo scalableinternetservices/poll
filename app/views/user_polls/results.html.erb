@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Poll</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'user_polls/results', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .MainBG {
+            background-color: #1ABC9C;
+        }
+    </style>
+</head>
+<body class="MainBG">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <p id="notice"><%= notice %></p>
+                <h1>
+                  <strong>Title:</strong>
+                  <%= @user_poll.title %>
+                </h1>
+                
+                <h3>
+                  <strong>Description:</strong>
+                  <%= @user_poll.description %>
+                </h3>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-lg-2 col-lg-offset-2">
+              <h3><strong>Current Poll Results:</strong></h3>
+
+              <% @user_poll.poll_questions.each_with_index do |poll_question, index| %>
+                <p>Question <%= "#{index+1}" %>. <%= poll_question.text %></p> <br>
+                <canvas data-question-id=<%= raw("\"#{poll_question.id}\"") %>></canvas> <br>
+              <% end %>
+              <p><%= link_to 'Back', root_path %></p>
+            </div>
+        </div>
+    </div>
+    
+    <%= yield %>
+     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

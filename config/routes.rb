@@ -15,6 +15,11 @@ Rails.application.routes.draw do
   post '/friend_request/accept/:id(.:format)' => 'friendships#accept', as: 'accept_friend_request'
   post '/friend_request/reject/:id(.:format)' => 'friendships#reject', as: 'reject_friend_request'
 
+  get '/user_polls/:id/results(.:format)' => 'user_polls#results', as: 'user_poll_results'
+  get '/user_polls/:id/poll_details(.:format)' => 'user_polls#poll_details', as: 'poll_result_details'
+  get '/user_polls/:id/question_details(.:format)' => 'user_polls#question_details', as: 'question_result_details'
+  
+
   get '/user_profile/:id(.:format)' => 'user_profiles#view', as: 'view_user_profile'
 
   # DEPRECATED ROUTES
