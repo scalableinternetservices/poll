@@ -10,9 +10,12 @@ Rails.application.routes.draw do
   get '/friends_pane(.:format)' => 'landing_page#friends_pane', as: 'friends_pane'
 
   get '/friend_request/new' => 'friendships#new', as: 'new_friend_request'
-  post '/friend_request/create(.:format)' => 'friendships#create', as: 'create_friend_request'
+  get '/friend_request/search_users(.:format)' => 'friendships#search_users', as: 'search_users_friend_request'
+  post '/friend_request/create/:id(.:format)' => 'friendships#create', as: 'create_friend_request'
   post '/friend_request/accept/:id(.:format)' => 'friendships#accept', as: 'accept_friend_request'
   post '/friend_request/reject/:id(.:format)' => 'friendships#reject', as: 'reject_friend_request'
+
+  get '/user_profile/:id(.:format)' => 'user_profiles#view', as: 'view_user_profile'
 
   # DEPRECATED ROUTES
   get 'user_polls/news_feed_polls(.:format)' => 'user_polls#news_feed_polls'

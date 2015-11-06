@@ -1,4 +1,4 @@
-$(document).on("page:change", setupShowMoreFriends);
+$(document).on("ready page:change", setupShowMoreFriends);
 
 function setupShowMoreFriends() {
     $("button[data-current-user-friends-request-size]").off().click(function() {

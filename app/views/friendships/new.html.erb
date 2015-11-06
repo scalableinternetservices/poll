@@ -4,6 +4,7 @@
     <title>Poll</title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'friendships/new', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -17,14 +18,14 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                   <h1>Add a friend</h1>
-                  <%= form_tag create_friend_request_path do %>
-                    <%= label_tag :name %><br>
-                    <%= text_area_tag :name %><br>
-                    <%= submit_tag "Add friend" %>
-                  <% end %>
+                  <input type="text" id="user-search-field" placeholder="Name"></input><br>
+                  <button data-search-users>Search users</button>
+                  <div id="search-users-friend-request-results"></div>
             </div>
         </div>
     </div>
+
+    <%= link_to "Back", root_path %>
     
     <%= yield %>
      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

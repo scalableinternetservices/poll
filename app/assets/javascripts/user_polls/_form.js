@@ -1,4 +1,4 @@
-$(document).on("page:change", function () {
+$(document).on("ready page:change", function () {
     $("button[data-max-questions]").off().click(function () {
         var currentQuestions = $(".question-field");
         var numQuestions = currentQuestions.length;
