@@ -109,6 +109,7 @@ class UserPollsController < ApplicationController
     @user_poll.poll_questions.each { |poll_question|
       poll_question.answers.each { |answer|
         result = answer.results.new
+        result.votes = 0
       }
     }
 
