@@ -1,5 +1,5 @@
 class UserPollsController < ApplicationController
-  before_action :set_user_poll, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_poll, only: [:show, :edit, :update, :destroy, :results]
   before_action :authenticate_user!
 
   # GET /user_polls
@@ -40,6 +40,25 @@ class UserPollsController < ApplicationController
   # GET /user_polls/1
   # GET /user_polls/1.json
   def show
+  end
+
+  # GET /user_polls/1/results
+  def results
+  end
+
+  # GET /user_polls/1/poll_details.json
+  def poll_details
+  end
+
+  # GET /user_polls/1/question_details.json
+  def question_details
+    question_id = question_details_params
+    question = PollQuestion.find(question_id)
+
+    answer_texts = question.answers.map { |answer| answer.text }
+    vote_counts = question.answers.map { |answer| answer.results[0].votes }
+
+    render json: { answer_texts: answer_texts, vote_counts: vote_counts }
   end
 
   # GET /user_polls/new
@@ -155,6 +174,10 @@ class UserPollsController < ApplicationController
     
     def current_user_polls_params
       params.permit(:num_current_user_polls)
+    end
+
+    def question_details_params
+      params.require(:id)
     end
 
     # Algorithm for choosing news feed polls

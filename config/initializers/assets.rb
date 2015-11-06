@@ -13,5 +13,6 @@ Rails.application.config.assets.precompile += %w( landing_page/_current_user_pol
 Rails.application.config.assets.precompile += %w( landing_page/_friends_pane.js )
 Rails.application.config.assets.precompile += %w( landing_page/_news_feed_polls.js )
 Rails.application.config.assets.precompile += %w( user_polls/_form.js )
+Rails.application.config.assets.precompile += %w( user_polls/results.js )
 Rails.application.config.assets.precompile += %w( user_polls/user_polls.js )
 
