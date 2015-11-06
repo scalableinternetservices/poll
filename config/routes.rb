@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   get '/user_polls/:id/results(.:format)' => 'user_polls#results', as: 'user_poll_results'
   get '/user_polls/:id/poll_details(.:format)' => 'user_polls#poll_details', as: 'poll_result_details'
   get '/user_polls/:id/question_details(.:format)' => 'user_polls#question_details', as: 'question_result_details'
-  
 
   get '/user_profile/:id(.:format)' => 'user_profiles#view', as: 'view_user_profile'
 
@@ -29,6 +28,7 @@ Rails.application.routes.draw do
       resources :comments
       resources :results
   end
+  get ':controller(/:action(/:id))'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

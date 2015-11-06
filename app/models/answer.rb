@@ -5,5 +5,8 @@ class Answer < ActiveRecord::Base
   accepts_nested_attributes_for :results
 
   validates :text, presence: true
-
+  
+  def create_result
+    Result.create(:answer_id => self.id, :votes => 1)
+  end
 end

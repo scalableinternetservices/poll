@@ -53,8 +53,8 @@
                     <% @user_poll.poll_questions.each_with_index do |poll_question, index| %>
                       Question <%= "#{index+1}" %>. <%= poll_question.text %> <br>
                       <list>
-                        <% poll_question.answers.each do |answer| %>
-                          <li>OPTION: <%= answer.text %> <br>
+                        <% poll_question.answers.each_with_index do |answer, index| %>
+                          <li>OPTION <%= index+1 %>: <%= answer.text %> <br>
                               VOTES: <%= answer.results[0].votes %><br><br></li>
                         <% end %>
                       </list> </br>
@@ -64,8 +64,9 @@
                   <p>
                     <% @user_poll.poll_questions.each do |poll_question| %>
                       <list>
-                        <% poll_question.answers.each do |answer| %>
-                          <li>OPTION: <%= answer.text %> <br></li>
+                        <% poll_question.answers.each_with_index do |answer, index| %>
+                          <li>OPTION <%= index+1 %>:<br></li>
+                          <%= link_to "Vote", {:controller => "results", :action => "test", :id => answer.id} %>
                         <% end %>
                       </list> </br>
                     <% end %>
