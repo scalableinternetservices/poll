@@ -12,12 +12,10 @@
   <% end %>
 
   <div class="field">
-    <%= user_poll_form.label :title %><br>
-    <%= user_poll_form.text_field :title %>
+    <%= user_poll_form.text_field :title, class: 'form-control', placeholder: 'Title' %>
   </div>
   <div class="field">
-    <%= user_poll_form.label :description %><br>
-    <%= user_poll_form.text_area :description %>
+    <%= user_poll_form.text_area :description, class: 'form-control', placeholder: 'Description' %>
   </div>
   <% @poll_questions.each_with_index do |poll_question, index| %>
     <%= user_poll_form.fields_for "poll_questions", poll_question do |poll_question_form| %>
@@ -32,4 +30,4 @@
   </button>
 <% end %>
 <br>
-<button id="add_poll_question_button" class= "btn btn-primary" onclick="addPollQuestion()" data-max-questions=<%= raw("\"#{@max_num_questions}\"") %>> Add poll question </button>
+<button id="add_poll_question_button" class= "btn btn-primary" data-max-num-questions=<%= raw("\"#{@max_num_questions}\"") %> data-default-num-answers=<%= raw("\"#{@default_num_answers}\"") %>> Add poll question </button>

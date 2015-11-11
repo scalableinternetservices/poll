@@ -1,8 +1,10 @@
 $(document).on("ready page:change", function () {
-    $("button[data-max-questions]").off().click(function () {
+    $("button[data-max-num-questions]").off().click(function () {
         var currentQuestions = $(".question-field");
         var numQuestions = currentQuestions.length;
+        var defaultNumAnswers = parseInt($(this).attr("data-default-num-answers"));
 
+        // Clone an existing question but replace all the numbers
         var fieldCopy = currentQuestions.first().clone();
         fieldCopy.attr("id", "field" + numQuestions);
         var newHtml = fieldCopy.html().replace(/\[poll_questions_attributes\]\[\d+\]/gm, "[poll_questions_attributes][" + numQuestions + "]");
@@ -10,8 +12,16 @@ $(document).on("ready page:change", function () {
         newHtml = newHtml.replace(/Question \d+/gm, "Question " + (numQuestions + 1));
         fieldCopy.html(newHtml);
 
-        // Clear all text areas and checkboxes within the question
-        fieldCopy.find("textarea").html("");
+        // Delete answers up to the default number of answers
+        fieldCopy.find(".answer-container textarea").each(function (index, element) {
+             if (index >= defaultNumAnswers) {
+                 // There is a <br> tag after every answer, so make sure to delete that as well
+                 $(element).next("br").remove();
+                 element.remove();
+             }
+        });
+
+        // Clear the checkboxes within the question
         fieldCopy.find("input[type=checkbox]").attr("value", "0");
 
         $(currentQuestions).last().after(fieldCopy);
@@ -26,7 +36,8 @@ $(document).on("ready page:change", function () {
 function setupAddAnswerButton() {
     $("button[data-max-num-answers]").off().click(function () {
         // Determine the answer number
-        var currentAnswers = $(this).parent().find("textarea");
+        var answerContainer = $(this).parent().find(".answer-container");
+        var currentAnswers = answerContainer.find("textarea");
         var numAnswers = currentAnswers.length;
 
         var answerCopy = currentAnswers.first().clone();
@@ -38,8 +49,8 @@ function setupAddAnswerButton() {
         // Clear any existing contents
         answerCopy.html("");
 
-        $(this).before(answerCopy);
-        $(this).before("<br>");
+        answerContainer.append(answerCopy);
+        answerContainer.append("<br>");
 
         setupAddAnswerButton();
         tryDisableAddAnswerButton();
