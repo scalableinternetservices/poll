@@ -13,17 +13,6 @@ class UserPollsControllerTest < ActionController::TestCase
     # sign_in users(:one)
   end
 
-  test "should get index" do
-    # sign_in users(:one)
-    get :index
-    ##What supposed to work, but will change later.
-    # assert_response :success
-    # assert_not_nil assigns(:user_polls)
-    ##Just to get travis-ci working
-    assert_response 302
-    assert_redirected_to new_user_session_path
-  end
-
 ##We should add these tests back in, I'm a little confused why it won't work
 ##with the devise logging in and passing a user_id
   # test "should get new" do
