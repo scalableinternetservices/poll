@@ -1,39 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Poll</title>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'user_polls/_form', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'user_polls/user_polls', 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .MainBG {
-            background-color: #1ABC9C;
-        }
-    </style>
-</head>
-<body class="MainBG">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <h1>Let's create a new survey!</h1>
-                <%= render 'form' %>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-lg-2 col-lg-offset-2">
-                <%= link_to "Back", root_path, :class => "btn btn-primary white center-block" %>
-            </div>
-        </div>
+<%= javascript_include_tag 'user_polls/_form', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'user_polls/user_polls', 'data-turbolinks-track' => true %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+      <h1>Let's create a new survey!</h1>
+      <%= render 'form' %>
     </div>
-    
-    <%= yield %>
-     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-</body>
-</html>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-lg-2 col-lg-offset-2">
+      <%= link_to "Back", root_path, :class => "btn btn-primary white center-block" %>
+    </div>
+  </div>
+</div>
