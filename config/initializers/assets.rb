@@ -19,3 +19,4 @@ Rails.application.config.assets.precompile += %w( user_polls/_form.js )
 Rails.application.config.assets.precompile += %w( user_polls/results.js )
 Rails.application.config.assets.precompile += %w( user_polls/user_polls.js )
 
+Rails.application.config.assets.precompile += %w( .svg, .eot, .woff, .ttf )

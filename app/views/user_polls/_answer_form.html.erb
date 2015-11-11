@@ -1,62 +1,43 @@
-<div class="question-form">
-  <div class="row">
+<div class="row">
 
-    <div class="col-md-4">
-      <%= poll_question_form.label "Question #{index+1}" %>
-      <%= poll_question_form.text_area :text, class: 'form-control' %><br>
-    </div>
+  <div class="col-sm-4">
+    <%= poll_question_form.label "Question #{index+1}" %>
+    <%= poll_question_form.text_area :text, class: 'form-control' %>
+  </div>
 
-    <div class="col-md-8">
-      <%= poll_question_form.label "Options" %><br>
-      <div class="answer-container">
-        <% poll_question.answers.each_with_index do |answer, index| %>
-          <%= poll_question_form.fields_for :answers, answer, index: nil do |answer_form| %>
-            <div class="input-group">
-              <%= answer_form.text_area :text, class: 'form-control' %>
-              <span class="input-group-btn">
-                <%= button_tag type: "button", data: {min_num_answers: @default_num_answers} do %>
-                  <%= image_tag :red_minus, width: 16, height: 16 %>
-                <% end %>
-                <%= button_tag type: "button", data: {max_num_answers: @max_num_answers} do %>
-                  <%= image_tag :green_plus, width: 16, height: 16 %>
-                <% end %>
-              </span>
-              <br>
-            </div>
-          <% end %>
+  <div class="col-sm-6">
+    <%= poll_question_form.label "Options" %><br>
+    <div class="answer-container">
+      <% [poll_question.answers.length, @default_num_answers].max.times do |index| %>
+        <% answer = (index < poll_question.answers.length) ? poll_question.answers[index] : Answer.new %>
+        <%= poll_question_form.fields_for :answers, answer, index: nil do |answer_form| %>
+          <div class="input-group">
+            <%= answer_form.text_field :text, class: 'form-control' %>
+            <span class="input-group-btn">
+              <%= button_tag class: "btn btn-default", type: "button", data: {min_num_answers: @default_num_answers} do %>
+                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+              <% end %>
+              <%= button_tag class: "btn btn-default", type: "button", data: {max_num_answers: @max_num_answers} do %>
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              <% end %>
+            </span>
+          </div>
         <% end %>
-
-        <% (poll_question.answers.length...@default_num_answers).each do |index| %>
-          <%= poll_question_form.fields_for :answers, Answer.new do |answer_form| %>
-            <div class="input-group">
-              <%= answer_form.text_area :text, class: 'form-control' %>
-              <span class="input-group-btn">
-                <%= button_tag type: "button", data: {min_num_answers: @default_num_answers} do %>
-                  <%= image_tag :red_minus, width: 16, height: 16 %>
-                <% end %>
-                <%= button_tag type: "button", data: {max_num_answers: @max_num_answers} do %>
-                  <%= image_tag :green_plus, width: 16, height: 16 %>
-                <% end %>
-              </span>
-              <br>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
+      <% end %>
     </div>
   </div>
+</div>
 
-  <div class="checkbox">
-    <%= poll_question_form.label :optional do %>
-      <%= poll_question_form.check_box :optional %>
-      Optional?
-    <% end %>
-  </div>
+<div class="checkbox">
+  <%= poll_question_form.label :optional do %>
+    <%= poll_question_form.check_box :optional %>
+    Optional?
+  <% end %>
+</div>
 
-  <div class="checkbox">
-    <%= poll_question_form.label :allow_multiple_answers do %>
-      <%= poll_question_form.check_box :allow_multiple_answers, class: 'checkbox' %>
-      Allow multiple answers?
-    <% end %>
-  </div>
+<div class="checkbox">
+  <%= poll_question_form.label :allow_multiple_answers do %>
+    <%= poll_question_form.check_box :allow_multiple_answers, class: 'checkbox' %>
+    Allow multiple answers?
+  <% end %>
 </div>

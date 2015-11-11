@@ -20,7 +20,7 @@
   <% @poll_questions.each_with_index do |poll_question, index| %>
     <%= user_poll_form.fields_for "poll_questions", poll_question do |poll_question_form| %>
       <div class="question-field" id=<%= "field#{index}" %>>
-        <%= render partial: "answer_form", locals: {index: index, poll_question_form: poll_question_form, poll_question: poll_question} %><br>
+        <%= render partial: "answer_form", locals: {index: index, poll_question_form: poll_question_form, poll_question: poll_question} %>
       </div>
     <% end %>
   <% end %>

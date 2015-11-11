@@ -14,12 +14,9 @@ $(document).on("ready page:change", function() {
         fieldCopy.html(newHtml);
 
         // Delete answers up to the default number of answers
-        fieldCopy.find(".answer-container textarea").each(function (index, element) {
-             if (index >= defaultNumAnswers) {
-                 // There is a <br> tag after every answer, so make sure to delete that as well
-                 $(element).next("br").remove();
+        fieldCopy.find("div.answer-container div.input-group").each(function (index, element) {
+             if (index >= defaultNumAnswers)
                  element.remove();
-             }
         });
 
         // Clear the checkboxes within the question
@@ -45,60 +42,74 @@ function setupChangeAnswerButtons() {
     $("button[data-min-num-answers]").off().click(function () {
         // Find the answer immediately preceding this button
         var answerToDelete = $(this).parents("div.input-group").first();
+        var parent = answerToDelete.parent();
         
         // Adjust the index numbers of the answers after what we're deleting
-        var index = parseInt(answerToDelete.find("textarea").attr("name").match(/\[answers_attributes\]\[(\d+)]/)[1]);
+        var index = parseInt(answerToDelete.find("input[type=text]").attr("name").match(/\[answers_attributes\]\[(\d+)]/)[1]);
         answerToDelete.nextAll("div.input-group").each(function (i, answerToDecrement) {
-            answerToDecrement = $(answerToDecrement).find("textarea").first();
+            answerToDecrement = $(answerToDecrement).find("input[type=text]").first();
             setAnswerIndexNumber(answerToDecrement, index);
             index += 1;
         });
 
         // Delete the answer
         answerToDelete.remove();
+
+        // Enable the add answer button, and try to disable the remove answer button
+        parent.find("button[data-max-num-answers]").prop("disabled", false);
+        tryDisableRemoveAnswerButton();
     });
 
     // Setup add answer buttons
     $("button[data-max-num-answers]").off().click(function () {
         // Find the answer immediately preceding this button
         var answerToCopy = $(this).parents("div.input-group").first();
+        var parent = answerToCopy.parent();
 
         // Now make a clone to insert
         var answerToAdd = answerToCopy.clone();
 
         // Clear any existing contents in the text field
-        answerToAdd.find("textarea").html("");
+        answerToAdd.find("input[type=text]").html("");
 
         // Insert the clone
         answerToCopy.after(answerToAdd);
         
         // Adjust the index numbers of all numbers beyond the answer to copy
-        var index = parseInt(answerToCopy.find("textarea").attr("name").match(/\[answers_attributes\]\[(\d+)]/)[1]) + 1;
+        var index = parseInt(answerToCopy.find("input[type=text]").attr("name").match(/\[answers_attributes\]\[(\d+)]/)[1]) + 1;
         answerToCopy.nextAll("div.input-group").each(function (i, answerToIncrement) {
-            answerToIncrement = $(answerToIncrement).find("textarea").first();
+            answerToIncrement = $(answerToIncrement).find("input[type=text]").first();
             setAnswerIndexNumber(answerToIncrement, index);
             index += 1;
         });
 
         setupChangeAnswerButtons();
+
+        // Enable the remove answer button and try to disable the add answer button
+        parent.find("button[data-min-num-answers]").prop("disabled", false);
+        tryDisableAddAnswerButton();
     });
+
+    tryDisableRemoveAnswerButton();
+    tryDisableAddAnswerButton();
 }
 
-function tryDisableAddQuestionButton() {
-    var numQuestions = $(".question-field").length - 1;
-
-    $("button[data-max-questions]").each(function () {
-        var button = $(this);
-        if (numQuestions >= parseInt(button.attr("data-max-questions")))
-            button.attr("style", "display: none;");
+function tryDisableRemoveAnswerButton() {
+    $("div.answer-container").each(function (index, element) {
+        element = $(element)
+        var minNumAnswers = parseInt(element.find("button[data-min-num-answers]").attr("data-min-num-answers"));
+        var answers = element.find("div.input-group");
+        if (answers.length <= minNumAnswers)
+            element.find("div.input-group button[data-min-num-answers]").prop("disabled", true);
     });
 }
 
 function tryDisableAddAnswerButton() {
-    $("button[data-max-num-answers]").each(function () {
-        var numAnswers = $(this).parent().find("textarea").length;
-
-        if (numAnswers >= parseInt($(this).attr("data-max-num-answers")))
-            $(this).attr("style", "display: none;");
+    $("div.answer-container").each(function (index, element) {
+        element = $(element)
+        var maxNumAnswers = parseInt(element.find("button[data-max-num-answers]").attr("data-max-num-answers"));
+        var answers = element.find("div.input-group");
+        if (answers.length >= maxNumAnswers)
+            element.find("div.input-group button[data-max-num-answers]").prop("disabled", true);
     });
 }
