@@ -1,36 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Poll</title>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'friendships/new', 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .MainBG {
-            background-color: #1ABC9C;
-        }
-    </style>
-</head>
-<body class="MainBG">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                  <h1>Add a friend</h1>
-                  <input type="text" id="user-search-field" placeholder="Name"></input><br>
-                  <button data-search-users>Search users</button>
-                  <div id="search-users-friend-request-results"></div>
-            </div>
-        </div>
-    </div>
+<%= javascript_include_tag 'friendships/new', 'data-turbolinks-track' => true %>
 
-    <%= link_to "Back", root_path %>
-    
-    <%= yield %>
-     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-</body>
-</html>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+      <h1>Add a friend</h1>
+      <input type="text" id="user-search-field" placeholder="Name"></input><br>
+      <button data-search-users>Search users</button>
+      <div id="search-users-friend-request-results"></div>
+    </div>
+  </div>
+
+  <%= link_to "Back", root_path %>
+</div>
