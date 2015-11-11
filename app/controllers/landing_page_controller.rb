@@ -4,13 +4,11 @@ class LandingPageController < ApplicationController
   # GET /
   def index
     num_news_feed_polls = 5
-    @news_feed_polls = get_news_feed_polls(num_news_feed_polls)
-    @can_show_more_news_feed_polls = can_request_more_news_feed_polls?(num_news_feed_polls)
+    @news_feed_polls, @can_show_more_news_feed_polls = get_news_feed_polls(num_news_feed_polls)
     @next_news_feed_polls_request_size = 10
 
     num_current_user_polls = 5
-    @current_user_polls = get_current_user_polls(num_current_user_polls)
-    @can_show_more_current_user_polls = can_request_more_current_user_polls?(num_current_user_polls)
+    @current_user_polls, @can_show_more_current_user_polls = get_current_user_polls(num_current_user_polls)
     @next_current_user_polls_request_size = 10
 
     num_current_user_friends = 5
@@ -20,18 +18,24 @@ class LandingPageController < ApplicationController
 
     @current_user_friend_requests = get_current_user_pending_friendships.map { |friendship|
       requestor = User.find(friendship.requestor_id)
-      tuple = Array.new(2)
-      tuple[0] = "#{requestor.first_name} #{requestor.last_name}"
-      tuple[1] = friendship.id
-      tuple
+      return "#{requestor.first_name} #{requestor.last_name}", friendship.id
     }
+  end
+
+  # GET /search_polls
+  def search_polls
+    cleaned_params = search_polls_params
+    num_search_polls = cleaned_params[:num_search_polls].to_i
+    search = cleaned_params[:search]
+    @search_polls, @can_show_more_search_polls = get_polls(num_search_polls, search)
+    @next_search_polls_request_size = num_search_polls + 5
+    render(layout: false)
   end
 
   # GET /news_feed_polls
   def news_feed_polls
     num_news_feed_polls = news_feed_polls_params.to_i
-    @news_feed_polls = get_news_feed_polls(num_news_feed_polls)
-    @can_show_more_news_feed_polls = can_request_more_news_feed_polls?(num_news_feed_polls)
+    @news_feed_polls, @can_show_more_news_feed_polls = get_news_feed_polls(num_news_feed_polls)
     @next_news_feed_polls_request_size = num_news_feed_polls + 5
     render(layout: false)
   end
@@ -39,8 +43,7 @@ class LandingPageController < ApplicationController
   # GET /current_user_polls
   def current_user_polls
     num_current_user_polls = current_user_polls_params.to_i
-    @current_user_polls = get_current_user_polls(num_current_user_polls)
-    @can_show_more_current_user_polls = can_request_more_current_user_polls?(num_current_user_polls)
+    @current_user_polls, @can_show_more_current_user_polls = get_current_user_polls(num_current_user_polls)
     @next_current_user_polls_request_size = num_current_user_polls + 5
     render(layout: false)
   end
@@ -54,16 +57,17 @@ class LandingPageController < ApplicationController
 
     @current_user_friend_requests = get_current_user_pending_friendships.map { |friendship|
       requestor = User.find(friendship.requestor_id)
-      tuple = Array.new(2)
-      tuple[0] = "#{requestor.first_name} #{requestor.last_name}"
-      tuple[1] = friendship.id
-      tuple
+      return "#{requestor.first_name} #{requestor.last_name}", friendship.id
     }
 
     render(layout: false)
   end
 
   private
+    def search_polls_params
+      params.require(:num_search_polls, :search)
+    end
+
     def news_feed_polls_params
       params.require(:num_news_feed_polls)
     end
@@ -76,38 +80,60 @@ class LandingPageController < ApplicationController
       params.require(:num_current_user_friends)
     end
 
+    def get_polls(max_num_polls, search)
+      if (search and search.length > 0)
+        #Break search string into words
+        words = search.blank? ? [] : search.split(' ')
+        conditions = [[]] # Why this way? You'll know soon
+        words.each do |word|
+          conditions[0] << ["title LIKE ?"]
+          conditions << "%#{word}%"
+        end
+        conditions[0] = conditions.first.join(" OR ") # Converts condition string to include " OR " easily ;-)
+        conditions[0] << "AND user_id != #{current_user.id}"
+        
+        # Grab one more poll than requested so that we can determine if there are more polls to show
+        polls = UserPoll.where(conditions).limit(max_num_polls).all
+
+        can_show_more = (polls.length > max_num_polls)
+        polls = polls[0...max_num_polls] if can_show_more
+
+        return polls, can_show_more
+      end
+
+      return [], false
+    end
+
     # Algorithm for choosing news feed polls
     def get_news_feed_polls(max_num_polls)
       # For now, nothing fancy. Just choose the newest polls that are not yours.
-      ::UserPoll.where.not(user_id: current_user.id).order(updated_at: :desc).limit(max_num_polls)
+
+      # Grab one more poll than requested so that we can determine if there are more polls to show
+      polls = UserPoll.where.not(user_id: current_user.id).order(updated_at: :desc).limit(max_num_polls + 1).all
+      
+      can_show_more = (polls.length > max_num_polls)
+      polls = polls[0...max_num_polls] if can_show_more
+      
+      return polls, can_show_more
     end
 
     def get_current_user_polls(max_num_polls)
-      UserPoll.where(user_id: current_user.id).order(updated_at: :desc).limit(max_num_polls)
+      # Grab one more poll than requested so that we can determine if there are more polls to show
+      polls = UserPoll.where(user_id: current_user.id).order(updated_at: :desc).limit(max_num_polls + 1).all
+
+      can_show_more = (polls.length > max_num_polls)
+      polls = polls[0...max_num_polls] if can_show_more
+      
+      return polls, can_show_more
     end
 
     def get_current_user_friends(max_num_friends)
-      # For now show some arbitrary number of friends.
+      # Show the friends in alphabetical order
+      all_friends = current_user.friendships_to + current_user.friendships_from
+      all_friends.sort! { |a, b| a.casecmp(b) }
+      all_friends = all_friends[0...max_num_friends] if all_friends.length > max_num_friends
 
-      # If friendships_to is large enough, just return the first max_num_friends entries from that.
-      if current_user.friendships_to.length >= max_num_friends
-        return current_user.friendships_to[0...max_num_friends].map { |friendship|
-          User.find(friendship.friend_id)
-        }
-      end
-
-      # Otherwise, first use as many friendships_to as you can...
-      friends = current_user.friendships_to.map { |friendship|
-        User.find(friendship.friend_id)
-      }
-
-      # ...and fill the rest with as many friendships_from as you can
-      range_end = [current_user.friendships_from.length, max_num_friends - friends.length].min
-      other_friends = current_user.friendships_from[0...range_end].map { |friendship|
-        User.find(friendship.user_id)
-      }
-
-      return friends + other_friends
+      return all_friends
     end
 
     def get_current_user_pending_friendships

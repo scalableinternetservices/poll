@@ -2,41 +2,6 @@ class UserPollsController < ApplicationController
   before_action :set_user_poll, only: [:show, :edit, :update, :destroy, :results]
   before_action :authenticate_user!
 
-  # GET /user_polls
-  # GET /user_polls.json
-  # DEPRECATED
-  def index
-    num_news_feed_polls = 5
-    @news_feed_polls = get_news_feed_polls(num_news_feed_polls, params[:search])
-    @can_show_more_news_feed_polls = can_request_more_news_feed_polls?(num_news_feed_polls)
-    @next_news_feed_polls_request_size = 10
-
-    num_current_user_polls = 5
-    @current_user_polls = get_current_user_polls(num_current_user_polls, params[:search])
-    @can_show_more_current_user_polls = can_request_more_current_user_polls?(num_current_user_polls)
-    @next_current_user_polls_request_size = 10
-  end
-
-  # GET /user_polls/news_feed_polls
-  # DEPRECATED
-  def news_feed_polls
-    num_news_feed_polls = news_feed_polls_params[:num_news_feed_polls].to_i
-    @news_feed_polls = get_news_feed_polls(num_news_feed_polls, params[:search])
-    @can_show_more_news_feed_polls = can_request_more_news_feed_polls?(num_news_feed_polls)
-    @next_news_feed_polls_request_size = num_news_feed_polls + 5
-    render(layout: false)
-  end
-
-  # GET /user_polls/current_user_polls
-  # DEPRECATED
-  def current_user_polls
-    num_current_user_polls = current_user_polls_params[:num_current_user_polls].to_i
-    @current_user_polls = get_current_user_polls(num_current_user_polls, params[:search])
-    @can_show_more_current_user_polls = can_request_more_current_user_polls?(num_current_user_polls)
-    @next_current_user_polls_request_size = num_current_user_polls + 5
-    render(layout: false)
-  end
-
   # GET /user_polls/1
   # GET /user_polls/1.json
   def show
@@ -129,21 +94,6 @@ class UserPollsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /user_polls/1
-  # PATCH/PUT /user_polls/1.json
-  # DEPRECATED
-  def update
-    respond_to do |format|
-      if @user_poll.update(user_poll_params)
-        format.html { redirect_to @user_poll, notice: 'User poll was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user_poll }
-      else
-        format.html { render :edit }
-        format.json { render json: @user_poll.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # DELETE /user_polls/1
   # DELETE /user_polls/1.json
   def destroy
@@ -169,59 +119,7 @@ class UserPollsController < ApplicationController
       params.require(:user_poll).permit(:title, :description, :create_date, :poll_questions_attributes => [:text, :optional, :allow_multiple_answers, :answers_attributes => [:text]])
     end
 
-    def news_feed_polls_params
-      params.permit(:num_news_feed_polls)
-    end
-    
-    def current_user_polls_params
-      params.permit(:num_current_user_polls)
-    end
-
     def question_details_params
       params.require(:id)
-    end
-
-    # Algorithm for choosing news feed polls
-    def get_news_feed_polls(max_num_polls, search)
-      if (search and search.length > 0)
-        #Break search string into words
-        words = search.blank? ? [] : search.split(' ')
-        conditions = [[]] # Why this way? You'll know soon
-        words.each do |word|
-          conditions[0] << ["title LIKE ?"]
-          conditions << "%#{word}%"
-        end
-        conditions[0] = conditions.first.join(" OR ") # Converts condition string to include " OR " easily ;-)
-        conditions[0] << "AND user_id != #{current_user.id}"
-        UserPoll.where(conditions)
-      else
-      # For now, nothing fancy. Just choose the newest polls that are not yours.
-      ::UserPoll.where.not(user_id: current_user.id).order(updated_at: :desc).limit(max_num_polls)
-      end
-    end
-
-    def get_current_user_polls(max_num_polls, search)
-      if (search and search.length > 0)
-        #Break search string into words
-        words = search.blank? ? [] : search.split(' ')
-        conditions = [[]] # Why this way? You'll know soon
-        words.each do |word|
-          conditions[0] << ["title LIKE ?"]
-          conditions << "%#{word}%"
-        end
-        conditions[0] = conditions.first.join(" OR ") # Converts condition string to include " OR " easily ;-)
-        conditions[0] << "AND user_id = #{current_user.id}"
-        UserPoll.where(conditions)
-      else
-      UserPoll.where(user_id: current_user.id).order(updated_at: :desc).limit(max_num_polls)
-      end
-    end
-
-    def can_request_more_news_feed_polls?(num_polls)
-      num_polls < UserPoll.where.not(user_id: current_user.id).count
-    end
-
-    def can_request_more_current_user_polls?(num_polls)
-      num_polls < UserPoll.where(user_id: current_user.id).count
     end
 end
