@@ -11,18 +11,38 @@
       <div class="answer-container">
         <% poll_question.answers.each_with_index do |answer, index| %>
           <%= poll_question_form.fields_for :answers, answer, index: nil do |answer_form| %>
-            <%= answer_form.text_area :text, class: 'form-control' %><br>
+            <div class="input-group">
+              <%= answer_form.text_area :text, class: 'form-control' %>
+              <span class="input-group-btn">
+                <%= button_tag type: "button", data: {min_num_answers: @default_num_answers} do %>
+                  <%= image_tag :red_minus, width: 16, height: 16 %>
+                <% end %>
+                <%= button_tag type: "button", data: {max_num_answers: @max_num_answers} do %>
+                  <%= image_tag :green_plus, width: 16, height: 16 %>
+                <% end %>
+              </span>
+              <br>
+            </div>
           <% end %>
         <% end %>
 
         <% (poll_question.answers.length...@default_num_answers).each do |index| %>
           <%= poll_question_form.fields_for :answers, Answer.new do |answer_form| %>
-            <%= answer_form.text_area :text, class: 'form-control' %><br>
+            <div class="input-group">
+              <%= answer_form.text_area :text, class: 'form-control' %>
+              <span class="input-group-btn">
+                <%= button_tag type: "button", data: {min_num_answers: @default_num_answers} do %>
+                  <%= image_tag :red_minus, width: 16, height: 16 %>
+                <% end %>
+                <%= button_tag type: "button", data: {max_num_answers: @max_num_answers} do %>
+                  <%= image_tag :green_plus, width: 16, height: 16 %>
+                <% end %>
+              </span>
+              <br>
+            </div>
           <% end %>
         <% end %>
       </div>
-
-      <button class="question-form-add-option" type="button" data-max-num-answers=<%= raw("\"#{@max_num_answers}\"")%>>Add option</button><br>
     </div>
   </div>
 
@@ -36,7 +56,7 @@
   <div class="checkbox">
     <%= poll_question_form.label :allow_multiple_answers do %>
       <%= poll_question_form.check_box :allow_multiple_answers, class: 'checkbox' %>
-      "Allow multiple answers?"
+      Allow multiple answers?
     <% end %>
   </div>
 </div>

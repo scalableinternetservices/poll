@@ -1,4 +1,5 @@
-$(document).on("ready page:change", function () {
+$(document).on("ready page:change", function() {
+    // Setup the add question button
     $("button[data-max-num-questions]").off().click(function () {
         var currentQuestions = $(".question-field");
         var numQuestions = currentQuestions.length;
@@ -26,34 +27,60 @@ $(document).on("ready page:change", function () {
 
         $(currentQuestions).last().after(fieldCopy);
 
-        setupAddAnswerButton();
-        tryDisableAddQuestionButton();
+        setupChangeAnswerButtons();
     });
 
-    setupAddAnswerButton();
+    setupChangeAnswerButtons();
 });
 
-function setupAddAnswerButton() {
+function setAnswerIndexNumber(answer, index) {
+    var newName = answer.attr("name").replace(/\[answers_attributes\]\[\d+\]/, "[answers_attributes][" + index + "]");
+    var newId = answer.attr("id").replace(/answers_attributes_\d+/, "answers_attributes_" + index);
+    answer.attr("name", newName);
+    answer.attr("id", newId);
+}
+
+function setupChangeAnswerButtons() {
+    // Setup remove answer button
+    $("button[data-min-num-answers]").off().click(function () {
+        // Find the answer immediately preceding this button
+        var answerToDelete = $(this).parents("div.input-group").first();
+        
+        // Adjust the index numbers of the answers after what we're deleting
+        var index = parseInt(answerToDelete.find("textarea").attr("name").match(/\[answers_attributes\]\[(\d+)]/)[1]);
+        answerToDelete.nextAll("div.input-group").each(function (i, answerToDecrement) {
+            answerToDecrement = $(answerToDecrement).find("textarea").first();
+            setAnswerIndexNumber(answerToDecrement, index);
+            index += 1;
+        });
+
+        // Delete the answer
+        answerToDelete.remove();
+    });
+
+    // Setup add answer buttons
     $("button[data-max-num-answers]").off().click(function () {
-        // Determine the answer number
-        var answerContainer = $(this).parent().find(".answer-container");
-        var currentAnswers = answerContainer.find("textarea");
-        var numAnswers = currentAnswers.length;
+        // Find the answer immediately preceding this button
+        var answerToCopy = $(this).parents("div.input-group").first();
 
-        var answerCopy = currentAnswers.first().clone();
-        var newName = answerCopy.attr("name").replace(/\[answers_attributes\]\[\d+\]/gm, "[answers_attributes][" + numAnswers + "]");
-        var newId = answerCopy.attr("id").replace(/answers_attributes_\d+/gm, "answers_attributes_" + numAnswers);
-        answerCopy.attr("name", newName);
-        answerCopy.attr("id", newId);
+        // Now make a clone to insert
+        var answerToAdd = answerToCopy.clone();
 
-        // Clear any existing contents
-        answerCopy.html("");
+        // Clear any existing contents in the text field
+        answerToAdd.find("textarea").html("");
 
-        answerContainer.append(answerCopy);
-        answerContainer.append("<br>");
+        // Insert the clone
+        answerToCopy.after(answerToAdd);
+        
+        // Adjust the index numbers of all numbers beyond the answer to copy
+        var index = parseInt(answerToCopy.find("textarea").attr("name").match(/\[answers_attributes\]\[(\d+)]/)[1]) + 1;
+        answerToCopy.nextAll("div.input-group").each(function (i, answerToIncrement) {
+            answerToIncrement = $(answerToIncrement).find("textarea").first();
+            setAnswerIndexNumber(answerToIncrement, index);
+            index += 1;
+        });
 
-        setupAddAnswerButton();
-        tryDisableAddAnswerButton();
+        setupChangeAnswerButtons();
     });
 }
 
