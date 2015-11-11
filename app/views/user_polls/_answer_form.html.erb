@@ -1,34 +1,43 @@
-<div class="question-form">
+<div class="row">
 
-  <div class="question-form-title">
-    <%= poll_question_form.label "Question #{index+1}" %><br>
-    <%= poll_question_form.text_area :text %><br>
+  <div class="col-sm-4">
+    <%= poll_question_form.label "Question #{index+1}" %>
+    <%= poll_question_form.text_area :text, class: 'form-control' %>
   </div>
 
-  <div class="question-form-options">
+  <div class="col-sm-6">
     <%= poll_question_form.label "Options" %><br>
-    <% poll_question.answers.each_with_index do |answer, index| %>
-      <%= poll_question_form.fields_for :answers, answer, index: nil do |answer_form| %>
-        <%= answer_form.text_area :text %><br>
+    <div class="answer-container">
+      <% [poll_question.answers.length, @default_num_answers].max.times do |index| %>
+        <% answer = (index < poll_question.answers.length) ? poll_question.answers[index] : Answer.new %>
+        <%= poll_question_form.fields_for :answers, answer, index: nil do |answer_form| %>
+          <div class="input-group">
+            <%= answer_form.text_field :text, class: 'form-control' %>
+            <span class="input-group-btn">
+              <%= button_tag class: "btn btn-default", type: "button", data: {min_num_answers: @default_num_answers} do %>
+                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+              <% end %>
+              <%= button_tag class: "btn btn-default", type: "button", data: {max_num_answers: @max_num_answers} do %>
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              <% end %>
+            </span>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
-
-    <% (poll_question.answers.length...@default_num_answers).each do |index| %>
-      <%= poll_question_form.fields_for :answers, Answer.new do |answer_form| %>
-        <%= answer_form.text_area :text %><br>
-      <% end %>
-    <% end %>
-
-    <button class="question-form-add-option" type="button" data-max-num-answers=<%= raw("\"#{@max_num_answers}\"")%>>Add option</button><br>
-
+    </div>
   </div>
+</div>
 
-  <div class="question-form-settings">
-    <%= poll_question_form.label "Optional?" %>
-    <%= poll_question_form.check_box :optional %><br>
+<div class="checkbox">
+  <%= poll_question_form.label :optional do %>
+    <%= poll_question_form.check_box :optional %>
+    Optional?
+  <% end %>
+</div>
 
-    <%= poll_question_form.label "Allow multiple answers?" %>
-    <%= poll_question_form.check_box :allow_multiple_answers %>
-  </div>
-
+<div class="checkbox">
+  <%= poll_question_form.label :allow_multiple_answers do %>
+    <%= poll_question_form.check_box :allow_multiple_answers, class: 'checkbox' %>
+    Allow multiple answers?
+  <% end %>
 </div>
