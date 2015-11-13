@@ -4,7 +4,6 @@ Rails.application.routes.draw do
       }
 
   root 'landing_page#index'
-
   get '/search_polls(.:format)' => 'landing_page#search_polls', as: 'search_polls'
   get '/news_feed_polls(.:format)' => 'landing_page#news_feed_polls', as: 'news_feed_polls'
   get '/current_user_polls(.:format)' => 'landing_page#current_user_polls', as: 'current_user_polls'
