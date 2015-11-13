@@ -18,10 +18,10 @@
                     <a href="#">Profile</a>
                 </li>
                 <li>
-                    <a href="#">Create Poll</a>
+                    <%= link_to "Create Poll", new_user_poll_path %>
                 </li>
                 <li>
-                    <a href="#">IDK</a>
+                    <%= link_to "Log out", destroy_user_session_path, method: :delete %>
                 </li>
             </ul>
         </div>
