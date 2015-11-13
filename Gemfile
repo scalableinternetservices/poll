@@ -19,6 +19,7 @@ gem 'i18n', '~> 0.7.0'
 #gems for bootstrap
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
+gem 'bootstrap_form'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
