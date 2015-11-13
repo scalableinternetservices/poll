@@ -1,22 +1,38 @@
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2">
-      <h2>Forgot your password?</h2>
-      
-      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-        <%= devise_error_messages! %>
+<div class="container contentContainer" id="one">
+    <div class="row">
+      <div class="col-lg-4 col-bg">
+        <br>
+        <%= image_tag "pollster_main_icon.png", :class => 'img-responsive' %>
+        <h3><i>Join pollster to create, share, and vote on public surveys</i></h3>
+        <h2>Forgot your password?</h2>
+        <%= bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+          <%= devise_error_messages! %>
+          
+          <div class="field">
+            <%= f.email_field :email, autofocus: true %>
+          </div>
+          
+          <div class="actions">
+            <input class="btn btn-primary" name="commit" type="submit" value="Send me reset instructions">
+          </div>
+        <% end %>
         
-        <div class="field">
-          <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true %>
-        </div>
-        
-        <div class="actions">
-          <%= f.submit "Send me reset password instructions" %>
-        </div>
-      <% end %>
-      
-      <%= render "devise/shared/links" %>
+        <%= render "devise/shared/links" %>
+      </div>
     </div>
-  </div>
 </div>
+
+<script>
+    $(".contentContainer").css("min-height",$(window).height());
+    $(".contentContainer").css("min-width",$(window).width());
+    $(".col-bg").css("min-height",$(window).height());
+    window.onresize = function(event) {
+        resizeDiv();
+    }
+    function resizeDiv() {
+        $(".contentContainer").css("min-height",$(window).height());
+        $(".contentContainer").css("min-width",$(window).width());
+        $(".col-bg").css("min-height",$(window).height());
+    }
+</script>
+

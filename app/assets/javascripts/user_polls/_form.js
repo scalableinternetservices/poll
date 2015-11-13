@@ -1,34 +1,125 @@
 $(document).on("ready page:change", function() {
+    setupChangeQuestionButtons();
+    setupChangeAnswerButtons();
+});
+
+// ADD/REMOVE QUESTION BUTTONS
+
+function setQuestionIndexNumber(question, index) {
+    var newId = question.attr("id").replace(/field\d+/gm, "field" + index);
+    var newHtml = question.html().replace(/\[poll_questions_attributes\]\[\d+\]/gm, "[poll_questions_attributes][" + index + "]");
+    newHtml = newHtml.replace(/poll_questions_attributes_\d+_/gm, "poll_questions_attributes_" + index + "_");
+    newHtml = newHtml.replace(/Question \d+/gm, "Question " + (index + 1));
+
+    // Because we directly replace all the HTML, we need to save the input values
+    // for each of the input fields, otherwise it gets overwritten
+    textValues = [];
+    question.find("input[type=text]").each(function (index, element) {
+        textValues.push($(element).val());
+    });
+    checkboxValues = []
+    question.find("input[type=checkbox]").each(function (index, element) {
+        checkboxValues.push($(element).prop("checked"));
+    });
+
+    question.attr("id", newId);
+    question.html(newHtml);
+
+    // Restore the input values of each of the inputs
+    question.find("input[type=text]").each(function (index, element) {
+        $(element).val(textValues[index]);
+    });
+    question.find("input[type=checkbox]").each(function (index, element) {
+        $(element).prop("checked", checkboxValues[index]);
+    });
+}
+
+function setupChangeQuestionButtons() {
+    // Setup the remove question button
+    $("button[data-min-num-questions]").off().click(function() {
+        var questionToDelete = $(this).parents(".question-field");
+        
+        // Reduce the question index number of all questions after this one
+        questionToDelete.nextAll(".question-field").each(function (index, element) {
+            element = $(element);
+            var currentId = parseInt(element.attr("id").match(/field(\d+)/)[1]);
+            setQuestionIndexNumber(element, currentId - 1);
+        });
+
+        // Delete the question
+        questionToDelete.remove();
+        
+        // The button handlers get overwritten when we do our regex search and replace,
+        // so re-apply them
+        setupChangeQuestionButtons();
+        setupChangeAnswerButtons();
+
+        // Might be at the minimum number questions, so try to disable the remove question buttons
+        tryDisableRemoveQuestionButtons();
+        $("button[data-max-num-questions]").prop("disabled", false);
+    });
+
     // Setup the add question button
     $("button[data-max-num-questions]").off().click(function () {
-        var currentQuestions = $(".question-field");
-        var numQuestions = currentQuestions.length;
+        var clickedQuestion = $(this).parents(".question-field");
+        var indexToAdd = parseInt(clickedQuestion.attr("id").match(/field(\d+)/)[1]) + 1;
         var defaultNumAnswers = parseInt($(this).attr("data-default-num-answers"));
 
-        // Clone an existing question but replace all the numbers
-        var fieldCopy = currentQuestions.first().clone();
-        fieldCopy.attr("id", "field" + numQuestions);
-        var newHtml = fieldCopy.html().replace(/\[poll_questions_attributes\]\[\d+\]/gm, "[poll_questions_attributes][" + numQuestions + "]");
-        newHtml = newHtml.replace(/poll_questions_attributes_\d+_/gm, "poll_questions_attributes_" + numQuestions + "_");
-        newHtml = newHtml.replace(/Question \d+/gm, "Question " + (numQuestions + 1));
-        fieldCopy.html(newHtml);
-
-        // Delete answers up to the default number of answers
-        fieldCopy.find("div.answer-container div.input-group").each(function (index, element) {
-             if (index >= defaultNumAnswers)
-                 element.remove();
+        // Clone an existing question reset the answers to the default
+        var questionCopy = clickedQuestion.first().clone();
+        questionCopy.find("div.answer-container div.input-group").each(function (index, element) {
+            if (index >= defaultNumAnswers)
+                $(element).remove();
+            else {
+                $(element).find("input[type=text]").val("");
+            }
         });
 
         // Clear the checkboxes within the question
-        fieldCopy.find("input[type=checkbox]").attr("value", "0");
+        questionCopy.find("input[type=checkbox]").prop("checked", false);
 
-        $(currentQuestions).last().after(fieldCopy);
+        // Replace
+        setQuestionIndexNumber(questionCopy, indexToAdd);
 
+        // Add the question and update the indices of every question after
+        clickedQuestion.first().after(questionCopy);
+        questionCopy.nextAll(".question-field").each(function (index, element) {
+            element = $(element);
+            var currentId = parseInt(element.attr("id").match(/field(\d+)/)[1]);
+            setQuestionIndexNumber(element, currentId + 1);
+        });
+
+        setupChangeQuestionButtons();
         setupChangeAnswerButtons();
+
+        // Might be at the maximum number questions, so try to disable the add question buttons
+        tryDisableAddQuestionButtons();
+        $("button[data-min-num-questions]").prop("disabled", false);
     });
 
-    setupChangeAnswerButtons();
-});
+    tryDisableRemoveQuestionButtons();
+    tryDisableAddQuestionButtons();
+}
+
+function tryDisableRemoveQuestionButtons() {
+    var numQuestions = $(".question-field").length;
+    var minNumQuestions = parseInt($("button[data-min-num-questions]").attr("data-min-num-questions"));
+    $("button[data-min-num-questions]").each(function (index, element) {
+        if (numQuestions <= minNumQuestions)
+            $(element).prop("disabled", true);
+    });
+}
+
+function tryDisableAddQuestionButtons() {
+    var numQuestions = $(".question-field").length;
+    var maxNumQuestions = parseInt($("button[data-max-num-questions]").attr("data-max-num-questions"));
+    $("button[data-max-num-questions]").each(function (index, element) {
+        if (numQuestions >= maxNumQuestions)
+            $(element).prop("disabled", true);
+    });
+}
+
+// ADD/REMOVE ANSWER BUTTONS
 
 function setAnswerIndexNumber(answer, index) {
     var newName = answer.attr("name").replace(/\[answers_attributes\]\[\d+\]/, "[answers_attributes][" + index + "]");
@@ -57,7 +148,7 @@ function setupChangeAnswerButtons() {
 
         // Enable the add answer button, and try to disable the remove answer button
         parent.find("button[data-max-num-answers]").prop("disabled", false);
-        tryDisableRemoveAnswerButton();
+        tryDisableRemoveAnswerButtons();
     });
 
     // Setup add answer buttons
@@ -87,14 +178,14 @@ function setupChangeAnswerButtons() {
 
         // Enable the remove answer button and try to disable the add answer button
         parent.find("button[data-min-num-answers]").prop("disabled", false);
-        tryDisableAddAnswerButton();
+        tryDisableAddAnswerButtons();
     });
 
-    tryDisableRemoveAnswerButton();
-    tryDisableAddAnswerButton();
+    tryDisableRemoveAnswerButtons();
+    tryDisableAddAnswerButtons();
 }
 
-function tryDisableRemoveAnswerButton() {
+function tryDisableRemoveAnswerButtons() {
     $("div.answer-container").each(function (index, element) {
         element = $(element)
         var minNumAnswers = parseInt(element.find("button[data-min-num-answers]").attr("data-min-num-answers"));
@@ -104,7 +195,7 @@ function tryDisableRemoveAnswerButton() {
     });
 }
 
-function tryDisableAddAnswerButton() {
+function tryDisableAddAnswerButtons() {
     $("div.answer-container").each(function (index, element) {
         element = $(element)
         var maxNumAnswers = parseInt(element.find("button[data-max-num-answers]").attr("data-max-num-answers"));

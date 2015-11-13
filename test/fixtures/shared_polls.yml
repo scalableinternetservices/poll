@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sharee_id: 
+  sharer_id: 
+  user_poll_id: 
+
+two:
+  sharee_id: 
+  sharer_id: 
+  user_poll_id: 

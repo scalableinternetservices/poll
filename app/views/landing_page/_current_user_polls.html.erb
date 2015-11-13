@@ -6,7 +6,7 @@
       <tr>
         <th>Title</th>
         <th>Creation Date</th>
-        <th colspan="2">Actions</th>
+        <th colspan="3"></th>
       </tr>
     </thead>
 
@@ -15,8 +15,15 @@
         <tr>
           <td><%= link_to user_poll.title, user_poll %></td>
           <td><%= user_poll.created_at.to_s(:long) %></td>
-          <td><%= link_to 'Results', user_poll_results_path(user_poll.id) %></td>
-          <td><%= link_to 'Delete', user_poll, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to user_poll_results_path(user_poll.id), class: "btn btn-primary btn-xs" do %>
+            <span class="glyphicon glyphicon-stats" aria-hidden="true"</span>  Results
+          <% end %></td>
+          <td><%= button_tag type: "button", class: "btn btn-primary btn-xs", data: {toggle: "modal", target: "#share-modal", poll_id: user_poll.id} do %>
+            <span class="glyphicon glyphicon-share" aria-hidden="true"></span>   Share
+          <% end %></td>
+          <td><%= link_to user_poll, class: "btn btn-primary btn-xs", method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>   Delete
+          <% end %></td>
         </tr>
       <% end %>
     </tbody>

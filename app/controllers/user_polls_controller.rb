@@ -30,16 +30,22 @@ class UserPollsController < ApplicationController
   def new
     @user_poll = UserPoll.new
     @poll_questions = [ PollQuestion.new ]
+    @default_num_questions = 1
+    @min_num_questions = 1
     @max_num_questions = UserPoll.MAX_NUM_POLL_QUESTIONS
     @default_num_answers = 2
+    @min_num_answers = 2
     @max_num_answers = PollQuestion.MAX_NUM_ANSWERS
   end
 
   # GET /user_polls/1/edit
   def edit
     @poll_questions = @user_poll.poll_questions
+    @default_num_questions = 1
+    @min_num_questions = 1
     @max_num_questions = UserPoll.MAX_NUM_POLL_QUESTIONS
     @default_num_answers = 2
+    @min_num_answers = 2
     @max_num_answers = PollQuestion.MAX_NUM_ANSWERS
   end
 
@@ -84,8 +90,11 @@ class UserPollsController < ApplicationController
         format.json { render :show, status: :created, location: @user_poll }
       else
         @poll_questions = @user_poll.poll_questions.length == 0 ? [PollQuestion.new] : @user_poll.poll_questions
+        @default_num_questions = 1
+        @min_num_questions = 1
         @max_num_questions = UserPoll.MAX_NUM_POLL_QUESTIONS
-        @default_num_answers = 4
+        @default_num_answers = 2
+        @min_num_answers = 2
         @max_num_answers = PollQuestion.MAX_NUM_ANSWERS
         
         format.html { render :new }
@@ -108,6 +117,26 @@ class UserPollsController < ApplicationController
     end
   end
 
+  # POST /user_polls/1/share_with/2
+  def share_with
+    cleaned_params = share_with_params
+    already_shared_poll = SharedPoll.where(sharee_id: cleaned_params[:user_id], sharer_id: current_user.id, user_poll_id: cleaned_params[:poll_id])
+
+    if already_shared_poll.count > 0
+      shared_poll = already_shared_poll[0]
+    else
+      shared_poll = SharedPoll.new(sharee_id: cleaned_params[:user_id], sharer_id: current_user.id, user_poll_id: cleaned_params[:poll_id])
+    end
+
+    respond_to do |format|
+      if shared_poll.save
+        format.html { redirect_to UserPoll.find(cleaned_params[:poll_id]), notice: 'Successfully shared poll' }
+      else
+        format.html { redirect_to UserPoll.find(cleaned_params[:poll_id]), notice: 'Failed to share poll' }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_poll
@@ -121,5 +150,9 @@ class UserPollsController < ApplicationController
 
     def question_details_params
       params.require(:id)
+    end
+
+    def share_with_params
+      params.permit(:poll_id, :user_id)
     end
 end

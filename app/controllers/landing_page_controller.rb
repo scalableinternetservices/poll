@@ -18,7 +18,7 @@ class LandingPageController < ApplicationController
 
     @current_user_friend_requests = get_current_user_pending_friendships.map { |friendship|
       requestor = User.find(friendship.requestor_id)
-      return "#{requestor.first_name} #{requestor.last_name}", friendship.id
+      ["#{requestor.first_name} #{requestor.last_name}", friendship.id]
     }
   end
 
@@ -57,8 +57,17 @@ class LandingPageController < ApplicationController
 
     @current_user_friend_requests = get_current_user_pending_friendships.map { |friendship|
       requestor = User.find(friendship.requestor_id)
-      return "#{requestor.first_name} #{requestor.last_name}", friendship.id
+      ["#{requestor.first_name} #{requestor.last_name}", friendship.id]
     }
+
+    render(layout: false)
+  end
+
+  # GET /friends_for_sharing
+  def friends_for_sharing
+    cleaned_params = friends_for_sharing_params
+    @friends = get_current_user_friends(cleaned_params[:num_friends].to_i)
+    @poll_id = cleaned_params[:poll_id]
 
     render(layout: false)
   end
@@ -78,6 +87,10 @@ class LandingPageController < ApplicationController
 
     def friends_pane_params
       params.require(:num_current_user_friends)
+    end
+
+    def friends_for_sharing_params
+      params.permit(:num_friends, :poll_id)
     end
 
     def get_polls(max_num_polls, search)
@@ -106,11 +119,25 @@ class LandingPageController < ApplicationController
 
     # Algorithm for choosing news feed polls
     def get_news_feed_polls(max_num_polls)
-      # For now, nothing fancy. Just choose the newest polls that are not yours.
+      # Get polls that have been shared with you, starting with most recently shared
+      shared_polls = current_user.shared_with_me_polls.sort { |a, b| b.updated_at <=> a.updated_at }
+      shared_polls.map! { |shared_poll|
+        sharer = User.find(shared_poll.sharer_id)
+        [shared_poll.user_poll, "Shared with you by #{sharer.first_name} #{sharer.last_name}!"]
+      }
+      if shared_polls.length > max_num_polls
+        return shared_polls[0...max_num_polls], true
+      end
 
+      # If needed, fill with the most recently added polls
       # Grab one more poll than requested so that we can determine if there are more polls to show
-      polls = UserPoll.where.not(user_id: current_user.id).order(updated_at: :desc).limit(max_num_polls + 1).all
+      other_polls = UserPoll.where.not(user_id: current_user.id).order(updated_at: :desc).limit(max_num_polls + 1).all
+      other_polls = other_polls.map { |poll| [poll, ""] }
+
+      # Eliminate any polls in other_polls that are duplicates of ones in shared_polls
+      other_polls.select! { |a| not shared_polls.detect { |b| a[0].id == b[0].id } }
       
+      polls = shared_polls + other_polls
       can_show_more = (polls.length > max_num_polls)
       polls = polls[0...max_num_polls] if can_show_more
       
@@ -129,8 +156,8 @@ class LandingPageController < ApplicationController
 
     def get_current_user_friends(max_num_friends)
       # Show the friends in alphabetical order
-      all_friends = current_user.friendships_to + current_user.friendships_from
-      all_friends.sort! { |a, b| a.casecmp(b) }
+      all_friends = current_user.friendships_to.map { |friendship| User.find(friendship.friend_id) } + current_user.friendships_from.map { |friendship| User.find(friendship.user_id) }
+      all_friends.sort! { |a, b| ("#{a.first_name} #{a.last_name}").casecmp("#{b.first_name} #{b.last_name}") }
       all_friends = all_friends[0...max_num_friends] if all_friends.length > max_num_friends
 
       return all_friends
