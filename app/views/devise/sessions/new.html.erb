@@ -1,10 +1,9 @@
 <div class="container contentContainer" id="one">
     <div class="row">
       <div class="col-lg-4 col-bg">
-        <div class="row icon">
-          <br><br><br><br><br><br><br><br><br>
-        </div>
-        <h1>Welcome</h1>
+        <br>
+        <%= image_tag "pollster_main_icon.png", :class => 'img-responsive' %>
+        <h3><i>Join pollster to create, share, and vote on public surveys</i></h3>
         <h2>Log In</h2>
         <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field">
