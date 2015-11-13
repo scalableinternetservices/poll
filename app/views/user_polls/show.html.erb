@@ -21,6 +21,7 @@
       <p><br>
         <% @user_poll.poll_questions.each_with_index do |poll_question, index| %>
           Question <%= "#{index+1}" %>. <%= poll_question.text %> <br>
+          <%= image_tag poll_question.poll_question_picture.url(:thumb) %><br />
           <% if poll_question.optional %>
             <i>Is optional</i><br>
           <% end %>
