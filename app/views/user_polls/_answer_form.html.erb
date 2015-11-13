@@ -6,6 +6,11 @@
   </div>
 
   <div class="col-sm-6">
+    <%= poll_question_form.label :poll_question_picture %>
+    <%= poll_question_form.file_field :poll_question_picture %>
+  </div>
+
+  <div class="col-sm-6">
     <%= poll_question_form.label "Options" %><br>
     <div class="answer-container">
       <% [poll_question.answers.length, @default_num_answers].max.times do |index| %>
