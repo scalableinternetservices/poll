@@ -25,9 +25,7 @@
     <% end %>
   <% end %>
 
-  <button id="actions" class= "btn btn-primary">
-    <%= user_poll_form.submit %> 
-  </button>
+  <%= user_poll_form.submit id: "actions", class: "btn btn-primary" %> 
+
 <% end %>
-<br>
-<button id="add_poll_question_button" class= "btn btn-primary" data-max-num-questions=<%= raw("\"#{@max_num_questions}\"") %> data-default-num-answers=<%= raw("\"#{@default_num_answers}\"") %>> Add poll question </button>
+
