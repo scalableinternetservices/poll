@@ -11,12 +11,16 @@
   <tbody>
     <% @news_feed_polls.each do |user_poll| %>
       <tr>
-        <td><%= link_to user_poll.title, user_poll %></td>
+        <td class="vert-center"><%= link_to user_poll.title, user_poll %></td>
         <% user_poll_owner = User.find(user_poll.user_id) %>
-        <td><%= "#{user_poll_owner.first_name} #{user_poll_owner.last_name}" %></td>
-        <td><%= user_poll.created_at.to_s(:long) %></td>
-        <td><%= link_to 'Results', user_poll_results_path(user_poll.id) %></td>
-        <td><%= button_tag "Share", type: "button", class: "btn btn-primary", data: {toggle: "modal", target: "#share-modal", poll_id: user_poll.id} %></td>
+        <td class="vert-center"><%= "#{user_poll_owner.first_name} #{user_poll_owner.last_name}" %></td>
+        <td class="vert-center"><%= user_poll.created_at.to_s(:long) %></td>
+        <td><%= link_to user_poll_results_path(user_poll.id), class: "btn btn-primary btn-xs" do %>
+          <span class="glyphicon glyphicon-stats" aria-hidden="true"</span>  Results
+        <% end %></td>
+        <td><%= button_tag type: "button", class: "btn btn-primary btn-xs", data: {toggle: "modal", target: "#share-modal", poll_id: user_poll.id} do %>
+          <span class="glyphicon glyphicon-share" aria-hidden="true"></span>   Share
+        <% end %></td>
       </tr>
     <% end %>
   </tbody>
