@@ -8,15 +8,4 @@ Rails.application.config.assets.version = '1.0'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-Rails.application.config.assets.precompile += %w( bootstrap.min.css )
-
-Rails.application.config.assets.precompile += %w( bootstrap.min.js )
-Rails.application.config.assets.precompile += %w( friendships/new.js )
-Rails.application.config.assets.precompile += %w( landing_page/_current_user_polls.js )
-Rails.application.config.assets.precompile += %w( landing_page/_friends_pane.js )
-Rails.application.config.assets.precompile += %w( landing_page/_news_feed_polls.js )
-Rails.application.config.assets.precompile += %w( user_polls/_form.js )
-Rails.application.config.assets.precompile += %w( user_polls/results.js )
-Rails.application.config.assets.precompile += %w( user_polls/user_polls.js )
-
-Rails.application.config.assets.precompile += %w( .svg, .eot, .woff, .ttf )
+Rails.application.config.assets.precompile += %w( **/*.js )
