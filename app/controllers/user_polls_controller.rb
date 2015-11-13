@@ -30,16 +30,22 @@ class UserPollsController < ApplicationController
   def new
     @user_poll = UserPoll.new
     @poll_questions = [ PollQuestion.new ]
+    @default_num_questions = 1
+    @min_num_questions = 1
     @max_num_questions = UserPoll.MAX_NUM_POLL_QUESTIONS
     @default_num_answers = 2
+    @min_num_answers = 2
     @max_num_answers = PollQuestion.MAX_NUM_ANSWERS
   end
 
   # GET /user_polls/1/edit
   def edit
     @poll_questions = @user_poll.poll_questions
+    @default_num_questions = 1
+    @min_num_questions = 1
     @max_num_questions = UserPoll.MAX_NUM_POLL_QUESTIONS
     @default_num_answers = 2
+    @min_num_answers = 2
     @max_num_answers = PollQuestion.MAX_NUM_ANSWERS
   end
 
@@ -84,8 +90,11 @@ class UserPollsController < ApplicationController
         format.json { render :show, status: :created, location: @user_poll }
       else
         @poll_questions = @user_poll.poll_questions.length == 0 ? [PollQuestion.new] : @user_poll.poll_questions
+        @default_num_questions = 1
+        @min_num_questions = 1
         @max_num_questions = UserPoll.MAX_NUM_POLL_QUESTIONS
-        @default_num_answers = 4
+        @default_num_answers = 2
+        @min_num_answers = 2
         @max_num_answers = PollQuestion.MAX_NUM_ANSWERS
         
         format.html { render :new }
