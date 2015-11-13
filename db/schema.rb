@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151030171159) do
+ActiveRecord::Schema.define(version: 20151113063303) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "poll_question_id", limit: 4
@@ -72,6 +72,18 @@ ActiveRecord::Schema.define(version: 20151030171159) do
 
   add_index "results", ["answer_id"], name: "index_results_on_answer_id", using: :btree
 
+  create_table "shared_polls", force: :cascade do |t|
+    t.integer  "sharee_id",    limit: 4
+    t.integer  "sharer_id",    limit: 4
+    t.integer  "user_poll_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "shared_polls", ["sharee_id"], name: "index_shared_polls_on_sharee_id", using: :btree
+  add_index "shared_polls", ["sharer_id"], name: "index_shared_polls_on_sharer_id", using: :btree
+  add_index "shared_polls", ["user_poll_id"], name: "index_shared_polls_on_user_poll_id", using: :btree
+
   create_table "user_polls", force: :cascade do |t|
     t.integer  "user_id",     limit: 4
     t.string   "title",       limit: 255
@@ -110,5 +122,6 @@ ActiveRecord::Schema.define(version: 20151030171159) do
   add_foreign_key "pending_friendships", "users", column: "receiver_id"
   add_foreign_key "poll_questions", "user_polls"
   add_foreign_key "results", "answers"
+  add_foreign_key "shared_polls", "user_polls"
   add_foreign_key "user_polls", "users"
 end

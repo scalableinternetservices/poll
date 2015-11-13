@@ -117,6 +117,20 @@ class UserPollsController < ApplicationController
     end
   end
 
+  # POST /user_polls/1/share_with/2
+  def share_with
+    cleaned_params = share_with_params
+    shared_poll = SharedPoll.new(sharee_id: cleaned_params[:user_id], sharer_id: current_user.id, user_poll_id: cleaned_params[:poll_id])
+
+    respond_to do |format|
+      if shared_poll.save
+        format.html { redirect_to UserPoll.find(cleaned_params[:poll_id]), notice: 'Successfully shared poll' }
+      else
+        format.html { redirect_to UserPoll.find(cleaned_params[:poll_id]), notice: 'Failed to share poll' }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_poll
@@ -130,5 +144,9 @@ class UserPollsController < ApplicationController
 
     def question_details_params
       params.require(:id)
+    end
+
+    def share_with_params
+      params.permit(:poll_id, :user_id)
     end
 end
