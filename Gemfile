@@ -54,3 +54,8 @@ end
 
 # Use devise for user authentication
 gem 'devise'
+
+#Paperclip stuff
+gem 'paperclip'
+gem 'aws-sdk'
+gem 'fog'
