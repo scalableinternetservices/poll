@@ -1,6 +1,6 @@
 <div class="container contentContainer" id="one">
     <div class="row">
-      <div class="col-lg-4">
+      <div class="col-lg-4 col-bg">
         <h1>Welcome to Pollster</h1>
         <h2>Log in</h2>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -33,12 +33,14 @@
 <script>
     $(".contentContainer").css("min-height",$(window).height());
     $(".contentContainer").css("min-width",$(window).width());
+    $(".col-bg").css("min-height",$(window).height());
     window.onresize = function(event) {
         resizeDiv();
     }
     function resizeDiv() {
         $(".contentContainer").css("min-height",$(window).height());
         $(".contentContainer").css("min-width",$(window).width());
+        $(".col-bg").css("min-height",$(window).height());
     }
 </script>
 
