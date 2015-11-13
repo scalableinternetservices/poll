@@ -8,6 +8,7 @@ function setupShowMoreNewsFeedPolls() {
              function(data) {
                  $("#news-feed-polls").html(data)
                  setupShowMoreNewsFeedPolls();
+                 setupShareButtons();
              },
              "html");
     });

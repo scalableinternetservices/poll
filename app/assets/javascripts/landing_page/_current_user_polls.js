@@ -8,6 +8,7 @@ function setupShowMoreCurrentUserPolls() {
              function(data) {
                  $("#current-user-polls").html(data)
                  setupShowMoreCurrentUserPolls();
+                 setupShareButtons();
              },
              "html");
     });

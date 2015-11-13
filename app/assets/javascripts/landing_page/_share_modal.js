@@ -1,4 +1,7 @@
-$(document).on("page:change", function() {
+$(document).on("page:change", setupShareButtons);
+
+function setupShareButtons()
+{
     $("button[data-poll-id]").click(function () {
         $("#share-modal .modal-body").html("");
 
@@ -11,4 +14,4 @@ $(document).on("page:change", function() {
               },
               "html");
     });
-});
+}
