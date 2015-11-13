@@ -18,7 +18,7 @@ class LandingPageController < ApplicationController
 
     @current_user_friend_requests = get_current_user_pending_friendships.map { |friendship|
       requestor = User.find(friendship.requestor_id)
-      return "#{requestor.first_name} #{requestor.last_name}", friendship.id
+      ["#{requestor.first_name} #{requestor.last_name}", friendship.id]
     }
   end
 
@@ -57,8 +57,17 @@ class LandingPageController < ApplicationController
 
     @current_user_friend_requests = get_current_user_pending_friendships.map { |friendship|
       requestor = User.find(friendship.requestor_id)
-      return "#{requestor.first_name} #{requestor.last_name}", friendship.id
+      ["#{requestor.first_name} #{requestor.last_name}", friendship.id]
     }
+
+    render(layout: false)
+  end
+
+  # GET /friends_for_sharing
+  def friends_for_sharing
+    cleaned_params = friends_for_sharing_params
+    @friends = get_current_user_friends(cleaned_params[:num_friends].to_i)
+    @poll_id = cleaned_params[:poll_id]
 
     render(layout: false)
   end
@@ -78,6 +87,10 @@ class LandingPageController < ApplicationController
 
     def friends_pane_params
       params.require(:num_current_user_friends)
+    end
+
+    def friends_for_sharing_params
+      params.permit(:num_friends, :poll_id)
     end
 
     def get_polls(max_num_polls, search)
@@ -129,8 +142,8 @@ class LandingPageController < ApplicationController
 
     def get_current_user_friends(max_num_friends)
       # Show the friends in alphabetical order
-      all_friends = current_user.friendships_to + current_user.friendships_from
-      all_friends.sort! { |a, b| a.casecmp(b) }
+      all_friends = current_user.friendships_to.map { |friendship| User.find(friendship.friend_id) } + current_user.friendships_from.map { |friendship| User.find(friendship.user_id) }
+      all_friends.sort! { |a, b| ("#{a.first_name} #{a.last_name}").casecmp("#{b.first_name} #{b.last_name}") }
       all_friends = all_friends[0...max_num_friends] if all_friends.length > max_num_friends
 
       return all_friends

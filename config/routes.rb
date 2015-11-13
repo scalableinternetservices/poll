@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/news_feed_polls(.:format)' => 'landing_page#news_feed_polls', as: 'news_feed_polls'
   get '/current_user_polls(.:format)' => 'landing_page#current_user_polls', as: 'current_user_polls'
   get '/friends_pane(.:format)' => 'landing_page#friends_pane', as: 'friends_pane'
+  get '/friends_for_sharing(.:format)' => 'landing_page#friends_for_sharing', as: 'friends_for_sharing'
 
   get '/friend_request/new' => 'friendships#new', as: 'new_friend_request'
   get '/friend_request/search_users(.:format)' => 'friendships#search_users', as: 'search_users_friend_request'
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
   get '/user_polls/:id/results(.:format)' => 'user_polls#results', as: 'user_poll_results'
   get '/user_polls/:id/poll_details(.:format)' => 'user_polls#poll_details', as: 'poll_result_details'
   get '/user_polls/:id/question_details(.:format)' => 'user_polls#question_details', as: 'question_result_details'
+  post '/user_polls/:poll_id/share_with/:user_id(.:format)' => 'user_polls#share_with', as: 'share_poll_with'
 
   get '/user_profile/:id(.:format)' => 'user_profiles#view', as: 'view_user_profile'
 

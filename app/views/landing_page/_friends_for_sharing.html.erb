@@ -1,0 +1,13 @@
+<% if @friends.length == 0 %>
+  <p>You don't have any friends yet! Maybe you should go <%= link_to 'add one', new_friend_request_path %> first!</p>
+<% else %>
+  <table class="table table-striped">
+    <tbody>
+      <% @friends.each do |friend| %>
+        <tr>
+          <td><%= link_to "#{friend.first_name} #{friend.last_name}", share_poll_with_path(@poll_id, friend.id), method: :post %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
