@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151113203406) do
+ActiveRecord::Schema.define(version: 20151113170040) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "poll_question_id", limit: 4
@@ -53,16 +53,12 @@ ActiveRecord::Schema.define(version: 20151113203406) do
   add_index "pending_friendships", ["requestor_id"], name: "index_pending_friendships_on_requestor_id", using: :btree
 
   create_table "poll_questions", force: :cascade do |t|
-    t.integer  "user_poll_id",                       limit: 4
-    t.text     "text",                               limit: 65535
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
+    t.integer  "user_poll_id",           limit: 4
+    t.text     "text",                   limit: 65535
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.boolean  "optional"
     t.boolean  "allow_multiple_answers"
-    t.string   "poll_question_picture_file_name",    limit: 255
-    t.string   "poll_question_picture_content_type", limit: 255
-    t.integer  "poll_question_picture_file_size",    limit: 4
-    t.datetime "poll_question_picture_updated_at"
   end
 
   add_index "poll_questions", ["user_poll_id"], name: "index_poll_questions_on_user_poll_id", using: :btree
@@ -89,15 +85,11 @@ ActiveRecord::Schema.define(version: 20151113203406) do
   add_index "shared_polls", ["user_poll_id"], name: "index_shared_polls_on_user_poll_id", using: :btree
 
   create_table "user_polls", force: :cascade do |t|
-    t.integer  "user_id",                   limit: 4
-    t.string   "title",                     limit: 255
-    t.text     "description",               limit: 65535
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
-    t.string   "poll_picture_file_name",    limit: 255
-    t.string   "poll_picture_content_type", limit: 255
-    t.integer  "poll_picture_file_size",    limit: 4
-    t.datetime "poll_picture_updated_at"
+    t.integer  "user_id",     limit: 4
+    t.string   "title",       limit: 255
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   add_index "user_polls", ["user_id"], name: "index_user_polls_on_user_id", using: :btree
