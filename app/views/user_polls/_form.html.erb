@@ -1,4 +1,4 @@
-<%= form_for(@user_poll) do |user_poll_form| %>
+<%= form_for(@user_poll, multipart: true) do |user_poll_form| %>
   <% if @user_poll.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user_poll.errors.count, "error") %> prohibited this user_poll from being saved:</h2>
@@ -16,6 +16,10 @@
   </div>
   <div class="field">
     <%= user_poll_form.text_area :description, class: 'form-control', placeholder: 'Description' %>
+  </div>
+  <div class="field">
+    <%= user_poll_form.label :poll_picture %>
+    <%= user_poll_form.file_field :poll_picture %>
   </div>
   <% @poll_questions.each_with_index do |poll_question, index| %>
     <%= user_poll_form.fields_for "poll_questions", poll_question do |poll_question_form| %>

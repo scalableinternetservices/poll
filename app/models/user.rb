@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_many :pending_friendships_sent, class_name: "PendingFriendship", foreign_key: :requestor_id, dependent: :destroy
   has_many :pending_friendships_received, class_name: "PendingFriendship", foreign_key: :receiver_id, dependent: :destroy
 
-  # This method associates the attribute ":avatar" with a file attachment
+  # This method associates the attribute ":profile_picture" with a file attachment
   has_attached_file :profile_picture, styles: {
     thumb: '100x100>',
     square: '200x200#',
