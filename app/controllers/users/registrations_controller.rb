@@ -49,6 +49,7 @@ before_filter :configure_account_update_params, only: [:update]
      devise_parameter_sanitizer.for(:account_update) << :first_name
      devise_parameter_sanitizer.for(:account_update) << :last_name
      devise_parameter_sanitizer.for(:account_update) << :description
+     devise_parameter_sanitizer.for(:account_update) << :profile_picture
    end
 
   # The path used after sign up.
