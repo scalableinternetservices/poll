@@ -1,23 +1,23 @@
 <div class="container contentContainer" id="one">
     <div class="row">
       <div class="col-lg-4 col-bg">
-        <h1>Welcome to Pollster</h1>
-        <h2>Log in</h2>
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="row icon">
+          <br><br><br><br><br><br><br><br><br>
+        </div>
+        <h1>Welcome</h1>
+        <h2>Log In</h2>
+        <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field">
-            <%= f.label :email %><br />
-            <%= f.email_field :email, autofocus: true %>
+            <%= f.email_field :email, autofocus: true, icon: "envelope"%>
           </div>
           
           <div class="field">
-            <%= f.label :password %><br />
-            <%= f.password_field :password, autocomplete: "off" %>
+            <%= f.password_field :password, autocomplete: "off", icon:"user" %>
           </div>
           
           <% if devise_mapping.rememberable? -%>
             <div class="field">
               <%= f.check_box :remember_me %>
-              <%= f.label :remember_me %>
             </div>
           <% end -%>
           
