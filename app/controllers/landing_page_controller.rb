@@ -119,11 +119,25 @@ class LandingPageController < ApplicationController
 
     # Algorithm for choosing news feed polls
     def get_news_feed_polls(max_num_polls)
-      # For now, nothing fancy. Just choose the newest polls that are not yours.
+      # Get polls that have been shared with you, starting with most recently shared
+      shared_polls = current_user.shared_with_me_polls.sort { |a, b| b.updated_at <=> a.updated_at }
+      shared_polls.map! { |shared_poll|
+        sharer = User.find(shared_poll.sharer_id)
+        [shared_poll.user_poll, "Shared with you by #{sharer.first_name} #{sharer.last_name}!"]
+      }
+      if shared_polls.length > max_num_polls
+        return shared_polls[0...max_num_polls], true
+      end
 
+      # If needed, fill with the most recently added polls
       # Grab one more poll than requested so that we can determine if there are more polls to show
-      polls = UserPoll.where.not(user_id: current_user.id).order(updated_at: :desc).limit(max_num_polls + 1).all
+      other_polls = UserPoll.where.not(user_id: current_user.id).order(updated_at: :desc).limit(max_num_polls + 1).all
+      other_polls = other_polls.map { |poll| [poll, ""] }
+
+      # Eliminate any polls in other_polls that are duplicates of ones in shared_polls
+      other_polls.select! { |a| not shared_polls.detect { |b| a[0].id == b[0].id } }
       
+      polls = shared_polls + other_polls
       can_show_more = (polls.length > max_num_polls)
       polls = polls[0...max_num_polls] if can_show_more
       

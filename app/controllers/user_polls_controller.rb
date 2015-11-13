@@ -120,7 +120,13 @@ class UserPollsController < ApplicationController
   # POST /user_polls/1/share_with/2
   def share_with
     cleaned_params = share_with_params
-    shared_poll = SharedPoll.new(sharee_id: cleaned_params[:user_id], sharer_id: current_user.id, user_poll_id: cleaned_params[:poll_id])
+    already_shared_poll = SharedPoll.where(sharee_id: cleaned_params[:user_id], sharer_id: current_user.id, user_poll_id: cleaned_params[:poll_id])
+
+    if already_shared_poll.count > 0
+      shared_poll = already_shared_poll[0]
+    else
+      shared_poll = SharedPoll.new(sharee_id: cleaned_params[:user_id], sharer_id: current_user.id, user_poll_id: cleaned_params[:poll_id])
+    end
 
     respond_to do |format|
       if shared_poll.save
