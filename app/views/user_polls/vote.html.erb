@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+      <p id="notice"><%= notice %></p>
+      <h1>
+        <%= @user_poll.title %>
+      </h1>
+      
+      <h3>
+        <%= image_tag @user_poll.poll_picture.url(:medium) %><br /><br />
+        <%= @user_poll.description %>
+      </h3>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-lg-6 col-lg-offset-2">
+      <%= form_tag submit_vote_path(@user_poll.id), method: :post do %>
+        <% answer_index = 0 %>
+        <% @user_poll.poll_questions.each_with_index do |poll_question, question_index| %>
+          Question <%= "#{question_index+1}" %>. <%= poll_question.text %>
+          <% if poll_question.optional %> <%= raw("<i> (optional) </i>") %> <% end %><br>
+          <%= image_tag poll_question.poll_question_picture.url(:thumb) %><br>
+
+          <% if poll_question.allow_multiple_answers %>
+            <% poll_question.answers.each do |answer| %>
+              <% input_name = "answers[#{answer_index}]" %>
+              <%= check_box_tag input_name, answer.id %>
+              <%= label_tag input_name, answer.text %>
+              <br>
+              <% answer_index += 1 %>
+            <% end %>
+          <% else %>
+            <% input_name = "answers[#{answer_index}]" %>
+            <% poll_question.answers.each do |answer| %>
+              <%= radio_button_tag input_name, answer.id %>
+              <%= label_tag input_name, answer.text %>
+              <br>
+            <% end %>
+            <% answer_index += 1 %>
+          <% end %>
+        <% end %>
+
+        <%= submit_tag "Submit vote" %>
+      <% end %>
+      <%= link_to 'Back', root_path %>
+    </div>
+  </div>
+</div>

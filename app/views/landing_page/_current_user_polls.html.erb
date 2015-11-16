@@ -13,7 +13,7 @@
     <tbody>
       <% @current_user_polls.each do |user_poll| %>
         <tr>
-          <td><%= link_to user_poll.title, user_poll %></td>
+          <td><%= link_to user_poll.title, vote_on_poll_path(user_poll.id) %></td>
           <td><%= user_poll.created_at.to_s(:long) %></td>
           <td><%= link_to user_poll_results_path(user_poll.id), class: "btn btn-primary btn-xs" do %>
             <span class="glyphicon glyphicon-stats" aria-hidden="true"</span>  Results

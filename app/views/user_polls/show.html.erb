@@ -75,10 +75,6 @@
       <h2>Add a Comment</h2>
       <%= form_for([@user_poll, @user_poll.comments.build]) do |f| %>
         <p>
-          <%= f.label :commenter %> <br/>
-          <%= f.text_area :commenter %>
-        </p>
-        <p>
           <%= f.label :body %> <br/>
           <%= f.text_area :body %>
         </p>
