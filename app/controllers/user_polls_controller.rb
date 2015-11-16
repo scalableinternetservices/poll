@@ -146,10 +146,13 @@ class UserPollsController < ApplicationController
   def submit_vote
     invalid = false
 
+    print params.key?(:answers)
+    answers = params.key?(:answers) ? params[:answers] : Hash.new
+
     # Count the number of answers for each seen question, so that the input can be validated
     # before changing the model.
     answer_count = Hash.new
-    params[:answers].each { |index, answer_id|
+    answers.each { |index, answer_id|
       question_id = Answer.find(answer_id).poll_question_id.to_i
       if answer_count.key?(question_id)
         answer_count[question_id] += 1
@@ -169,17 +172,22 @@ class UserPollsController < ApplicationController
     # Check that the number of answers follows the necessary constraints
     @user_poll = UserPoll.find(params[:poll_id])
     @user_poll.poll_questions.each { |question|
-      if not answer_count.key?(question.id) and not question.optional
-        invalid = true
-        break
-      elsif answer_count[question.id] > 1 and not question.allow_multiple_answers
-        invalid = true
-        break
+      print answer_count[question.id]
+      if answer_count.key?(question.id) == false
+        unless question.optional
+          invalid = true
+          break
+        end
+      elsif answer_count[question.id] > 1
+        unless question.allow_multiple_answers
+          invalid = true
+          break
+        end
       end
     }
 
     unless invalid
-      params[:answers].each { |question_id, answer_id|
+      answers.each { |question_id, answer_id|
         answer = Answer.find(answer_id)
         answer.results[0].votes += 1
         answer.save
@@ -189,9 +197,8 @@ class UserPollsController < ApplicationController
         format.html { redirect_to finished_voting_path(@user_poll.id) }
       end      
     else
-
       respond_to do |format|
-        format.html { redirect_to submit_vote_path(params[:poll_questions]), notice: "Bad submission" }
+        format.html { redirect_to vote_on_poll_path(@user_poll.id), notice: "Bad submission" }
       end
     end
   end
