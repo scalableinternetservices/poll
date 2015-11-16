@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   get '/user_polls/:id/poll_details(.:format)' => 'user_polls#poll_details', as: 'poll_result_details'
   get '/user_polls/:id/question_details(.:format)' => 'user_polls#question_details', as: 'question_result_details'
   post '/user_polls/:poll_id/share_with/:user_id(.:format)' => 'user_polls#share_with', as: 'share_poll_with'
+  get '/user_polls/:id/vote(.:format)' => 'user_polls#vote', as: 'vote_on_poll'
+  post '/user_polls/:poll_id/submit_vote(.:format)' => 'user_polls#submit_vote', as: 'submit_vote'
+  get '/user_polls/:id/done(.:format)' => 'user_polls#done', as: 'finished_voting'
 
   get '/user_profile/:id(.:format)' => 'user_profiles#view', as: 'view_user_profile'
 

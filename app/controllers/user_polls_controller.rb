@@ -137,6 +137,70 @@ class UserPollsController < ApplicationController
     end
   end
 
+  # GET /user_polls/:id/vote
+  def vote
+    @user_poll = UserPoll.find(vote_params[:id])
+  end
+
+  # POST /user_polls/submit_vote
+  def submit_vote
+    invalid = false
+
+    # Count the number of answers for each seen question, so that the input can be validated
+    # before changing the model.
+    answer_count = Hash.new
+    params[:answers].each { |index, answer_id|
+      question_id = Answer.find(answer_id).poll_question_id.to_i
+      if answer_count.key?(question_id)
+        answer_count[question_id] += 1
+      else
+        answer_count[question_id] = 1
+      end
+    }
+
+    # Validate that the that the questions belongs to the right poll
+    answer_count.each { |question_id, count|
+      if PollQuestion.find(question_id).user_poll_id != params[:poll_id].to_i
+        invalid = true
+        break
+      end
+    }
+    
+    # Check that the number of answers follows the necessary constraints
+    @user_poll = UserPoll.find(params[:poll_id])
+    @user_poll.poll_questions.each { |question|
+      if not answer_count.key?(question.id) and not question.optional
+        invalid = true
+        break
+      elsif answer_count[question.id] > 1 and not question.allow_multiple_answers
+        invalid = true
+        break
+      end
+    }
+
+    unless invalid
+      params[:answers].each { |question_id, answer_id|
+        answer = Answer.find(answer_id)
+        answer.results[0].votes += 1
+        answer.save
+      }
+
+      respond_to do |format|
+        format.html { redirect_to finished_voting_path(@user_poll.id) }
+      end      
+    else
+
+      respond_to do |format|
+        format.html { redirect_to submit_vote_path(params[:poll_questions]), notice: "Bad submission" }
+      end
+    end
+  end
+
+  # GET /user_polls/1/done
+  def done
+    @user_poll = UserPoll.find(params[:id])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_poll
@@ -154,5 +218,9 @@ class UserPollsController < ApplicationController
 
     def share_with_params
       params.permit(:poll_id, :user_id)
+    end
+
+    def vote_params
+      params.permit(:id)
     end
 end

@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+      <p id="notice"><%= notice %></p>
+      <h1>
+        <%= @user_poll.title %>
+      </h1>
+      
+      <h3>
+        <%= image_tag @user_poll.poll_picture.url(:medium) %><br /><br />
+        <%= @user_poll.description %>
+      </h3>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-lg-2 col-lg-offset-2">
+      <%= form_tag submit_vote_path(@user_poll.id), method: :post do %>
+        <% @user_poll.poll_questions.each_with_index do |poll_question, index| %>
+          Question <%= "#{index+1}" %>. <%= poll_question.text %>
+          <% if poll_question.optional %> <%= raw("<i> (optional) </i>") %> <% end %><br>
+          <%= image_tag poll_question.poll_question_picture.url(:thumb) %><br>
+
+          <% input_name = "answers[#{index}]" %>
+            <% poll_question.answers.each do |answer| %>
+              <% if poll_question.allow_multiple_answers %>
+                <%= check_box_tag input_name, answer.id %>
+                <%= label_tag input_name, answer.text %>
+              <% else %>
+                <%= radio_button_tag input_name, answer.id %>
+                <%= label_tag input_name, answer.text %>
+              <% end %>
+            <% end %>
+        <% end %>
+
+        <%= submit_tag "Submit vote" %>
+      <% end %>
+      <%= link_to 'Back', root_path %>
+    </div>
+  </div>
+</div>

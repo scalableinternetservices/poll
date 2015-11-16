@@ -1,30 +1,28 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
-      <p id="notice"><%= notice %></p>
-      <h1>
-        <strong>Title:</strong>
-        <%= @user_poll.title %>
-      </h1>
-      
-      <h3>
-        <%= image_tag @user_poll.poll_picture.url(:medium) %><br /><br />
-        <strong>Description:</strong>
-        <%= @user_poll.description %>
-      </h3>
-    </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="col-lg-2 col-lg-offset-2">
-      <h3><strong>Current Poll Results:</strong></h3>
+      <div class="row">
+        <p id="notice"><%= notice %></p>
+        <h1>
+          <strong>Title:</strong>
+          <%= @user_poll.title %>
+        </h1>
+        
+        <h3>
+          <%= image_tag @user_poll.poll_picture.url(:medium) %><br /><br />
+          <strong>Description:</strong>
+          <%= @user_poll.description %>
+        </h3>
+      </div>
 
-      <% @user_poll.poll_questions.each_with_index do |poll_question, index| %>
-        <p>Question <%= "#{index+1}" %>. <%= poll_question.text %></p>
-        <%= image_tag poll_question.poll_question_picture.url(:thumb) %><br /><br />
-        <canvas data-question-id=<%= raw("\"#{poll_question.id}\"") %>></canvas> <br>
-      <% end %>
-      <p><%= link_to 'Back', root_path %></p>
+      <div class="row">
+        <h3><strong>Current Poll Results:</strong></h3>
+        <%= render "poll_results" %>
+      </div>
+
+      <div class="row">
+        <p><%= link_to 'Back', root_path %></p>
+      </div>
     </div>
   </div>
 </div>

@@ -13,7 +13,7 @@
       <% user_poll = user_poll_tuple[0] %>
       <% comment = user_poll_tuple[1] %>
       <tr>
-        <td class="vert-center"><%= link_to user_poll.title, user_poll %></td>
+        <td class="vert-center"><%= link_to user_poll.title, vote_on_poll_path(user_poll.id) %></td>
         <% user_poll_owner = User.find(user_poll.user_id) %>
         <td class="vert-center"><%= "#{user_poll_owner.first_name} #{user_poll_owner.last_name}" %></td>
         <td class="vert-center"><%= user_poll.created_at.to_s(:long) %></td>
