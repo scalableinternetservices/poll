@@ -13,7 +13,7 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="ec2-52-33-185-231.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
+    <server host="localhost" port="3000" type="tcp"></server>
   </servers>
 
   <load>
@@ -42,17 +42,6 @@
   <sessions>
     <session name="http-example" probability="100" type="ts_http">
 
-      <!-- Get CSRF Token for creating new user -->
-      <request>
-        <dyn_variable name="authenticity_token"/>
-        <http url="/users/sign_up" version="1.1" method="GET"/>
-      </request>
-
-      <!-- Escape CSRF Token -->
-      <setdynvars sourcetype="eval" code="fun({Pid,DynVars})->       {ok, Val} = ts_dynvars:lookup(authenticity_token, DynVars),       list_to_binary(http_uri:encode(binary_to_list(Val)))       end.">
-      <var name="escaped_authenticity_token"/>
-      </setdynvars>
-
       <!-- Get a random number for new user to create -->
       <setdynvars sourcetype="random_number" start="1000" end="9999999">
         <var name="random_user_num" />
@@ -63,38 +52,13 @@
         <http
               url='/users'
               version='1.1'
-              contents='authenticity_token=%%_escaped_authenticity_token%%&amp;&amp;user%5Bfirst_name%5D=Pollster%%_random_user_num%%&amp;user%5Blast_name%5D=Pollster%%_random_user_num%%&amp;user%5Bemail%5D=pollster%%_random_user_num%%%40pollster.com&amp;user%5Bpassword%5D=pollster%%_random_user_num%%&amp;user%5Bpassword_confirmation%5D=pollster%%_random_user_num%%&amp;commit=Sign+up'
+              contents='user%5Bfirst_name%5D=Pollster%%_random_user_num%%&amp;user%5Blast_name%5D=Pollster%%_random_user_num%%&amp;user%5Bemail%5D=pollster%%_random_user_num%%%40pollster.com&amp;user%5Bpassword%5D=pollster%%_random_user_num%%&amp;user%5Bpassword_confirmation%5D=pollster%%_random_user_num%%&amp;commit=Sign+up'
               content_type="application/x-www-form-urlencoded" method="POST">              
         </http>
       </request>
-
-
-<!--
-       Login as user  
-      <request subst="true">
-        <http
-              url='/users/sign_in'
-              version='1.1'
-              contents='authenticity_token=%%_escaped_authenticity_token%%&amp;user%5Bemail%5D=pollster%40pollster.com&amp;user%5Bpassword%5D=pollster&amp;user%5Bremember_me%5D=0&amp;commit=Log+in'
-              content_type="application/x-www-form-urlencoded" method="POST">              
-        </http>
-      </request>
--->
       
       <!-- wait for up to 2 seconds, user is looking at polls -->
       <thinktime value="2" random="true"></thinktime>
-
-
-      <!-- Get CSRF Token for creating new poll  -->
-      <request>
-        <dyn_variable name="authenticity_token"/>
-        <http url="/user_polls/new" version="1.1" method="GET"/>
-      </request>
-
-      <!-- Escape CSRF Token -->
-      <setdynvars sourcetype="eval" code="fun({Pid,DynVars})->       {ok, Val} = ts_dynvars:lookup(authenticity_token, DynVars),       list_to_binary(http_uri:encode(binary_to_list(Val)))       end.">
-      <var name="escaped_authenticity_token"/>
-      </setdynvars>
 
       <!-- Create new poll -->
       <request subst="true">
@@ -103,7 +67,7 @@
         <http
               url='/user_polls'
               version='1.1'
-              contents='utf8=%E2%9C%93&amp;authenticity_token=%%_escaped_authenticity_token%%&amp;user_poll%5Btitle%5D=poll%%_random_user_num%%&amp;user_poll%5Bdescription%5D=poll%%_random_user_num%%&amp;user_poll%5Bpoll_questions_attributes%5D%5B0%5D%5Btext%5D=is+poll%%_random_user_num%%+awesome%3F&amp;user_poll%5Bpoll_questions_attributes%5D%5B0%5D%5Banswers_attributes%5D%5B0%5D%5Btext%5D=yes&amp;user_poll%5Bpoll_questions_attributes%5D%5B0%5D%5Banswers_attributes%5D%5B1%5D%5Btext%5D=no&amp;user_poll%5Bpoll_questions_attributes%5D%5B0%5D%5Banswers_attributes%5D%5B2%5D%5Btext%5D=&amp;user_poll%5Bpoll_questions_attributes%5D%5B0%5D%5Banswers_attributes%5D%5B3%5D%5Btext%5D=&amp;user_poll%5Bpoll_questions_attributes%5D%5B0%5D%5Boptional%5D=0&amp;user_poll%5Bpoll_questions_attributes%5D%5B0%5D%5Ballow_multiple_answers%5D=0&amp;commit=Create+User+poll'
+              contents='utf8=%E2%9C%93&amp;user_poll%5Btitle%5D=poll%%_random_user_num%%&amp;user_poll%5Bdescription%5D=poll%%_random_user_num%%&amp;user_poll%5Bpoll_questions_attributes%5D%5B0%5D%5Btext%5D=is+poll%%_random_user_num%%+awesome%3F&amp;user_poll%5Bpoll_questions_attributes%5D%5B0%5D%5Banswers_attributes%5D%5B0%5D%5Btext%5D=yes&amp;user_poll%5Bpoll_questions_attributes%5D%5B0%5D%5Banswers_attributes%5D%5B1%5D%5Btext%5D=no&amp;user_poll%5Bpoll_questions_attributes%5D%5B0%5D%5Banswers_attributes%5D%5B2%5D%5Btext%5D=&amp;user_poll%5Bpoll_questions_attributes%5D%5B0%5D%5Banswers_attributes%5D%5B3%5D%5Btext%5D=&amp;user_poll%5Bpoll_questions_attributes%5D%5B0%5D%5Boptional%5D=0&amp;user_poll%5Bpoll_questions_attributes%5D%5B0%5D%5Ballow_multiple_answers%5D=0&amp;commit=Create+User+poll'
               content_type="application/x-www-form-urlencoded" method="POST">              
         </http>
       </request>
@@ -125,88 +89,42 @@
         <http url="/user_polls/%%_created_poll_id%%/results" version="1.1" method="GET"/>
       </request>
 
-      <!-- Get CSRF Token for deleting the poll  -->
-      <request>
-      	<dyn_variable name="authenticity_token3"
-      	              re='"csrf-token" content="(.*)"'/>
-      	<http url="/" version="1.1" method="GET"/>
-      </request>
-
-      <!-- Escape CSRF Token -->
-      <setdynvars sourcetype="eval" code="fun({Pid,DynVars})->       {ok, Val} = ts_dynvars:lookup(authenticity_token3, DynVars),       list_to_binary(http_uri:encode(binary_to_list(Val)))       end.">
-      <var name="escaped_authenticity_token3"/>
-      </setdynvars>
-
       <!-- Delete the poll -->
       <request subst="true">
       	<http
       	      url='/user_polls/%%_created_poll_id%%'
       	      version='1.1'
-      	      contents='_method=delete&amp;authenticity_token=%%_escaped_authenticity_token3%%'
+      	      contents='_method=delete'
       	      content_type="application/x-www-form-urlencoded" method="POST">              
       	</http>
       </request>
-
-      <!-- Get CSRF Token for signing the user out  -->
-      <request>
-      	<dyn_variable name="authenticity_token5"
-      	              re='"csrf-token" content="(.*)"'/>
-      	<http url="/" version="1.1" method="GET"/>
-      </request>
-
-      <!-- Escape CSRF Token -->
-      <setdynvars sourcetype="eval" code="fun({Pid,DynVars})->       {ok, Val} = ts_dynvars:lookup(authenticity_token5, DynVars),       list_to_binary(http_uri:encode(binary_to_list(Val)))       end.">
-      <var name="escaped_authenticity_token5"/>
-      </setdynvars>
 
       <!-- Log out of the user -->
       <request subst="true">
       	<http
       	      url='/users/sign_out'
       	      version='1.1'
-      	      contents='authenticity_token=%%_escaped_authenticity_token5%%'
+      	      contents=''
       	      content_type="application/x-www-form-urlencoded" method="DELETE">              
       	</http>
       </request>    
-
-      <!-- Get CSRF Token for logging in as the user -->
-      <request>
-        <dyn_variable name="authenticity_token"/>
-        <http url="/users/sign_in" version="1.1" method="GET"/>
-      </request>
-
-      <!-- Escape CSRF Token -->
-      <setdynvars sourcetype="eval" code="fun({Pid,DynVars})->       {ok, Val} = ts_dynvars:lookup(authenticity_token, DynVars),       list_to_binary(http_uri:encode(binary_to_list(Val)))       end.">
-      <var name="escaped_authenticity_token"/>
-      </setdynvars>
 
       <!-- Log in as the user --> 
       <request subst="true">
         <http
               url='/users/sign_in'
               version='1.1'
-              contents='authenticity_token=%%_escaped_authenticity_token%%&amp;user%5Bemail%5D=pollster%%_random_user_num%%%40pollster.com&amp;user%5Bpassword%5D=pollster%%_random_user_num%%&amp;user%5Bremember_me%5D=0&amp;commit=Log+in'
+              contents='user%5Bemail%5D=pollster%%_random_user_num%%%40pollster.com&amp;user%5Bpassword%5D=pollster%%_random_user_num%%&amp;user%5Bremember_me%5D=0&amp;commit=Log+in'
               content_type="application/x-www-form-urlencoded" method="POST">              
         </http>
       </request>
-
-      <!-- Get CSRF Token for deleting the user -->
-      <request>
-        <dyn_variable name="authenticity_token"/>
-        <http url="/users/edit" version="1.1" method="GET"/>
-      </request>
-
-      <!-- Escape CSRF Token -->
-      <setdynvars sourcetype="eval" code="fun({Pid,DynVars})->       {ok, Val} = ts_dynvars:lookup(authenticity_token, DynVars),       list_to_binary(http_uri:encode(binary_to_list(Val)))       end.">
-      <var name="escaped_authenticity_token"/>
-      </setdynvars>
 
       <!-- Delete the user -->      
       <request subst="true">
         <http
               url='/users'
               version='1.1'
-              contents='_method=delete&amp;authenticity_token=%%_escaped_authenticity_token%%'
+              contents='_method=delete'
               content_type="application/x-www-form-urlencoded" method="POST">              
         </http>
       </request>  
