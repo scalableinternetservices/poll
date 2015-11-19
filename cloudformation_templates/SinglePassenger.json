@@ -43,26 +43,26 @@
     "Parameters": {
         "AppInstanceType": {
             "AllowedValues": [
-                "t2.micro",
-                "t2.small",
-                "t2.medium",
-                "t2.large",
+                "t1.micro",
                 "m1.small",
+                "m1.medium",
+                "m1.large",
+                "m1.xlarge",
+                "m2.xlarge",
+                "m2.2xlarge",
+                "m2.4xlarge",
                 "m3.medium",
                 "m3.large",
-                "m4.large",
-                "m4.xlarge",
-                "m4.2xlarge",
-                "m4.4xlarge",
+                "m3.xlarge",
+                "m3.2xlarge",
                 "c1.medium",
+                "c1.xlarge",
                 "c3.large",
                 "c3.xlarge",
-                "c4.large",
-                "c4.xlarge",
-                "c4.2xlarge",
-                "c4.4xlarge"
+                "c3.2xlarge",
+                "c3.4xlarge"
             ],
-            "Default": "t2.micro",
+            "Default": "t1.micro",
             "Description": "The AppServer instance type.",
             "Type": "String"
         },
@@ -249,15 +249,15 @@
                                 "\n",
                                 "# Update alternatives\nalternatives --set ruby /usr/bin/ruby2.1 || error_exit 'Failed ruby2.1 default'\n# Install bundler only after the alternatives have been set.\ngem install bundle || error_exit 'Failed to install bundle'\n# Update user's path if it hasn't been set already\necho \"export PATH=/usr/local/bin:\\$PATH\" >> /home/ec2-user/.bashrc\n",
                                 "# Change to the app directory\ncd /home/ec2-user/app\n# Add environment variables to ec2-user's .bashrc\nexport RAILS_ENV=production\necho \"export RAILS_ENV=production\" >> ../.bashrc\necho \"export SECRET_KEY_BASE=b801783afb83bb8e614b32ccf6c05c855a927116d92062a75c6ffa61d58c58e62f13eb60cf1a31922c44b7e6a3e8f1809934a93llask938bl\" >> ../.bashrc\n\n# Redirect port 80 to port 3000 (ec2-user cannot bind port 80)\niptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3000\n\n# Run the app specific ec2 initialization\nif [ -f .ec2_initialize ]; then\n    sudo -u ec2-user bash -l .ec2_initialize     || error_exit 'Failed to run .ec2_initialize'\nfi\n\n# Add gems needed on production\necho -e \"\ngem 'therubyracer', platforms: :ruby \" >> Gemfile\necho -e \"\ngem 'mysql2', '~> 0.3.13', platforms: :ruby \" >> Gemfile\necho -e \"\ngem 'therubyrhino', platforms: :jruby \" >> Gemfile\necho -e \"\ngem 'activerecord-jdbc-adapter', platforms: :jruby \" >> Gemfile\necho -e \"\ngem 'multi_json'\" >> Gemfile\n\n# Run the remaining commands as the ec2-user in the app directory\nuser_sudo bundle install --without test development || error_exit 'Failed to install bundle'\n# Create the database and run the migrations (try up to 10x)\nloop=10\nwhile [ $loop -gt 0 ]; do\n  user_sudo rake db:create db:migrate\n  if [ $? -eq 0 ]; then\n    loop=-1\n  else\n    sleep 6\n    loop=$(expr $loop - 1)\n  fi\ndone\nif [ $loop -eq 0 ]; then\n  error_exit 'Failed to execute database migration'\nfi\n# Run the app specific ec2 initialization\nif [ -f .rails_initialize ]; then\n    sudo -u ec2-user bash -l .rails_initialize     || error_exit 'Failed to run .rails_initialize'\nfi\n# Generate static assets\nuser_sudo rake assets:precompile || error_exit 'Failed to precompile static assets'\n",
-                                "# Install Passenger\ngem install passenger rake || error_exit 'Failed to install passenger gems'\n# Add swap space needed to build passenger if running on t2.micro\nif [ \"",
+                                "# Install Passenger\ngem install passenger rake || error_exit 'Failed to install passenger gems'\n# Add swap space needed to build passenger if running on t1.micro\nif [ \"",
                                 {
                                     "Ref": "AppInstanceType"
                                 },
-                                "\" == \"t2.micro\" ]; then\n  dd if=/dev/zero of=/swap bs=1M count=512   || error_exit 'Failed to create swap file'\n  mkswap /swap || error_exit 'Failed to mkswap'\n  swapon /swap || error_exit 'Failed to enable swap'\nfi\n# Build and install passenger\nuser_sudo /usr/local/bin/passenger start --runtime-check-only || error_exit 'Failed to build or install passenger'\nif [ \"",
+                                "\" == \"t1.micro\" ]; then\n  dd if=/dev/zero of=/swap bs=1M count=512   || error_exit 'Failed to create swap file'\n  mkswap /swap || error_exit 'Failed to mkswap'\n  swapon /swap || error_exit 'Failed to enable swap'\nfi\n# Build and install passenger\nuser_sudo /usr/local/bin/passenger start --runtime-check-only || error_exit 'Failed to build or install passenger'\nif [ \"",
                                 {
                                     "Ref": "AppInstanceType"
                                 },
-                                "\" == \"t2.micro\" ]; then\n  swapoff /swap || error_exit 'Failed to disable swap'\n  rm /swap || error_exit 'Failed to delete /swap'\nfi\n",
+                                "\" == \"t1.micro\" ]; then\n  swapoff /swap || error_exit 'Failed to disable swap'\n  rm /swap || error_exit 'Failed to delete /swap'\nfi\n",
                                 "# Start passenger\nuser_sudo passenger start -d --no-compile-runtime || error_exit 'Failed to start passenger'\n",
                                 "# All is well so signal success\n/opt/aws/bin/cfn-signal -e 0 --stack ",
                                 {

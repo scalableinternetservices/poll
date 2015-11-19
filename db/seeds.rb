@@ -8,9 +8,9 @@ question1 = poll.poll_questions.new(text: "Overall, how do you like Pollster?")
 question1_answer1 = question1.answers.new(text: "Love it")
 question1_answer2 = question1.answers.new(text: "It's OK")
 question1_answer3 = question1.answers.new(text: "Could be better")
-question1_answer1.results.new(votes: 3214)
-question1_answer2.results.new(votes: 902)
-question1_answer3.results.new(votes: 103)
+question1_answer1.results.new(votes: 214)
+question1_answer2.results.new(votes: 92)
+question1_answer3.results.new(votes: 13)
 
 question2 = poll.poll_questions.new(text: "Is it easy to make polls?")
 question2_answer1 = question2.answers.new(text: "Very easy")
@@ -18,11 +18,11 @@ question2_answer2 = question2.answers.new(text: "Easy")
 question2_answer3 = question2.answers.new(text: "Moderate")
 question2_answer4 = question2.answers.new(text: "Hard")
 question2_answer5 = question2.answers.new(text: "Very hard")
-question2_answer1.results.new(votes: 2122)
-question2_answer2.results.new(votes: 1098)
-question2_answer3.results.new(votes: 402)
-question2_answer4.results.new(votes: 501)
-question2_answer5.results.new(votes: 1194)
+question2_answer1.results.new(votes: 122)
+question2_answer2.results.new(votes: 98)
+question2_answer3.results.new(votes: 42)
+question2_answer4.results.new(votes: 51)
+question2_answer5.results.new(votes: 194)
 
 poll.save
 
@@ -39,4 +39,21 @@ john_smith = User.create(first_name: "John", last_name: "Smith", email: "johnsmi
   question_answer2.results.new(votes: num*10)
 
   poll.save
+end
+
+if ENV["loadtest_seed"]
+	2000.times do |num|
+	  new_user = User.create(first_name: "Seed", last_name: "User#{num+1}", email: "seeduser#{num+1}@pollster.com", password: "pollster")
+	  poll = new_user.user_polls.new(title: "Seed User#{num+1}'s Poll #{num+1}", description: "Take my poll!")
+	  question = poll.poll_questions.new(text: "Yes?")
+	  question_answer1 = question.answers.new(text: "Yes")
+	  question_answer2 = question.answers.new(text: "No")
+
+	  question_answer1.results.new(votes: num)
+	  question_answer2.results.new(votes: num*2)
+
+	  comment = poll.comments.new(commenter: "seeduser#{num+1}", body: "Commenting is so awesome!")
+
+	  poll.save
+	end
 end
