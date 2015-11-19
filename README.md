@@ -23,3 +23,9 @@ Ashish Lal
 ## Pivotal tracker
 
 https://www.pivotaltracker.com/n/projects/1446726
+
+## Cloudformation Template URLs
+
+https://scalableinternetservices.s3.amazonaws.com/poll/cloudformation_templates/Tsung.json
+https://scalableinternetservices.s3.amazonaws.com/poll/cloudformation_templates/SingleWEBrick.json
+https://scalableinternetservices.s3.amazonaws.com/poll/cloudformation_templates/SinglePassenger.json

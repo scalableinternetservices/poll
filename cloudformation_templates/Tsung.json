@@ -120,7 +120,8 @@
                     },
                     "configSets": {
                         "default": [
-                            "packages"
+                            "packages",
+                            "app"
                         ]
                     },
                     "packages": {
