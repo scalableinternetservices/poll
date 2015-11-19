@@ -1,0 +1,202 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Outputs": {
+        "SSH": {
+            "Description": "AppServer SSH connect string",
+            "Value": {
+                "Fn::Join": [
+                    "",
+                    [
+                        "ssh -i ",
+                        {
+                            "Ref": "TeamName"
+                        },
+                        ".pem ec2-user@",
+                        {
+                            "Fn::GetAtt": [
+                                "AppServer",
+                                "PublicDnsName"
+                            ]
+                        }
+                    ]
+                ]
+            }
+        }
+    },
+    "Parameters": {
+        "AppInstanceType": {
+            "AllowedValues": [
+                "t2.micro",
+                "t2.small",
+                "t2.medium",
+                "t2.large",
+                "m1.small",
+                "m3.medium",
+                "m3.large",
+                "m4.large",
+                "m4.xlarge",
+                "m4.2xlarge",
+                "m4.4xlarge",
+                "c1.medium",
+                "c3.large",
+                "c3.xlarge",
+                "c4.large",
+                "c4.xlarge",
+                "c4.2xlarge",
+                "c4.4xlarge"
+            ],
+            "Default": "m3.medium",
+            "Description": "The AppServer instance type.",
+            "Type": "String"
+        },
+        "Branch": {
+            "Default": "master",
+            "Description": "The git branch to deploy.",
+            "Type": "String"
+        },
+        "TeamName": {
+            "AllowedValues": [
+                "Filmo",
+                "Pickachu",
+                "demo",
+                "sis-admin-InstanceSecurityGroup-PR56J7YARYKB",
+                "team-up",
+                "lolcounter",
+                "BiteMi",
+                "poll",
+                "GreatReads",
+                "infinity-1",
+                "TeamUp",
+                "403-Studio",
+                "smile-inc",
+                "boiling-crab",
+                "ABCs",
+                "J10",
+                "Scrailibility",
+                "EEGO",
+                "Happening",
+                "nil",
+                "Foodies",
+                "ScaleTheTAB",
+                "rent-a-driveway",
+                "segmentation-fault",
+                "MINT",
+                "hitchhike",
+                "PASSion"
+            ],
+            "Default": "poll",
+            "ConstraintDescription": "Must exactly match your team name as shown in your Github URL.",
+            "Description": "Your team name.",
+            "Type": "String"
+        }
+    },
+    "Resources": {
+        "AppServer": {
+            "CreationPolicy": {
+                "ResourceSignal": {
+                    "Timeout": "PT45M"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Init": {
+                    "app": {
+                        "sources": {
+                            "/home/ec2-user/app": {
+                                "Fn::Join": [
+                                    "",
+                                    [
+                                        "https://github.com/scalableinternetservices/",
+                                        {
+                                            "Ref": "TeamName"
+                                        },
+                                        "/tarball/",
+                                        {
+                                            "Ref": "Branch"
+                                        }
+                                    ]
+                                ]
+                            }
+                        }
+                    },
+                    "configSets": {
+                        "default": [
+                            "packages"
+                        ]
+                    },
+                    "packages": {
+                        "packages": {
+                            "yum": {
+                                "autoconf": [],
+                                "gcc": [],
+                                "git": [],
+                                "gnuplot": [],
+                                "ncurses-devel": [],
+                                "openssl-devel": [],
+                                "perl-CPAN": [],
+                                "python27": []
+                            }
+                        }
+                    }
+                }
+            },
+            "Properties": {
+                "IamInstanceProfile": {
+                    "Ref": "TeamName"
+                },
+                "ImageId": "ami-fc32dfcf",
+                "InstanceType": {
+                    "Ref": "AppInstanceType"
+                },
+                "KeyName": {
+                    "Ref": "TeamName"
+                },
+                "SecurityGroups": [
+                    {
+                        "Ref": "TeamName"
+                    }
+                ],
+                "UserData": {
+                    "Fn::Base64": {
+                        "Fn::Join": [
+                            "",
+                            [
+                                "#!/bin/bash -v\nyum update -y aws-cfn-bootstrap\nyum update\n# Helper function\nfunction error_exit {",
+                                "\n    /opt/aws/bin/cfn-signal -e 1 -r \"$1\" --stack ",
+                                {
+                                    "Ref": "AWS::StackName"
+                                },
+                                "       --resource AppServer --region ",
+                                {
+                                    "Ref": "AWS::Region"
+                                },
+                                "\n    exit 1\n}",
+                                "\n# Run cfn-init (see AWS::CloudFormation::Init)\n/opt/aws/bin/cfn-init -s ",
+                                {
+                                    "Ref": "AWS::StackName"
+                                },
+                                " -r AppServer   --region ",
+                                {
+                                    "Ref": "AWS::Region"
+                                },
+                                " || error_exit 'Failed to run cfn-init'\n# Don't require tty to run sudo\nsed -i 's/ requiretty/ !requiretty/' /etc/sudoers\nfunction user_sudo {",
+                                "\n    sudo -u ec2-user bash -lc \"$*\"\n}",
+                                "\n",
+                                "export HOME=/home/ec2-user/\nruby -e \"require 'webrick'; WEBrick::HTTPServer.new(:DocumentRoot => '/home/ec2-user/.tsung/log').start\" &\n",
+                                "# All is well so signal success\n/opt/aws/bin/cfn-signal -e 0 --stack ",
+                                {
+                                    "Ref": "AWS::StackName"
+                                },
+                                " --resource AppServer   --region ",
+                                {
+                                    "Ref": "AWS::Region"
+                                },
+                                "\n"
+                            ]
+                        ]
+                    }
+                }
+            },
+            "Type": "AWS::EC2::Instance"
+        }
+    }
+}
