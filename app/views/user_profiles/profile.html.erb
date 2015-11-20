@@ -1,10 +1,14 @@
 <%= render partial: "shared/navbar" %>
 <!-- Main jumbotron for a primary marketing message or call to action -->
-<div class="jumbotron">
-  <div class="container">
-    <%= image_tag @profile_user.profile_picture.url(:large) %>
-    <p><%= "#{@profile_user.first_name} #{@profile_user.last_name}" %></p>
-  </div>
+
+<div class="container MainBG">
+    <div class="row">
+        <div class="col-md-3">
+            <h1>Andrew Mutz</h1>
+                <%= image_tag @profile_user.profile_picture.url(:large) %>
+                <p><%= "#{@profile_user.first_name} #{@profile_user.last_name}" %></p>
+        </div>
+    </div>
 </div>
 
 <div class="container">
@@ -60,3 +64,15 @@
     </div>
   </div>
 </div>
+
+<script>
+    $(".MainBG").css("min-height",$(window).height()*.6);
+    $(".MainBG").css("min-width",$(window).width());
+    window.onresize = function(event) {
+        resizeDiv();
+    }
+    function resizeDiv() {
+        $(".MainBG").css("min-height",$(window).height()*.6);
+        $(".jumbotron").css("min-width",$(window).width());
+    }
+</script>
