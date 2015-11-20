@@ -140,6 +140,12 @@ class UserPollsController < ApplicationController
   # GET /user_polls/:id/vote
   def vote
     @user_poll = UserPoll.find(vote_params[:id])
+
+    if UserVote.exists?(user_id: current_user.id, user_poll_id: @user_poll.id)
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: 'You already voted on this poll!' }
+      end
+    end
   end
 
   # POST /user_polls/submit_vote
@@ -186,7 +192,9 @@ class UserPollsController < ApplicationController
       end
     }
 
-    unless invalid
+    already_voted_on = UserVote.exists?(user_id: current_user.id, user_poll_id: @user_poll.id)
+
+    unless invalid or already_voted_on
       answers.each { |question_id, answer_id|
         answer = Answer.find(answer_id)
         answer.results[0].votes += 1
@@ -200,7 +208,11 @@ class UserPollsController < ApplicationController
       end      
     else
       respond_to do |format|
-        format.html { redirect_to vote_on_poll_path(@user_poll.id), notice: "Bad submission" }
+        if invalid
+          format.html { redirect_to vote_on_poll_path(@user_poll.id), notice: "Bad submission" }
+        else # if already_voted_on
+          format.html { redirect_to vote_on_poll_path(@user_poll.id), notice: "You already voted on this poll!" }
+        end
       end
     end
   end
