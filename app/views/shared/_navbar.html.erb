@@ -11,12 +11,10 @@
             <a href="#" class="pull-left"><%= image_tag "pollster_favicon.png", :class => 'img-responsive' %></a>
             <a class="navbar-brand" href="/landing_page">Pollster</a>
         </div>
-        <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-        </form>
+        <%= form_tag(root_path, :method => "get", id: "search-form", class: "navbar-form navbar-left") do %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search Polls", class: "form-control" %>
+          <%= submit_tag "Search", class: "btn btn-default" %>
+        <% end %>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">

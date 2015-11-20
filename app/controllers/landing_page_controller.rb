@@ -4,11 +4,11 @@ class LandingPageController < ApplicationController
   # GET /
   def index
     num_news_feed_polls = 5
-    @news_feed_polls, @can_show_more_news_feed_polls = get_news_feed_polls(num_news_feed_polls)
+    @news_feed_polls, @can_show_more_news_feed_polls = get_news_feed_polls(num_news_feed_polls, params[:search])
     @next_news_feed_polls_request_size = 10
 
     num_current_user_polls = 5
-    @current_user_polls, @can_show_more_current_user_polls = get_current_user_polls(num_current_user_polls)
+    @current_user_polls, @can_show_more_current_user_polls = get_current_user_polls(num_current_user_polls, params[:search])
     @next_current_user_polls_request_size = 10
 
     num_current_user_friends = 5
@@ -35,7 +35,9 @@ class LandingPageController < ApplicationController
   # GET /news_feed_polls
   def news_feed_polls
     num_news_feed_polls = news_feed_polls_params.to_i
-    @news_feed_polls, @can_show_more_news_feed_polls = get_news_feed_polls(num_news_feed_polls)
+    cleaned_params = news_feed_polls_params
+    search = cleaned_params[:search]
+    @news_feed_polls, @can_show_more_news_feed_polls = get_news_feed_polls(num_news_feed_polls, search)
     @next_news_feed_polls_request_size = num_news_feed_polls + 5
     render(layout: false)
   end
@@ -43,7 +45,9 @@ class LandingPageController < ApplicationController
   # GET /current_user_polls
   def current_user_polls
     num_current_user_polls = current_user_polls_params.to_i
-    @current_user_polls, @can_show_more_current_user_polls = get_current_user_polls(num_current_user_polls)
+    cleaned_params = current_user_polls_params
+    search = cleaned_params[:search]
+    @current_user_polls, @can_show_more_current_user_polls = get_current_user_polls(num_current_user_polls, search)
     @next_current_user_polls_request_size = num_current_user_polls + 5
     render(layout: false)
   end
@@ -78,11 +82,11 @@ class LandingPageController < ApplicationController
     end
 
     def news_feed_polls_params
-      params.require(:num_news_feed_polls)
+      params.require(:num_news_feed_polls).permit(:search)
     end
     
     def current_user_polls_params
-      params.require(:num_current_user_polls)
+      params.require(:num_current_user_polls).permit(:search)
     end
 
     def friends_pane_params
@@ -118,37 +122,65 @@ class LandingPageController < ApplicationController
     end
 
     # Algorithm for choosing news feed polls
-    def get_news_feed_polls(max_num_polls)
-      # Get polls that have been shared with you, starting with most recently shared
-      shared_polls = current_user.shared_with_me_polls.sort { |a, b| b.updated_at <=> a.updated_at }
-      # Don't show polls that you've voted on already, though
-      shared_polls.select! { |shared_poll| !(UserVote.exists?(user_id: current_user.id, user_poll_id: shared_poll.id)) }
-      shared_polls.map! { |shared_poll|
-        sharer = User.find(shared_poll.sharer_id)
-        [shared_poll.user_poll, "Shared with you by #{sharer.first_name} #{sharer.last_name}!"]
-      }
-      if shared_polls.length > max_num_polls
-        return shared_polls[0...max_num_polls], true
+    def get_news_feed_polls(max_num_polls, search)
+      if (search and search.length > 0)
+          #Break search string into words
+          words = search.blank? ? [] : search.split(' ')
+          conditions = [[]] # Why this way? You'll know soon
+          words.each do |word|
+            conditions[0] << ["title LIKE ?"]
+            conditions << "%#{word}%"
+          end
+          conditions[0] = conditions.first.join(" OR ") # Converts condition string to include " OR " easily ;-)
+          conditions[0] << "AND user_id != #{current_user.id}"
+          polls = UserPoll.where(conditions).order(updated_at: :desc).limit(max_num_polls + 1).all
+          polls = polls.map { |poll| [poll, ""] }
+      else
+          # Get polls that have been shared with you, starting with most recently shared
+          shared_polls = current_user.shared_with_me_polls.sort { |a, b| b.updated_at <=> a.updated_at }
+          # Don't show polls that you've voted on already, though
+          shared_polls.select! { |shared_poll| !(UserVote.exists?(user_id: current_user.id, user_poll_id: shared_poll.id)) }
+          shared_polls.map! { |shared_poll|
+            sharer = User.find(shared_poll.sharer_id)
+            [shared_poll.user_poll, "Shared with you by #{sharer.first_name} #{sharer.last_name}!"]
+          }
+          if shared_polls.length > max_num_polls
+            return shared_polls[0...max_num_polls], true
+          end
+
+          # If needed, fill with the most recently added polls
+          # Grab one more poll than requested so that we can determine if there are more polls to show
+          other_polls = UserPoll.where.not(user_id: current_user.id).order(updated_at: :desc).limit(max_num_polls + 1).all
+          other_polls = other_polls.map { |poll| [poll, ""] }
+
+          # Eliminate any polls in other_polls that are duplicates of ones in shared_polls
+          other_polls.select! { |a| !(shared_polls.detect { |b| a[0].id == b[0].id }) }
+          
+          polls = shared_polls + other_polls
       end
-
-      # If needed, fill with the most recently added polls
-      # Grab one more poll than requested so that we can determine if there are more polls to show
-      other_polls = UserPoll.where.not(user_id: current_user.id).order(updated_at: :desc).limit(max_num_polls + 1).all
-      other_polls = other_polls.map { |poll| [poll, ""] }
-
-      # Eliminate any polls in other_polls that are duplicates of ones in shared_polls
-      other_polls.select! { |a| !(shared_polls.detect { |b| a[0].id == b[0].id }) }
-      
-      polls = shared_polls + other_polls
       can_show_more = (polls.length > max_num_polls)
       polls = polls[0...max_num_polls] if can_show_more
       
       return polls, can_show_more
     end
 
-    def get_current_user_polls(max_num_polls)
+    def get_current_user_polls(max_num_polls, search)
+      #If search field has been submitted with a value, search current user's polls for poll's containing that in the name
+      if (search and search.length > 0)
+        #Break search string into words
+        words = search.blank? ? [] : search.split(' ')
+        conditions = [[]] # Why this way? You'll know soon
+        words.each do |word|
+          conditions[0] << ["title LIKE ?"]
+          conditions << "%#{word}%"
+        end
+        conditions[0] = conditions.first.join(" OR ") # Converts condition string to include " OR " easily ;-)
+        conditions[0] << "AND user_id = #{current_user.id}"
+        polls = UserPoll.where(conditions).order(updated_at: :desc).limit(max_num_polls).all
+      else
       # Grab one more poll than requested so that we can determine if there are more polls to show
-      polls = UserPoll.where(user_id: current_user.id).order(updated_at: :desc).limit(max_num_polls + 1).all
+        polls = UserPoll.where(user_id: current_user.id).order(updated_at: :desc).limit(max_num_polls + 1).all
+      end
 
       can_show_more = (polls.length > max_num_polls)
       polls = polls[0...max_num_polls] if can_show_more
