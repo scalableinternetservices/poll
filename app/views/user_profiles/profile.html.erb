@@ -2,9 +2,9 @@
 <div class="container MainBG">
     <div class="row">
         <div class="col-md-3">
-            <h1>Andrew Mutz</h1>
-                <%= image_tag @profile_user.profile_picture.url(:large) %>
-                <p><%= "#{@profile_user.first_name} #{@profile_user.last_name}" %></p>
+            <br>
+              <h1><%= "#{@profile_user.first_name} #{@profile_user.last_name}" %></h1>
+              <%= image_tag @profile_user.profile_picture.url(:large) %>
         </div>
     </div>
 </div>
