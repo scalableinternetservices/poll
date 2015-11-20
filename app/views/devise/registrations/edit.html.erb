@@ -1,8 +1,8 @@
 <%= render partial: "shared/navbar" %>
-<br>
+<br><br>
 <div class="container">
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-4 col-lg-offset-4">
       <h2>Edit <%= resource_name.to_s.humanize %></h2>
       <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= devise_error_messages! %>
@@ -38,13 +38,17 @@
         <div class="field">
           <%= f.password_field :current_password, autocomplete: "off", icon: "asterisk"%>
         </div>
-        
-        <div class="actions">
-          <input class="btn btn-primary" name="commit" type="submit" value="Update">
+        <div class="row">
+          <div class="col-lg-3">
+              <div class="actions">
+                <input class="btn btn-primary" name="commit" type="submit" value="Update">
+              </div>
+          </div>
+          <div class="col-lg-3">
+              <p><%= link_to " Back ", :back, {:style=>'color:#FFFFFF;', :class => "btn btn-primary Btn-White"}%></p>
+          </div>
         </div>
-        <p><%= link_to "Back", :back, class: "btn btn-primary"%></p>
       <% end %>
-      
       <!--
       <h3>Cancel my account</h3>
       <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
