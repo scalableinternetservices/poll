@@ -4,9 +4,20 @@
   <div class="row">
     <div class="col-lg-4 col-lg-offset-4">
       <h2 style="color: #fff;">Edit <%= resource_name.to_s.humanize %> Information</h2>
-      <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
         <%= devise_error_messages! %>
         
+        <%= image_tag @user.profile_picture.url(:square) %>
+        <div style="position:relative;">
+          <%= f.label :profile_picture %> <br /> <i> Upload a new profile picture below</i><br />
+          <a class='btn btn-primary' href='javascript:;'>
+              Choose File...
+              <input type="file" style='position:absolute;top:0;right:0;min-width:100%;min-height:100%;font-size:100px;text-align:right;filter:alpha(opacity=0);opacity:0;outline:none;background:white;cursor:inherit;display:block;' size="40"  onchange='$("#upload-file-info").html($(this).val());' name="user[profile_picture]" id="user_profile_picture" >
+          </a><br />
+          &nbsp;
+          <span class='label label-info' id="upload-file-info"></span>
+        </div>
+
         <div class="field">
           <%= f.text_field :description, autofocus: true, autocomplete: "on", icon: "edit"%>
         </div>
