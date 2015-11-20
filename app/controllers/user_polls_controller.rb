@@ -13,12 +13,39 @@ class UserPollsController < ApplicationController
 
   # GET /user_polls/1/poll_details.json
   def poll_details
+    poll_id = poll_details_params
+    votes = UserVote.where(user_poll_id: poll_id.to_i).order(:created_at)
+
+    if votes.count == 0
+      render json: {}
+    else
+      # First determine the time range
+      time_range_start = votes[0].created_at.to_i
+      time_range_end = votes[-1].created_at.to_i
+
+      num_bins = 10
+      time_scale = (time_range_end - time_range_start) / num_bins
+
+      if time_scale == 0.0
+        vote_counts = [votes.count]
+      else
+        vote_counts = Array.new(num_bins) { 0 }
+
+        votes.each { |vote|
+          index = ((vote.created_at.to_i - time_range_start) / time_scale).floor
+          index = [[index, 0].max, num_bins - 1].min
+          vote_counts[index] += 1
+        }
+      end
+        
+      render json: { time_range: [time_range_start, time_range_end], vote_counts: vote_counts }
+    end
   end
 
   # GET /user_polls/1/question_details.json
   def question_details
     question_id = question_details_params
-    question = PollQuestion.find(question_id)
+    question = PollQuestion.find(question_id.to_i)
 
     answer_texts = question.answers.map { |answer| answer.text }
     vote_counts = question.answers.map { |answer| answer.results[0].votes }
@@ -140,6 +167,12 @@ class UserPollsController < ApplicationController
   # GET /user_polls/:id/vote
   def vote
     @user_poll = UserPoll.find(vote_params[:id])
+
+    if UserVote.exists?(user_id: current_user.id, user_poll_id: @user_poll.id)
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: 'You already voted on this poll!' }
+      end
+    end
   end
 
   # POST /user_polls/submit_vote
@@ -186,19 +219,27 @@ class UserPollsController < ApplicationController
       end
     }
 
-    unless invalid
+    already_voted_on = UserVote.exists?(user_id: current_user.id, user_poll_id: @user_poll.id)
+
+    unless invalid or already_voted_on
       answers.each { |question_id, answer_id|
         answer = Answer.find(answer_id)
         answer.results[0].votes += 1
         answer.save
       }
 
+      UserVote.create(user_id: current_user.id, user_poll_id: @user_poll.id)
+
       respond_to do |format|
         format.html { redirect_to finished_voting_path(@user_poll.id) }
       end      
     else
       respond_to do |format|
-        format.html { redirect_to vote_on_poll_path(@user_poll.id), notice: "Bad submission" }
+        if invalid
+          format.html { redirect_to vote_on_poll_path(@user_poll.id), notice: "Bad submission" }
+        else # if already_voted_on
+          format.html { redirect_to vote_on_poll_path(@user_poll.id), notice: "You already voted on this poll!" }
+        end
       end
     end
   end
@@ -217,6 +258,10 @@ class UserPollsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_poll_params
       params.require(:user_poll).permit(:title, :description, :create_date, :poll_picture, :poll_questions_attributes => [:text, :poll_question_picture, :optional, :allow_multiple_answers, :answers_attributes => [:text]])
+    end
+
+    def poll_details_params
+      params.require(:id)
     end
 
     def question_details_params

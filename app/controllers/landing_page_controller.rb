@@ -121,6 +121,8 @@ class LandingPageController < ApplicationController
     def get_news_feed_polls(max_num_polls)
       # Get polls that have been shared with you, starting with most recently shared
       shared_polls = current_user.shared_with_me_polls.sort { |a, b| b.updated_at <=> a.updated_at }
+      # Don't show polls that you've voted on already, though
+      shared_polls.select! { |shared_poll| !(UserVote.exists?(user_id: current_user.id, user_poll_id: shared_poll.id)) }
       shared_polls.map! { |shared_poll|
         sharer = User.find(shared_poll.sharer_id)
         [shared_poll.user_poll, "Shared with you by #{sharer.first_name} #{sharer.last_name}!"]
@@ -135,7 +137,7 @@ class LandingPageController < ApplicationController
       other_polls = other_polls.map { |poll| [poll, ""] }
 
       # Eliminate any polls in other_polls that are duplicates of ones in shared_polls
-      other_polls.select! { |a| not shared_polls.detect { |b| a[0].id == b[0].id } }
+      other_polls.select! { |a| !(shared_polls.detect { |b| a[0].id == b[0].id }) }
       
       polls = shared_polls + other_polls
       can_show_more = (polls.length > max_num_polls)

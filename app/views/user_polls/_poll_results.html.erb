@@ -1,3 +1,5 @@
+<canvas data-poll-id=<%= raw("\"#{@user_poll.id}\"") %>></canvas>
+
 <% @user_poll.poll_questions.each_with_index do |poll_question, index| %>
   <p>Question <%= "#{index+1}" %>. <%= poll_question.text %></p>
   <%= image_tag poll_question.poll_question_picture.url(:thumb) %><br /><br />
