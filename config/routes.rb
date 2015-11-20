@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   post '/user_polls/:poll_id/submit_vote(.:format)' => 'user_polls#submit_vote', as: 'submit_vote'
   get '/user_polls/:id/done(.:format)' => 'user_polls#done', as: 'finished_voting'
 
-  get '/user_profile/:id(.:format)' => 'user_profiles#view', as: 'view_user_profile'
+  get '/users/:id/profile(.:format)' => 'user_profiles#profile', as: 'view_user_profile'
 
   # DEPRECATED ROUTES
   get 'user_polls/news_feed_polls(.:format)' => 'user_polls#news_feed_polls'

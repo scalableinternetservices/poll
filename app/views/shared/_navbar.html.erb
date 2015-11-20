@@ -21,7 +21,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                  <a href="/landing_page/profile">Profile</a>  
+                    <%= link_to "Profile", view_user_profile_path(current_user.id) %>  
                 </li>
                 <li>
                     <%= link_to "Create Poll", new_user_poll_path %>
@@ -39,8 +39,3 @@
     <!-- /.container -->
 </nav>
 <br><br><br><br>
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
-      </div>
-    </div>
