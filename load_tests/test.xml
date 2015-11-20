@@ -82,6 +82,16 @@
       <!-- wait for up to 2 seconds, user is looking at polls -->
       <thinktime value="2" random="true"></thinktime>
 
+      <!-- Vote on the original poll setup in the db seeds file -->
+      <request subst="true">
+        <http
+              url='/user_polls/1/submit_vote'
+              version='1.1'
+              contents='utf8=%E2%9C%93&amp;answers%5B0%5D=1&answers%5B1%5D=4&commit=Submit+vote'
+              content_type="application/x-www-form-urlencoded" method="POST">              
+        </http>
+      </request>
+
       <!-- Create new poll -->
       <request subst="true">
       	<dyn_variable name="created_poll_url" re="[Ll]ocation: (http://.*)\r"/>
@@ -101,9 +111,20 @@
         <http url="/user_polls/%%_created_poll_id%%" version="1.1" method="GET"/>
       </request>
 
-      <!-- Vote on the poll -->
+      <!-- Old Vote on the poll 
       <request subst="true">
         <http url="/results/test/%%_option1_num%%" version="1.1" method="GET"/>
+      </request>
+      -->
+
+      <!-- Vote on the poll -->
+      <request subst="true">
+        <http
+              url='/user_polls/%%_created_poll_id%%/submit_vote'
+              version='1.1'
+              contents='utf8=%E2%9C%93&amp;answers%5B0%5D=%%_option1_num%%&amp;commit=Submit+vote'
+              content_type="application/x-www-form-urlencoded" method="POST">              
+        </http>
       </request>
 
       <!-- View the results of the poll -->

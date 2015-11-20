@@ -8,7 +8,7 @@ question1 = poll.poll_questions.new(text: "Overall, how do you like Pollster?")
 question1_answer1 = question1.answers.new(text: "Love it")
 question1_answer2 = question1.answers.new(text: "It's OK")
 question1_answer3 = question1.answers.new(text: "Could be better")
-question1_answer1.results.new(votes: 214)
+question1_answer1.results.new(votes: 24)
 question1_answer2.results.new(votes: 92)
 question1_answer3.results.new(votes: 13)
 
@@ -18,11 +18,11 @@ question2_answer2 = question2.answers.new(text: "Easy")
 question2_answer3 = question2.answers.new(text: "Moderate")
 question2_answer4 = question2.answers.new(text: "Hard")
 question2_answer5 = question2.answers.new(text: "Very hard")
-question2_answer1.results.new(votes: 122)
+question2_answer1.results.new(votes: 12)
 question2_answer2.results.new(votes: 98)
 question2_answer3.results.new(votes: 42)
-question2_answer4.results.new(votes: 51)
-question2_answer5.results.new(votes: 194)
+question2_answer4.results.new(votes: 5)
+question2_answer5.results.new(votes: 4)
 
 poll.save
 
