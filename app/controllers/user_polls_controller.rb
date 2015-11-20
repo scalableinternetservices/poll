@@ -193,6 +193,8 @@ class UserPollsController < ApplicationController
         answer.save
       }
 
+      UserVote.create(user_id: current_user.id, user_poll_id: @user_poll.id)
+
       respond_to do |format|
         format.html { redirect_to finished_voting_path(@user_poll.id) }
       end      
