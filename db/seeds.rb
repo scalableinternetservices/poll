@@ -57,3 +57,24 @@ if ENV["loadtest_seed"]
 	  poll.save
 	end
 end
+
+if ENV["vote_time_plot_seed"]
+  poll_owner = User.create(first_name: "Poll", last_name: "Creator", email: "pollcreator@pollster.com", password: "pollcreator")
+  poll = poll_owner.user_polls.new(title: "Timeplot Test", description: "")
+  question = poll.poll_questions.new(text: "The question")
+  answer1 = question.answers.new(text: "The first answer")
+  answer2 = question.answers.new(text: "The second answer")
+
+  answer1.results.new(votes: 100)
+  answer2.results.new(votes: 100)
+
+  poll.save
+
+  200.times do |num|
+    new_user = User.create(first_name: "Seed", last_name: "User#{num+1}", email: "seeduser#{num+1}@pollster.com", password: "pollster")
+
+    vote = UserVote.create(user_id: new_user.id, user_poll_id: poll.id)
+    vote.created_at -= num * num
+    vote.save
+  end
+end

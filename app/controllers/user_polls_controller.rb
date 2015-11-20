@@ -32,7 +32,7 @@ class UserPollsController < ApplicationController
         vote_counts = Array.new(num_bins) { 0 }
 
         votes.each { |vote|
-          index = ((vote.created_at - time_range_end) / time_scale).floor
+          index = ((vote.created_at.to_i - time_range_start) / time_scale).floor
           index = [[index, 0].max, num_bins - 1].min
           vote_counts[index] += 1
         }

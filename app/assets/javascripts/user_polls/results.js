@@ -31,7 +31,7 @@ function renderPollData(canvas, data) {
 
         var maxCount = data.vote_counts[0];
         for (var i = 1; i < data.vote_counts.length; i++)
-            if (data.vote_counts[i] > maxCounts)
+            if (data.vote_counts[i] > maxCount)
                 maxCount = data.vote_counts[i];
 
         context.fillStyle = "#0000FF";
