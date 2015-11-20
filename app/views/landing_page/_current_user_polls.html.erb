@@ -3,7 +3,7 @@
 <% else %>
   <div class="row">
     <br><h3 style="color:#fff;">My Polls</h3><br>
-    <div class="col-md-4 col-md-offset-1">
+    <div class="col-md-5 col-sm-5">
        <% @counter = 0 %>
        <% @current_user_polls.each do |user_poll| %>
           <% if @counter % 2 == 0 %>
@@ -28,7 +28,7 @@
           <% @counter += 1 %>
         <% end %>
     </div>
-    <div class="col-md-4 col-md-offset-2">
+    <div class="col-md-5 col-md-offset-2 col-sm-5 col-md-offset-2">
        <% @counter = 1 %>
        <% @current_user_polls.each do |user_poll| %>
           <% if @counter % 2 == 0 %>
