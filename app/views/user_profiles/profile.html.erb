@@ -1,0 +1,62 @@
+<%= render partial: "shared/navbar" %>
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+  <div class="container">
+    <%= image_tag @profile_user.profile_picture.url(:large) %>
+    <p><%= "#{@profile_user.first_name} #{@profile_user.last_name}" %></p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <h3>Polls created</h3>
+      <table class="table table-striped">
+        <tbody>
+          <% @created_polls.each do |user_poll| %>
+            <tr>
+              <td><%= link_to user_poll.title, vote_on_poll_path(user_poll.id) %></td>
+              <td><%= link_to user_poll_results_path(user_poll.id), class: "btn btn-primary btn-xs" do %>
+                <span class="glyphicon glyphicon-stats" aria-hidden="true"</span>  Results
+              <% end %></td>
+              <td><%= button_tag type: "button", class: "btn btn-primary btn-xs", data: {toggle: "modal", target: "#share-modal", poll_id: user_poll.id} do %>
+                <span class="glyphicon glyphicon-share" aria-hidden="true"></span>   Share
+              <% end %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-4">
+      <h3>Polls voted on</h3>
+      <table class="table table-striped">
+        <tbody>
+          <% @voted_polls.each do |user_poll| %>
+            <tr>
+              <td><%= link_to user_poll.title, vote_on_poll_path(user_poll.id) %></td>
+              <td><%= link_to user_poll_results_path(user_poll.id), class: "btn btn-primary btn-xs" do %>
+                <span class="glyphicon glyphicon-stats" aria-hidden="true"</span>  Results
+              <% end %></td>
+              <td><%= button_tag type: "button", class: "btn btn-primary btn-xs", data: {toggle: "modal", target: "#share-modal", poll_id: user_poll.id} do %>
+                <span class="glyphicon glyphicon-share" aria-hidden="true"></span>   Share
+              <% end %></td>
+            </tr>
+          <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-4">
+      <h3>Friends</h3>
+      <table class="table table-striped">
+        <tbody>
+          <% @user_friends.each do |friend| %>
+            <tr>
+              <td><%= link_to "#{friend.first_name} #{friend.last_name}", view_user_profile_path(friend.id) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

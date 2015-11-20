@@ -6,7 +6,7 @@
     <tbody>
       <% @current_user_friends.each do |friend| %>
         <tr>
-          <td><%= "#{friend.first_name} #{friend.last_name}" %></td>
+          <td><%= link_to "#{friend.first_name} #{friend.last_name}", view_user_profile_path(friend.id) %></td>
         </tr>
       <% end %>
     </tbody>
