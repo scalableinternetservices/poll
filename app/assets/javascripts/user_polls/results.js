@@ -24,10 +24,23 @@ $(document).on("ready page:change", function() {
 function renderPollData(canvas, data) {
     if (canvas.getContext) {
         var context = canvas.getContext("2d");
+        var plotY = 32;
+        var plotHeight = canvas.height - 64;
 
+        // Render the labels
         context.fillStyle = "#000000";
         context.font = "16px Times New Roman";
         context.fillText("Votes over time", 0, 12, 100);
+
+        var startDate = new Date(data.time_range[0] * 1000);
+        var endDate = new Date(data.time_range[1] * 1000);
+        context.fillText(startDate.getMonth() + "/" + startDate.getDate(), 0, plotY + plotHeight + 16);
+        var endDateText = endDate.getMonth() + "/" + endDate.getDate();
+        var endDateWidth = context.measureText(endDateText).width
+        context.fillText(endDateText, canvas.width - endDateWidth, plotY + plotHeight + 16);
+
+        // Render the time plot
+        var xSpacing = canvas.width / (data.vote_counts.length - 1);
 
         var maxCount = data.vote_counts[0];
         for (var i = 1; i < data.vote_counts.length; i++)
@@ -35,12 +48,20 @@ function renderPollData(canvas, data) {
                 maxCount = data.vote_counts[i];
 
         context.fillStyle = "#0000FF";
-        for (var i = 0; i < data.vote_counts.length; i++) {
-            var voteCount = data.vote_counts[i];
-            var barHeight = 100 * voteCount / maxCount;
+        var firstY = plotHeight * (1 - data.vote_counts[0] / maxCount) + plotY;
+        context.moveTo(0, firstY);
 
-            context.fillRect(i * 30, 100 - barHeight, 30, barHeight);
+        for (var i = 1; i < data.vote_counts.length; i++) {
+            var y = plotHeight * (1 - data.vote_counts[i] / maxCount) + plotY;
+
+            context.lineTo(i * xSpacing, y);
         }
+
+        context.lineTo((data.vote_counts.length - 1) * xSpacing, plotY + plotHeight);
+        context.lineTo(0, plotY + plotHeight);
+        context.lineTo(0, firstY);
+
+        context.fill();
     }
 }
 
