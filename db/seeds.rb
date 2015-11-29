@@ -42,20 +42,22 @@ john_smith = User.create(first_name: "John", last_name: "Smith", email: "johnsmi
 end
 
 if ENV["loadtest_seed"]
-	2000.times do |num|
-	  new_user = User.create(first_name: "Seed", last_name: "User#{num+1}", email: "seeduser#{num+1}@pollster.com", password: "pollster")
-	  poll = new_user.user_polls.new(title: "Seed User#{num+1}'s Poll #{num+1}", description: "Take my poll!")
-	  question = poll.poll_questions.new(text: "Yes?")
-	  question_answer1 = question.answers.new(text: "Yes")
-	  question_answer2 = question.answers.new(text: "No")
+  ActiveRecord::Base.transaction do
+    2000.times do |num|
+      new_user = User.create(first_name: "Seed", last_name: "User#{num+1}", email: "seeduser#{num+1}@pollster.com", password: "pollster")
+      poll = new_user.user_polls.new(title: "Seed User#{num+1}'s Poll #{num+1}", description: "Take my poll!")
+      question = poll.poll_questions.new(text: "Yes?")
+      question_answer1 = question.answers.new(text: "Yes")
+      question_answer2 = question.answers.new(text: "No")
 
-	  question_answer1.results.new(votes: num)
-	  question_answer2.results.new(votes: num*2)
+      question_answer1.results.new(votes: num)
+      question_answer2.results.new(votes: num*2)
 
-	  comment = poll.comments.new(commenter: "seeduser#{num+1}", body: "Commenting is so awesome!")
+      comment = poll.comments.new(commenter: "seeduser#{num+1}", body: "Commenting is so awesome!")
 
-	  poll.save
-	end
+      poll.save
+    end
+  end
 end
 
 if ENV["vote_time_plot_seed"]
@@ -70,11 +72,13 @@ if ENV["vote_time_plot_seed"]
 
   poll.save
 
-  200.times do |num|
-    new_user = User.create(first_name: "Seed", last_name: "User#{num+1}", email: "seeduser#{num+1}@pollster.com", password: "pollster")
+  ActiveRecord::Base.transaction do
+    200.times do |num|
+      new_user = User.create(first_name: "Seed", last_name: "User#{num+1}", email: "seeduser#{num+1}@pollster.com", password: "pollster")
 
-    vote = UserVote.create(user_id: new_user.id, user_poll_id: poll.id)
-    vote.created_at -= num * num
-    vote.save
+      vote = UserVote.create(user_id: new_user.id, user_poll_id: poll.id)
+      vote.created_at -= num * num
+      vote.save
+    end
   end
 end
