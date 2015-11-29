@@ -68,3 +68,45 @@ true  Answer Load (0.2ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`i
    (87.2ms)  COMMIT
 
 Although the commit takes longer (since it updates 2 tables), it is significantly faster due to congolmerating the updates to Answer as a single transaction.
+
+== LANDING PAGE ==
+
+One of the operations on the landing page is to show recently made polls. The information we decided to show on the landing page involves performing a join on the Users table. Unfortunately, the initial implementation we used resulted in queries that looked like this:
+
+User Load (0.2ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 2  ORDER BY `users`.`id` ASC LIMIT 1
+  SharedPoll Load (0.1ms)  SELECT `shared_polls`.* FROM `shared_polls` WHERE `shared_polls`.`sharee_id` = 2
+  UserPoll Load (0.1ms)  SELECT  `user_polls`.* FROM `user_polls` WHERE (`user_polls`.`user_id` != 2)  ORDER BY `user_polls`.`updated_at` DESC LIMIT 6
+  UserPoll Load (0.1ms)  SELECT  `user_polls`.* FROM `user_polls` WHERE `user_polls`.`user_id` = 2  ORDER BY `user_polls`.`updated_at` DESC LIMIT 6
+  Friendship Load (0.1ms)  SELECT `friendships`.* FROM `friendships` WHERE `friendships`.`user_id` = 2
+  Friendship Load (0.1ms)  SELECT `friendships`.* FROM `friendships` WHERE `friendships`.`friend_id` = 2
+  PendingFriendship Load (0.1ms)  SELECT `pending_friendships`.* FROM `pending_friendships` WHERE `pending_friendships`.`receiver_id` = 2
+  Rendered shared/_navbar.html.erb (1.8ms)
+  Rendered landing_page/_share_modal.html.erb (0.0ms)
+  User Load (0.1ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1992 LIMIT 1
+  User Load (0.1ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1994 LIMIT 1
+  User Load (0.1ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1996 LIMIT 1
+  User Load (0.1ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1993 LIMIT 1
+  User Load (0.1ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1995 LIMIT 1
+  Rendered landing_page/_news_feed_polls.html.erb (6.0ms)
+  Rendered landing_page/_current_user_polls.html.erb (4.5ms)
+  Rendered landing_page/_friends_pane.html.erb (0.1ms)
+  Rendered landing_page/index.html.erb within layouts/application (14.7ms)
+
+Notice the multiple "User Load" queries. We can avoid the overhead of issuing multiple queries by pre-fetching this data as we gather the polls, resulting in a query like this:
+
+User Load (0.2ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 2  ORDER BY `users`.`id` ASC LIMIT 1
+  SharedPoll Load (0.1ms)  SELECT `shared_polls`.* FROM `shared_polls` WHERE `shared_polls`.`sharee_id` = 2
+  UserPoll Load (0.1ms)  SELECT  `user_polls`.* FROM `user_polls` WHERE (`user_polls`.`user_id` != 2)  ORDER BY `user_polls`.`updated_at` DESC LIMIT 6
+  User Load (0.2ms)  SELECT `users`.* FROM `users` WHERE `users`.`id` IN (1992, 1993, 1994, 1995, 1996, 1997)
+  UserPoll Load (0.2ms)  SELECT  `user_polls`.* FROM `user_polls` WHERE `user_polls`.`user_id` = 2  ORDER BY `user_polls`.`updated_at` DESC LIMIT 6
+  Friendship Load (0.1ms)  SELECT `friendships`.* FROM `friendships` WHERE `friendships`.`user_id` = 2
+  Friendship Load (0.1ms)  SELECT `friendships`.* FROM `friendships` WHERE `friendships`.`friend_id` = 2
+  PendingFriendship Load (0.1ms)  SELECT `pending_friendships`.* FROM `pending_friendships` WHERE `pending_friendships`.`receiver_id` = 2
+  Rendered shared/_navbar.html.erb (2.0ms)
+  Rendered landing_page/_share_modal.html.erb (0.0ms)
+  Rendered landing_page/_news_feed_polls.html.erb (8.1ms)
+  Rendered landing_page/_current_user_polls.html.erb (5.0ms)
+  Rendered landing_page/_friends_pane.html.erb (0.1ms)
+  Rendered landing_page/index.html.erb within layouts/application (17.5ms)
+Completed 200 OK in 162ms (Views: 114.6ms | ActiveRecord: 6.4ms)
+
