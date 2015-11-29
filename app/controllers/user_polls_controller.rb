@@ -48,7 +48,7 @@ class UserPollsController < ApplicationController
     question = PollQuestion.find(question_id.to_i)
 
     answer_texts = question.answers.map { |answer| answer.text }
-    vote_counts = question.answers.map { |answer| answer.results[0].votes }
+    vote_counts = question.answers.map { |answer| answer.votes }
 
     render json: { answer_texts: answer_texts, vote_counts: vote_counts }
   end

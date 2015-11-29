@@ -1,0 +1,24 @@
+QUERY OPTIMIZATION NOTES:
+
+First optimization:
+
+Originally, we had the votes for an answer stored in a separate Result table. However, when looking at the results of a poll, it resulted in a query like the one below:
+
+User Load (0.1ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1
+  PollQuestion Load (0.1ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 2 LIMIT 1
+  Answer Load (0.1ms)  SELECT `answers`.* FROM `answers` WHERE `answers`.`poll_question_id` = 2
+  Result Load (0.1ms)  SELECT `results`.* FROM `results` WHERE `results`.`answer_id` = 4
+  Result Load (0.1ms)  SELECT `results`.* FROM `results` WHERE `results`.`answer_id` = 5
+  Result Load (0.1ms)  SELECT `results`.* FROM `results` WHERE `results`.`answer_id` = 6
+  Result Load (0.1ms)  SELECT `results`.* FROM `results` WHERE `results`.`answer_id` = 7
+  Result Load (0.1ms)  SELECT `results`.* FROM `results` WHERE `results`.`answer_id` = 8
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 0.7ms)
+
+While normally we would opt to use the "includes" method to eliminate these extraneous queries to Result, we noticed that the Result table was entirely unnecessary. We therefore dropped the Result table and included the vote count in an Answer record, resulting in a much simpler query:
+
+User Load (0.1ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1
+  PollQuestion Load (0.3ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 2 LIMIT 1
+  Answer Load (0.2ms)  SELECT `answers`.* FROM `answers` WHERE `answers`.`poll_question_id` = 2
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.7ms)
+
+The difference in time is not pronounced due to the small number of answers, but for longer polls this can save a lot of time.
