@@ -214,13 +214,15 @@ class UserPollsController < ApplicationController
     already_voted_on = UserVote.exists?(user_id: current_user.id, user_poll_id: @user_poll.id)
 
     unless invalid or already_voted_on
-      answers.each { |question_id, answer_id|
-        answer = Answer.find(answer_id)
-        answer.votes += 1
-        answer.save
-      }
+      ActiveRecord::Base.transaction do
+        answers.each { |question_id, answer_id|
+          answer = Answer.find(answer_id)
+          answer.votes += 1
+          answer.save
+        }
 
-      UserVote.create(user_id: current_user.id, user_poll_id: @user_poll.id)
+        UserVote.create(user_id: current_user.id, user_poll_id: @user_poll.id)
+      end
 
       respond_to do |format|
         format.html { redirect_to finished_voting_path(@user_poll.id) }

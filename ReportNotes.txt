@@ -1,6 +1,6 @@
 QUERY OPTIMIZATION NOTES:
 
-First optimization:
+== REMOVING RESULTS ==
 
 Originally, we had the votes for an answer stored in a separate Result table. However, when looking at the results of a poll, it resulted in a query like the one below:
 
@@ -24,3 +24,47 @@ Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.7ms)
 The difference in time is not pronounced due to the small number of answers, but for longer polls this can save a lot of time.
 
 Furthermore, this also helps when creating polls. Before, we had to explicitly create an additional Result record for each Answer, but now it is created alongside the Answer.
+
+== VOTE SUBMISSION ==
+
+Originally, the statements for adding a vote looked like this:
+
+User Load (0.2ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1
+true  Answer Load (0.3ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 3 LIMIT 1
+  Answer Load (0.2ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 4 LIMIT 1
+  PollQuestion Load (0.1ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 1 LIMIT 1
+  PollQuestion Load (0.1ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 2 LIMIT 1
+  UserPoll Load (0.1ms)  SELECT  `user_polls`.* FROM `user_polls` WHERE `user_polls`.`id` = 1 LIMIT 1
+  PollQuestion Load (0.1ms)  SELECT `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`user_poll_id` = 1
+11  UserVote Exists (0.1ms)  SELECT  1 AS one FROM `user_votes` WHERE `user_votes`.`user_id` = 1 AND `user_votes`.`user_poll_id` = 1 LIMIT 1
+  CACHE (0.0ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 3 LIMIT 1  [["id", "3"]]
+   (0.1ms)  BEGIN
+  SQL (0.3ms)  UPDATE `answers` SET `votes` = 14, `updated_at` = '2015-11-29 23:14:25' WHERE `answers`.`id` = 3
+   (59.9ms)  COMMIT
+  Answer Load (0.4ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 4 LIMIT 1
+   (0.3ms)  BEGIN
+  SQL (0.4ms)  UPDATE `answers` SET `votes` = 13, `updated_at` = '2015-11-29 23:14:26' WHERE `answers`.`id` = 4
+   (51.4ms)  COMMIT
+   (0.2ms)  BEGIN
+  SQL (0.3ms)  INSERT INTO `user_votes` (`user_id`, `user_poll_id`, `created_at`, `updated_at`) VALUES (1, 1, '2015-11-29 23:14:26', '2015-11-29 23:14:26')
+   (50.6ms)  COMMIT
+
+Notice the two COMMIT transactions, which take up a substantial amount of time. There is a commit for each update (one per answer, and one to keep track of the user's vote). We changed this to perform this all as one transaction, resulting in the following queries:
+
+User Load (0.3ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 2  ORDER BY `users`.`id` ASC LIMIT 1
+true  Answer Load (0.2ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 1 LIMIT 1
+  Answer Load (0.1ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 4 LIMIT 1
+  PollQuestion Load (0.2ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 1 LIMIT 1
+  PollQuestion Load (0.2ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 2 LIMIT 1
+  UserPoll Load (0.1ms)  SELECT  `user_polls`.* FROM `user_polls` WHERE `user_polls`.`id` = 1 LIMIT 1
+  PollQuestion Load (0.2ms)  SELECT `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`user_poll_id` = 1
+11  UserVote Exists (0.2ms)  SELECT  1 AS one FROM `user_votes` WHERE `user_votes`.`user_id` = 2 AND `user_votes`.`user_poll_id` = 1 LIMIT 1
+   (0.2ms)  BEGIN
+  CACHE (0.0ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 1 LIMIT 1  [["id", "1"]]
+  SQL (0.4ms)  UPDATE `answers` SET `votes` = 25, `updated_at` = '2015-11-29 23:33:40' WHERE `answers`.`id` = 1
+  Answer Load (0.3ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 4 LIMIT 1
+  SQL (0.3ms)  UPDATE `answers` SET `votes` = 14, `updated_at` = '2015-11-29 23:33:40' WHERE `answers`.`id` = 4
+  SQL (27.7ms)  INSERT INTO `user_votes` (`user_id`, `user_poll_id`, `created_at`, `updated_at`) VALUES (2, 1, '2015-11-29 23:33:40', '2015-11-29 23:33:40')
+   (87.2ms)  COMMIT
+
+Although the commit takes longer (since it updates 2 tables), it is significantly faster due to congolmerating the updates to Answer as a single transaction.
