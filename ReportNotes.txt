@@ -22,3 +22,5 @@ User Load (0.1ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1  ORDER 
 Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.7ms)
 
 The difference in time is not pronounced due to the small number of answers, but for longer polls this can save a lot of time.
+
+Furthermore, this also helps when creating polls. Before, we had to explicitly create an additional Result record for each Answer, but now it is created alongside the Answer.

@@ -103,14 +103,6 @@ class UserPollsController < ApplicationController
 
     @user_poll = current_user.user_polls.new(cleaned_user_poll_params)
 
-    # Make results for every poll option
-    @user_poll.poll_questions.each { |poll_question|
-      poll_question.answers.each { |answer|
-        result = answer.results.new
-        result.votes = 0
-      }
-    }
-
     respond_to do |format|
       if @user_poll.save
         format.html { redirect_to user_poll_results_path(@user_poll), notice: 'User poll was successfully created.' }
@@ -224,7 +216,7 @@ class UserPollsController < ApplicationController
     unless invalid or already_voted_on
       answers.each { |question_id, answer_id|
         answer = Answer.find(answer_id)
-        answer.results[0].votes += 1
+        answer.votes += 1
         answer.save
       }
 
