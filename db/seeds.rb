@@ -1,8 +1,24 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
-# Build the Pollster user, and make a relatively complex poll.
+# Build the Pollster user.
 pollster = User.create(first_name: "Pollster", last_name: "", email: "pollster@pollster.com", password: "pollster")
+large_poll = pollster.user_polls.new(title: "Large poll", description: "Description for a large poll")
+
+10.times do |num|
+  question = large_poll.poll_questions.new(text: "Question #{num}")
+  10.times do |num2|
+    answer = question.answers.new(text: "Opt #{num2}")
+    answer.results.new(votes: 0)
+  end
+end
+
+large_poll.save
+
+# Build the large poll used for load-testing.
+
+# Build the Pollster user, and make a relatively complex poll.
+
 poll = pollster.user_polls.new(title: "Welcome to Pollster!", description: "At Pollster, we take survey feedback seriously, so please take a moment to let us know what you think about Pollster!")
 question1 = poll.poll_questions.new(text: "Overall, how do you like Pollster?")
 question1_answer1 = question1.answers.new(text: "Love it")
