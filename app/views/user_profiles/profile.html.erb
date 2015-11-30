@@ -13,7 +13,7 @@
         <div class="col-md-2 col-md-offset-3">
           <h4>Votes</h4>
           <h6 style="color:#fff;"><%=@voted_polls.length%></h6>
-          <%= image_tag "Followers.png", :class => 'img-responsive center-block' %>
+          <%= image_tag "Votes.png", :class => 'img-responsive center-block' %>
         </div>
         <div class="col-md-2">
           <h4>Following</h4>
@@ -142,9 +142,9 @@
     </div>
   </div>
   
-  <div class="row">
+  <div class="row CenterWhiteText">
     <div class="col-md-6 col-md-offset-3">
-      <h3>Friends</h3>
+      <h3>Friends</h3><br>
       <table class="table table-striped">
         <tbody>
           <% @user_friends.each do |friend| %>
