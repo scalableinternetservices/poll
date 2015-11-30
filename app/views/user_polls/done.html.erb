@@ -14,8 +14,8 @@
       </div>
 
       <div class="row">
-        <h3 class="CenterWhiteText">Leave a comment below!</h3>
-        <div class="col-lg-6 col-lg-offset-3">
+        <h3 class="CenterWhiteText">Leave a comment!</h3>
+        <div class="col-lg-6 col-lg-offset-3 WhiteText">
             <%= bootstrap_form_for([@user_poll, @user_poll.comments.build]) do |f| %>
               <p>
                 <%= f.text_area :body %>
@@ -31,11 +31,19 @@
       </div>
 
       <div class="row">
-        <% @user_poll.comments.each do |comment| %>
-          <p><%= comment.commenter %></p><br>
-          <p><%= comment.body %></p>
-        <% end %>
+        <div class="col-lg-6 col-lg-offset-3 CenterWhiteText">
+            <br><br>
+            <% @user_poll.comments.each do |comment| %>
+                <% a = comment.commenter %>
+                <% if !a.blank? %>
+                    <p><strong><%= comment.commenter %> says</strong></p>
+                    <p><i><%= comment.body %></i></p>
+                    <br>
+                <% end %>
+            <% end %>
+        </div>
       </div>
+      
     </div>
   </div>
 </div>
