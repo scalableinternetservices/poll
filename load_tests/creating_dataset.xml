@@ -4,6 +4,9 @@
 <!-- Using tsung on local mac with homebrew install 
 <!DOCTYPE tsung SYSTEM "/usr/local/Cellar/tsung/1.6.0/share/tsung/tsung-1.0.dtd">
 -->
+<!-- Using tsung on local Ubuntu machine 
+<!DOCTYPE tsung SYSTEM "/usr/share/stung/tsung-1.0.dtd">
+-->
 <tsung loglevel="notice" version="1.0">
 
   <!-- Client side setup -->
@@ -17,10 +20,13 @@
   </servers>
 
   <load>
+    <arrivalphase phase="1" duration="1" unit="second">
+      <users arrivalrate="1" unit="second"></users>
+    </arrivalphase>
+<!--
     <arrivalphase phase="1" duration="30" unit="second">
       <users arrivalrate="1" unit="second"></users>
     </arrivalphase>
-<!-- Server side setup -->
     <arrivalphase phase="2" duration="30" unit="second">
       <users arrivalrate="2" unit="second"></users>
     </arrivalphase>
@@ -42,6 +48,7 @@
    <arrivalphase phase="8" duration="30" unit="second">
      <users arrivalrate="128" unit="second"></users>
    </arrivalphase>
+-->
 <!--   
    <arrivalphase phase="9" duration="30" unit="second">
      <users arrivalrate="256" unit="second"></users>
@@ -79,7 +86,20 @@
         </http>
       </request>
       
-      <!-- wait for up to 2 seconds, user is looking at polls -->
+      <!-- Wait for up to 2 seconds, user is looking at polls -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <!-- User requests to see more news feed polls -->
+      <request subst="true">
+        <http
+            url='/news_feed_polls?num_news_feed_polls=10'
+            version='1.1'
+            content_type='application/x-www-form-urlencoded'
+            method='GET'>
+        </http>
+      </request>
+
+      <!-- Wait for up to 2 seconds, user is looking at polls -->
       <thinktime value="2" random="true"></thinktime>
 
       <!-- Create new poll -->
@@ -97,19 +117,40 @@
       <!-- View the poll -->
       <request subst="true">
       	<dyn_variable name="option1_num"
-      	              re='"/results/test/(.*)"'/>
-        <http url="/user_polls/%%_created_poll_id%%" version="1.1" method="GET"/>
+      	              re='value="([0-9]+)"'/>
+        <http url="/user_polls/%%_created_poll_id%%/vote" version="1.1" method="GET"/>
       </request>
+
+      <!-- Wait for up to 2 seconds, user is inputting vote -->
+      <thinktime value="2" random="true"></thinktime>
 
       <!-- Vote on the poll -->
       <request subst="true">
-        <http url="/results/test/%%_option1_num%%" version="1.1" method="GET"/>
+        <http url="/user_polls/%%_created_poll_id%%/submit_vote"
+              version="1.1"
+              contents="utf8=%E2%9C%93&amp;answers%5B0%5D=%%_option1_num%%"
+              content_type="application/x-www-form-urlencoded"
+              method="POST">
+        </http>
       </request>
 
       <!-- View the results of the poll -->
       <request subst="true">
+        <dyn_variable name="question1_num"
+                      re='data-question-id="([0-9]+)"'/>
         <http url="/user_polls/%%_created_poll_id%%/results" version="1.1" method="GET"/>
       </request>
+
+      <!-- Manually fire the AJAX requests for the results page -->
+      <request subst="true">
+        <http url="/user_polls/%%_created_poll_id%%/poll_details" version="1.1" method="GET"/>
+      </request>
+      <request subst="true">
+        <http url="/user_polls/%%_question1_num%%/question_details" version="1.1" method="GET"/>
+      </request>
+
+      <!-- Wait for up to 5 seconds, user is observing results and typing a comment -->
+      <thinktime value="5" random="true"></thinktime>
 
       <!-- Comment on the poll -->
       <request subst="true">
@@ -140,6 +181,114 @@
               content_type="application/x-www-form-urlencoded" method="POST">              
         </http>
       </request>
+
+      <!-- Wait for up to 1 seconds, user is typing into the search bar -->
+      <thinktime value="1" random="true"></thinktime>
+
+      <!-- Search for the big poll -->
+      <request subst="true">
+        <http
+            url='/search_polls'
+            version='1.1'
+            contents='utf8=%E2%9C%93&amp;search=large%2Bpoll&amp;num_search_polls=5'
+            content_type='application/x-www-form-urlencoded'
+            method='GET'>
+        </http>
+      </request>
+
+      <!-- Wait for up to 3 seconds, user is looking at the search results -->
+      <thinktime value="3" random="true"></thinktime>
+
+      <!-- Vote on the big poll -->
+      <request subst="true">
+        <http url='/user_polls/1/vote' method='GET'/>
+      </request>
+
+      <!-- Wait for up to 20 seconds, user is voting -->
+      <thinktime value="20" random="true"></thinktime>
+
+      <!-- Randomly choose answers to vote on -->
+      <setdynvars sourcetype="random_number" start="1" end="10">
+        <var name="answer1" />
+      </setdynvars>
+      <setdynvars sourcetype="random_number" start="11" end="20">
+        <var name="answer2" />
+      </setdynvars>
+      <setdynvars sourcetype="random_number" start="21" end="30">
+        <var name="answer3" />
+      </setdynvars>
+      <setdynvars sourcetype="random_number" start="31" end="40">
+        <var name="answer4" />
+      </setdynvars>
+      <setdynvars sourcetype="random_number" start="41" end="50">
+        <var name="answer5" />
+      </setdynvars>
+      <setdynvars sourcetype="random_number" start="51" end="60">
+        <var name="answer6" />
+      </setdynvars>
+      <setdynvars sourcetype="random_number" start="61" end="70">
+        <var name="answer7" />
+      </setdynvars>
+      <setdynvars sourcetype="random_number" start="71" end="80">
+        <var name="answer8" />
+      </setdynvars>
+      <setdynvars sourcetype="random_number" start="81" end="90">
+        <var name="answer9" />
+      </setdynvars>
+      <setdynvars sourcetype="random_number" start="91" end="100">
+        <var name="answer10" />
+      </setdynvars>
+
+      <!-- Vote on the big poll -->
+      <request subst="true">
+        <http
+            url='/user_polls/1/submit_vote'
+            version='1.1'
+            contents='utf8=%E2%9C%93&amp;answers%5B0%5D=%%_answer1%%&amp;answers%5B1%5D=%%_answer2%%&amp;answers%5B2%5D=%%_answer3%%&amp;answers%5B3%5D=%%_answer4%%&amp;answers%5B4%5D=%%_answer5%%&amp;answers%5B5%5D=%%_answer6%%&amp;answers%5B6%5D=%%_answer7%%&amp;answers%5B7%5D=%%_answer8%%&amp;answers%5B8%5D=%%_answer9%%&amp;answers%5B9%5D=%%_answer10%%'
+            content_type='application/x-www-form-urlencoded'
+            method='POST'>
+        </http>
+      </request>
+
+      <!-- View the results on the big poll -->
+      <request subst="true">
+        <http url="/user_polls/1/results" version="1.1" method="GET"/>
+      </request>
+
+      <!-- Manually fire the AJAX requests for the results page -->
+      <request subst="true">
+        <http url="/user_polls/1/poll_details" version="1.1" method="GET"/>
+      </request>
+      <request subst="true">
+        <http url="/user_polls/1/question_details" version="1.1" method="GET"/>
+      </request>
+      <request subst="true">
+        <http url="/user_polls/2/question_details" version="1.1" method="GET"/>
+      </request>
+      <request subst="true">
+        <http url="/user_polls/3/question_details" version="1.1" method="GET"/>
+      </request>
+      <request subst="true">
+        <http url="/user_polls/4/question_details" version="1.1" method="GET"/>
+      </request>
+      <request subst="true">
+        <http url="/user_polls/5/question_details" version="1.1" method="GET"/>
+      </request>
+      <request subst="true">
+        <http url="/user_polls/6/question_details" version="1.1" method="GET"/>
+      </request>
+      <request subst="true">
+        <http url="/user_polls/7/question_details" version="1.1" method="GET"/>
+      </request>
+      <request subst="true">
+        <http url="/user_polls/8/question_details" version="1.1" method="GET"/>
+      </request>
+      <request subst="true">
+        <http url="/user_polls/9/question_details" version="1.1" method="GET"/>
+      </request>
+      <request subst="true">
+        <http url="/user_polls/10/question_details" version="1.1" method="GET"/>
+      </request>
     </session>
   </sessions>
- </tsung>
+</tsung>
