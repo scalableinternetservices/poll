@@ -11,8 +11,9 @@
             <a href="#" class="pull-left"><%= image_tag "pollster_favicon.png", :class => 'img-responsive' %></a>
             <a class="navbar-brand" href="/landing_page">Pollster</a>
         </div>
-        <%= form_tag(root_path, :method => "get", id: "search-form", class: "navbar-form navbar-left") do %>
+        <%= form_tag(search_polls_path, :method => "get", id: "search-form", class: "navbar-form navbar-left") do %>
           <%= text_field_tag :search, params[:search], placeholder: "Search Polls", class: "form-control" %>
+          <%= hidden_field_tag "num_search_polls", 5 %>
           <%= submit_tag "Search", class: "btn btn-default" %>
         <% end %>
         <!-- Collect the nav links, forms, and other content for toggling -->
