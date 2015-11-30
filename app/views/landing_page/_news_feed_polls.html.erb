@@ -12,14 +12,16 @@
                   <div class="caption">
                     <h3><%= link_to user_poll.title, vote_on_poll_path(user_poll.id), {:style=>'color:#FFF;'}%></h3>
                     <% user_poll_owner = User.find(user_poll.user_id) %>
-                    <%= "#{user_poll_owner.first_name} #{user_poll_owner.last_name}" %>
-                    <%= user_poll.created_at.to_s(:long) %>
+                    <p class="CenterWhiteText"><%= "#{user_poll_owner.first_name} #{user_poll_owner.last_name}" %></p>
+                    <p class="CenterWhiteText"><%= user_poll.created_at.to_s(:long)%></p>
                     <%= comment %>
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2">
+                    <div class="row  center-block">
+                        <div class="col-md-6">
                             <%= link_to user_poll_results_path(user_poll.id), {:style=>'color:#FFF;', class: "btn btn-primary"} do %>
                               <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>  Results
                             <% end %>
+                        </div>
+                        <div class="col-md-6">
                             <%= button_tag type: "button", class: "btn btn-primary", data: {toggle: "modal", target: "#share-modal", poll_id: user_poll.id} do %>
                               <span class="glyphicon glyphicon-share" aria-hidden="true"></span>   Share Poll
                             <% end %>
@@ -43,14 +45,16 @@
                   <div class="caption">
                     <h3><%= link_to user_poll.title, vote_on_poll_path(user_poll.id), {:style=>'color:#FFF;'}%></h3>
                     <% user_poll_owner = User.find(user_poll.user_id) %>
-                    <%= "#{user_poll_owner.first_name} #{user_poll_owner.last_name}" %>
-                    <%= user_poll.created_at.to_s(:long) %>
+                    <p class="CenterWhiteText"><%= "#{user_poll_owner.first_name} #{user_poll_owner.last_name}" %></p>
+                    <p class="CenterWhiteText"><%= user_poll.created_at.to_s(:long)%></p>
                     <%= comment %>
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2">
+                    <div class="row  center-block">
+                        <div class="col-md-6">
                             <%= link_to user_poll_results_path(user_poll.id), {:style=>'color:#FFF;', class: "btn btn-primary"} do %>
                               <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>  Results
                             <% end %>
+                        </div>
+                        <div class="col-md-6">
                             <%= button_tag type: "button", class: "btn btn-primary", data: {toggle: "modal", target: "#share-modal", poll_id: user_poll.id} do %>
                               <span class="glyphicon glyphicon-share" aria-hidden="true"></span>   Share Poll
                             <% end %>

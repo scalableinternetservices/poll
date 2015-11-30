@@ -2,7 +2,8 @@
 <%= render 'share_modal' %>
 <div class="container">
   <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-8 col-lg-offset-2">
+      <br>
       <p id="notice"><%= notice %></p>
       <div class="table-responsive" id="news-feed-polls">   
         <%= render 'news_feed_polls' %>
@@ -17,9 +18,11 @@
     </div>
   </div>
   <br> <br>
-  <div class="row">         
-    <div id="friends_pane">
-      <%= render "friends_pane" %>
-    </div>
+  <div class="row CenterWhiteText">  
+      <div class="col-lg-8 col-lg-offset-2">
+          <div id="friends_pane">
+            <%= render "friends_pane" %>
+          </div>
+      </div>
   </div>
 </div>
