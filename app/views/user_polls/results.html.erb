@@ -1,3 +1,5 @@
+<%= render partial: "shared/navbar" %>
+<br>
 <div class="container">
   <div class="row">
     <div class="col-lg-6 col-lg-offset-3">
@@ -14,6 +16,18 @@
       </div>
       <div class="row">
         <%= render "poll_results" %>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-lg-offset-3 CenterWhiteText">
+            <% @user_poll.comments.each do |comment| %>
+                <% a = comment.commenter %>
+                <% if !a.blank? %>
+                    <p><strong><%= comment.commenter %> says</strong></p>
+                    <p><i><%= comment.body %></i></p>
+                    <br>
+                <% end %>
+            <% end %>
+        </div>
       </div>
       <div class="row">
           <div class="col-xs-4 col-xs-offset-4">
