@@ -1,88 +1,41 @@
+<%= render partial: "shared/navbar" %>
+<br>
 <div class="container">
   <div class="row">
-    <div class="col-lg-8 col-lg-offset-2">
-      <p id="notice"><%= notice %></p>
-      <h1>
-        <strong>Title:</strong>
-        <%= @user_poll.title %>
-      </h1>
-      
-      <h3>
-        <%= image_tag @user_poll.poll_picture.url(:medium) %><br /><br />
-        <strong>Description:</strong>
-        <%= @user_poll.description %>
-      </h3>
-    </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="col-lg-2 col-lg-offset-2">
-      <h3><strong>Questions</strong></h3>
-      <p><br>
-        <% @user_poll.poll_questions.each_with_index do |poll_question, index| %>
-          Question <%= "#{index+1}" %>. <%= poll_question.text %> <br>
-          <%= image_tag poll_question.poll_question_picture.url(:thumb) %><br />
-          <% if poll_question.optional %>
-            <i>Is optional</i><br>
-          <% end %>
-          <% if poll_question.allow_multiple_answers %>
-            <i>Allows multiple answers</i><br>
-          <% end %>
-          <list>
-            <% poll_question.answers.each do |answer| %>
-              <li><%= answer.text %></li>
+    <div class="col-lg-6 col-lg-offset-3">
+      <div class="row CenterWhiteText">
+        <p id="notice"><%= notice %></p>
+        <h1>
+          <strong>Results for</strong>
+          <%= @user_poll.title %>
+        </h1>
+        <h3 class="CenterLightGreyText">
+          <%= image_tag @user_poll.poll_picture.url(:medium) %><br /><br />
+          <%= @user_poll.description %>
+        </h3>
+      </div>
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <%= render "poll_results" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-lg-offset-3 CenterWhiteText">
+            <% @user_poll.comments.each do |comment| %>
+                <% a = comment.commenter %>
+                <% if !a.blank? %>
+                    <p><strong><%= comment.commenter %> says</strong></p>
+                    <p><i><%= comment.body %></i></p>
+                    <br>
+                <% end %>
             <% end %>
-          </list> </br>
-        <% end %>
-      </p>
-      <h3><strong>Current Poll Results:</strong></h3>
-      <p>
-        <% @user_poll.poll_questions.each_with_index do |poll_question, index| %>
-          Question <%= "#{index+1}" %>. <%= poll_question.text %> <br>
-          <list>
-            <% poll_question.answers.each_with_index do |answer, index| %>
-              <li>OPTION <%= index+1 %>: <%= answer.text %> <br>
-                VOTES: <%= answer.results[0].votes %><br><br></li>
-            <% end %>
-          </list> </br>
-        <% end %>
-      </p>
-      <h2>Vote on survey</h2>
-      <p>
-        <% @user_poll.poll_questions.each do |poll_question| %>
-          <list>
-            <% poll_question.answers.each_with_index do |answer, index| %>
-              <li>OPTION <%= index+1 %>:<br></li>
-              <%= link_to "Vote", {:controller => "results", :action => "test", :id => answer.id} %>
-            <% end %>
-          </list> </br>
-        <% end %>
-      </p>
-      <h3><strong>Comments:</strong></h3>
-      <p>
-        <% @user_poll.comments.each do |comment| %>
-          <p>
-            <Strong>Commenter:</Strong>
-            <%= comment.commenter%>
-          </p>
-          <p>
-            <Strong>Comment:</Strong>
-            <%= comment.body%>
-          </p>
-                </br>
-        <% end %>
-      </p>
-      <h2>Add a Comment</h2>
-      <%= form_for([@user_poll, @user_poll.comments.build]) do |f| %>
-        <p>
-          <%= f.label :body %> <br/>
-          <%= f.text_area :body %>
-        </p>
-        <p>
-          <%= f.submit %>
-        </p>
-      <% end %>
-      <%= link_to 'Back', root_path %>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-xs-4 col-xs-offset-4">
+              <p><%= link_to " Back Home", :back, {:style=>'color:#FFFFFF;', :class => "btn btn-primary Btn-White center-block"}%></p><br>
+          </div>
+      </div>
     </div>
   </div>
 </div>
