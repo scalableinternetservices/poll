@@ -26,7 +26,7 @@ class LandingPageController < ApplicationController
   def search_polls
     cleaned_params = search_polls_params
     num_search_polls = cleaned_params[:num_search_polls].to_i
-    search = cleaned_params[:search]
+    search = nil
     @search_polls, @can_show_more_search_polls = get_polls(num_search_polls, search)
     @next_search_polls_request_size = num_search_polls + 5
     render(layout: false)
@@ -36,7 +36,7 @@ class LandingPageController < ApplicationController
   def news_feed_polls
     num_news_feed_polls = news_feed_polls_params.to_i
     cleaned_params = news_feed_polls_params
-    search = cleaned_params[:search]
+    search = nil
     @news_feed_polls, @can_show_more_news_feed_polls = get_news_feed_polls(num_news_feed_polls, search)
     @next_news_feed_polls_request_size = num_news_feed_polls + 5
     render(layout: false)
@@ -82,11 +82,11 @@ class LandingPageController < ApplicationController
     end
 
     def news_feed_polls_params
-      params.require(:num_news_feed_polls).permit(:search)
+      params.require(:num_news_feed_polls)
     end
     
     def current_user_polls_params
-      params.require(:num_current_user_polls).permit(:search)
+      params.require(:num_current_user_polls)
     end
 
     def friends_pane_params
