@@ -113,7 +113,7 @@ class UserPollsController < ApplicationController
 
     respond_to do |format|
       if @user_poll.save
-        format.html { redirect_to @user_poll, notice: 'User poll was successfully created.' }
+        format.html { redirect_to root_path, notice: 'User poll was successfully created.' }
         format.json { render :show, status: :created, location: @user_poll }
       else
         @poll_questions = @user_poll.poll_questions.length == 0 ? [PollQuestion.new] : @user_poll.poll_questions
@@ -135,7 +135,7 @@ class UserPollsController < ApplicationController
   def destroy
     respond_to do |format|
       if User.find(@user_poll.user_id) == current_user and @user_poll.destroy
-        format.html { redirect_to user_polls_url, notice: 'User poll was successfully destroyed.' }
+        format.html { redirect_to root_path, notice: 'User poll was successfully destroyed.' }
         format.json { head :no_content }
       else
         format.html { render :index }
@@ -157,9 +157,9 @@ class UserPollsController < ApplicationController
 
     respond_to do |format|
       if shared_poll.save
-        format.html { redirect_to UserPoll.find(cleaned_params[:poll_id]), notice: 'Successfully shared poll' }
+        format.html { redirect_to root_path, notice: 'Successfully shared poll' }
       else
-        format.html { redirect_to UserPoll.find(cleaned_params[:poll_id]), notice: 'Failed to share poll' }
+        format.html { redirect_to root_path, notice: 'Failed to share poll' }
       end
     end
   end
