@@ -20,10 +20,6 @@
   </servers>
 
   <load>
-    <arrivalphase phase="1" duration="1" unit="second">
-      <users arrivalrate="1" unit="second"></users>
-    </arrivalphase>
-<!--
     <arrivalphase phase="1" duration="30" unit="second">
       <users arrivalrate="1" unit="second"></users>
     </arrivalphase>
@@ -48,7 +44,6 @@
    <arrivalphase phase="8" duration="30" unit="second">
      <users arrivalrate="128" unit="second"></users>
    </arrivalphase>
--->
 <!--   
    <arrivalphase phase="9" duration="30" unit="second">
      <users arrivalrate="256" unit="second"></users>
@@ -85,7 +80,7 @@
               content_type="application/x-www-form-urlencoded" method="POST">              
         </http>
       </request>
-      
+
       <!-- Wait for up to 2 seconds, user is looking at polls -->
       <thinktime value="2" random="true"></thinktime>
 
@@ -104,8 +99,8 @@
 
       <!-- Create new poll -->
       <request subst="true">
-      	<dyn_variable name="created_poll_url" re="[Ll]ocation: (http://.*)\r"/>
-      	<dyn_variable name="created_poll_id" re="[Ll]ocation: http://.*/user_polls/(.*)\r"/>
+      	<dyn_variable name="created_poll_results_url" re="[Ll]ocation: (http://.*)\r"/>
+      	<dyn_variable name="created_poll_id" re="[Ll]ocation: http://.*/user_polls/(.*)/results\r"/>
         <http
               url='/user_polls'
               version='1.1'
@@ -117,7 +112,7 @@
       <!-- View the poll -->
       <request subst="true">
       	<dyn_variable name="option1_num"
-      	              re='value="([0-9]+)"'/>
+      	              re='id="answers_0_([0-9]+)"'/>
         <http url="/user_polls/%%_created_poll_id%%/vote" version="1.1" method="GET"/>
       </request>
 
@@ -160,6 +155,11 @@
               contents='utf8=%E2%9C%93&amp;comment%5Bbody%5D=This+is+great%21+polluser%%_random_user_num%%&amp;commit=Create+Comment'
               content_type="application/x-www-form-urlencoded" method="POST">              
         </http>
+      </request>
+
+      <!-- Look at John Smith's profile -->
+      <request subst="true">
+        <http url='/users/2/profile/' version='1.1' method='GET'/>
       </request>
 
       <!-- Log out of the user -->

@@ -113,7 +113,7 @@ class UserPollsController < ApplicationController
 
     respond_to do |format|
       if @user_poll.save
-        format.html { redirect_to root_path, notice: 'User poll was successfully created.' }
+        format.html { redirect_to user_poll_results_path(@user_poll), notice: 'User poll was successfully created.' }
         format.json { render :show, status: :created, location: @user_poll }
       else
         @poll_questions = @user_poll.poll_questions.length == 0 ? [PollQuestion.new] : @user_poll.poll_questions
