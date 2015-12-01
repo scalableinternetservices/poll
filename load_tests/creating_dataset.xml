@@ -20,7 +20,7 @@
   </servers>
 
   <load>
-    <arrivalphase phase="1" duration="30" unit="second">
+    <arrivalphase phase="1" duration="1" unit="second">
       <users arrivalrate="1" unit="second"></users>
     </arrivalphase>
     <arrivalphase phase="2" duration="30" unit="second">
@@ -44,6 +44,8 @@
    <arrivalphase phase="8" duration="30" unit="second">
      <users arrivalrate="128" unit="second"></users>
    </arrivalphase>
+<!--
+-->
 <!--   
    <arrivalphase phase="9" duration="30" unit="second">
      <users arrivalrate="256" unit="second"></users>
@@ -131,17 +133,7 @@
 
       <!-- View the results of the poll -->
       <request subst="true">
-        <dyn_variable name="question1_num"
-                      re='data-question-id="([0-9]+)"'/>
         <http url="/user_polls/%%_created_poll_id%%/results" version="1.1" method="GET"/>
-      </request>
-
-      <!-- Manually fire the AJAX requests for the results page -->
-      <request subst="true">
-        <http url="/user_polls/%%_created_poll_id%%/poll_details" version="1.1" method="GET"/>
-      </request>
-      <request subst="true">
-        <http url="/user_polls/%%_question1_num%%/question_details" version="1.1" method="GET"/>
       </request>
 
       <!-- Wait for up to 5 seconds, user is observing results and typing a comment -->
@@ -255,40 +247,6 @@
         <http url="/user_polls/1/results" version="1.1" method="GET"/>
       </request>
 
-      <!-- Manually fire the AJAX requests for the results page -->
-      <request subst="true">
-        <http url="/user_polls/1/poll_details" version="1.1" method="GET"/>
-      </request>
-      <request subst="true">
-        <http url="/user_polls/1/question_details" version="1.1" method="GET"/>
-      </request>
-      <request subst="true">
-        <http url="/user_polls/2/question_details" version="1.1" method="GET"/>
-      </request>
-      <request subst="true">
-        <http url="/user_polls/3/question_details" version="1.1" method="GET"/>
-      </request>
-      <request subst="true">
-        <http url="/user_polls/4/question_details" version="1.1" method="GET"/>
-      </request>
-      <request subst="true">
-        <http url="/user_polls/5/question_details" version="1.1" method="GET"/>
-      </request>
-      <request subst="true">
-        <http url="/user_polls/6/question_details" version="1.1" method="GET"/>
-      </request>
-      <request subst="true">
-        <http url="/user_polls/7/question_details" version="1.1" method="GET"/>
-      </request>
-      <request subst="true">
-        <http url="/user_polls/8/question_details" version="1.1" method="GET"/>
-      </request>
-      <request subst="true">
-        <http url="/user_polls/9/question_details" version="1.1" method="GET"/>
-      </request>
-      <request subst="true">
-        <http url="/user_polls/10/question_details" version="1.1" method="GET"/>
-      </request>
     </session>
   </sessions>
 </tsung>
