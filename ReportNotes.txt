@@ -66,6 +66,36 @@ User Load (0.2ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 2  ORDER 
   Rendered landing_page/index.html.erb within layouts/application (17.5ms)
 Completed 200 OK in 162ms (Views: 114.6ms | ActiveRecord: 6.4ms)
 
+== OPTIMIZE VOTE VALIDATION ==
+
+Another pattern in which we can use pre-fetching to optimize:
+
+  Answer Load (0.3ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 1 LIMIT 1
+  Answer Load (0.2ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 17 LIMIT 1
+  Answer Load (0.2ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 29 LIMIT 1
+  Answer Load (0.2ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 33 LIMIT 1
+  Answer Load (0.4ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 41 LIMIT 1
+  Answer Load (0.3ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 53 LIMIT 1
+  Answer Load (0.4ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 65 LIMIT 1
+  Answer Load (0.4ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 73 LIMIT 1
+  Answer Load (0.3ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 84 LIMIT 1
+  Answer Load (0.1ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 94 LIMIT 1
+  PollQuestion Load (0.2ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 1 LIMIT 1
+  PollQuestion Load (0.1ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 2 LIMIT 1
+  PollQuestion Load (0.1ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 3 LIMIT 1
+  PollQuestion Load (0.1ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 4 LIMIT 1
+  PollQuestion Load (0.1ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 5 LIMIT 1
+  PollQuestion Load (0.1ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 6 LIMIT 1
+  PollQuestion Load (0.1ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 7 LIMIT 1
+  PollQuestion Load (0.1ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 8 LIMIT 1
+  PollQuestion Load (0.1ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 9 LIMIT 1
+  PollQuestion Load (0.1ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 10 LIMIT 1
+
+reducing this query to
+
+  Answer Load (0.5ms)  SELECT `answers`.* FROM `answers` WHERE `answers`.`id` IN (2, 13, 23, 31, 45, 57, 65, 72, 86, 96)
+  PollQuestion Load (0.5ms)  SELECT `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` IN (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
 == OPTIMIZE INCREMENT ==
 
    (0.2ms)  BEGIN
@@ -114,3 +144,19 @@ When using new and then manually adding the commenter, we get this reduced query
    (0.1ms)  BEGIN
   SQL (0.2ms)  INSERT INTO `comments` (`body`, `user_poll_id`, `commenter`, `created_at`, `updated_at`) VALUES ('shitty poll', 2, 'Pollster ', '2015-12-01 17:01:57', '2015-12-01 17:01:57')
    (34.1ms)  COMMIT
+
+== PROFILE OPTIMIZATIONS ==
+
+In the profile, we join UserVotes with UserPoll to determine which polls a user has voted in. Again, we use pre-fetching to reduce the number of queries we need to execute:
+
+  UserVote Load (0.4ms)  SELECT  `user_votes`.* FROM `user_votes` WHERE `user_votes`.`user_id` = 1 LIMIT 5
+  UserPoll Load (0.3ms)  SELECT  `user_polls`.* FROM `user_polls` WHERE `user_polls`.`id` = 2015 LIMIT 1
+  UserPoll Load (0.1ms)  SELECT  `user_polls`.* FROM `user_polls` WHERE `user_polls`.`id` = 2012 LIMIT 1
+  UserPoll Load (0.2ms)  SELECT  `user_polls`.* FROM `user_polls` WHERE `user_polls`.`id` = 2013 LIMIT 1
+  UserPoll Load (0.2ms)  SELECT  `user_polls`.* FROM `user_polls` WHERE `user_polls`.`id` = 2010 LIMIT 1
+  UserPoll Load (0.2ms)  SELECT  `user_polls`.* FROM `user_polls` WHERE `user_polls`.`id` = 2 LIMIT 1
+
+to
+
+  UserVote Load (0.1ms)  SELECT  `user_votes`.* FROM `user_votes` WHERE `user_votes`.`user_id` = 1 LIMIT 5
+  UserPoll Load (0.5ms)  SELECT `user_polls`.* FROM `user_polls` WHERE `user_polls`.`id` IN (2015, 2012, 2013, 2010, 2)

@@ -172,26 +172,33 @@ class UserPollsController < ApplicationController
     invalid = false
 
     answers = params.key?(:answers) ? params[:answers] : Hash.new
+    answer_ids = answers.map { |index, answer_id| answer_id }
 
     # Count the number of answers for each seen question, so that the input can be validated
     # before changing the model.
     answer_count = Hash.new
-    answers.each { |index, answer_id|
-      question_id = Answer.find(answer_id).poll_question_id.to_i
+    answers = Answer.includes(:poll_question).where(id: answer_ids)
+    answers.each { |answer|
+      question_id = answer.poll_question_id
       if answer_count.key?(question_id)
         answer_count[question_id] += 1
       else
         answer_count[question_id] = 1
       end
-    }
 
-    # Validate that the questions belongs to the right poll
-    answer_count.each { |question_id, count|
-      if PollQuestion.find(question_id).user_poll_id != params[:poll_id].to_i
+      if answer.poll_question.user_poll_id != params[:poll_id].to_i
         invalid = true
         break
       end
     }
+
+    # Validate that the questions belongs to the right poll
+    #answers.each { |question_id, count|
+    #  if PollQuestion.find(question_id).user_poll_id != params[:poll_id].to_i
+    #    invalid = true
+    #    break
+    #  end
+    #}
     
     # Check that the number of answers follows the necessary constraints
     @user_poll = UserPoll.find(params[:poll_id])
@@ -212,8 +219,7 @@ class UserPollsController < ApplicationController
     already_voted_on = UserVote.exists?(user_id: current_user.id, user_poll_id: @user_poll.id)
 
     unless invalid or already_voted_on
-      answers_only = answers.map { |question_id, answer_id| answer_id }
-      Answer.increment_counter(:votes, answers_only)
+      Answer.increment_counter(:votes, answer_ids)
 
       UserVote.create(user_id: current_user.id, user_poll_id: @user_poll.id)
 
