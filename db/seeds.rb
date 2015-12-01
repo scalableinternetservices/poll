@@ -8,8 +8,7 @@ large_poll = pollster.user_polls.new(title: "Large poll", description: "Descript
 10.times do |num|
   question = large_poll.poll_questions.new(text: "Question #{num}")
   10.times do |num2|
-    answer = question.answers.new(text: "Opt #{num2}")
-    answer.results.new(votes: 0)
+    answer = question.answers.new(text: "Opt #{num2}", votes: 0)
   end
 end
 
