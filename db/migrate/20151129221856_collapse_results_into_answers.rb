@@ -1,6 +1,6 @@
 class CollapseResultsIntoAnswers < ActiveRecord::Migration
   def change
-    add_column :answers, :votes, :integer
+    add_column :answers, :votes, :integer, default: 0, null: false
 
     Result.all.each { |result|
       Answer.find(result.answer_id).votes = result.votes

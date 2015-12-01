@@ -13,16 +13,14 @@
           <div id=<%= "chart"+"#{index+1}"%> data-sort="false" data-width="300" class="jChart chart-lg WhiteText">
               <% i = 0 %>
               <% poll_question.answers.each do |answer| %>
-                  <% answer.results.each do |result| %>
-                      <% if i % 3 == 0 %>
-                          <div class="define-chart-row" data-color="#84d6ff" title=<%= answer.text %>><%=result.votes%></div>
-                      <% elsif i % 3 == 1 %>
-                          <div class="define-chart-row" data-color="#00A9FF" title=<%= answer.text %>><%=result.votes%></div>
-                      <% else %>
-                          <div class="define-chart-row" data-color="#005882" title=<%= answer.text %>><%=result.votes%></div>
-                      <% end %>
-                  <% end %>
-                  <% i += 1 %>
+                <% if i % 3 == 0 %>
+                  <div class="define-chart-row" data-color="#84d6ff" title=<%= answer.text %>><%=answer.votes%></div>
+                <% elsif i % 3 == 1 %>
+                  <div class="define-chart-row" data-color="#00A9FF" title=<%= answer.text %>><%=answer.votes%></div>
+                <% else %>
+                  <div class="define-chart-row" data-color="#005882" title=<%= answer.text %>><%=answer.votes%></div>
+                <% end %>
+                <% i += 1 %>
               <% end %>
           </div>
       </div>
