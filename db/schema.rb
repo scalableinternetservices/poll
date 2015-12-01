@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(version: 20151129221856) do
   create_table "answers", force: :cascade do |t|
     t.integer  "poll_question_id", limit: 4
     t.text     "text",             limit: 65535
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.integer  "votes",            limit: 4
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.integer  "votes",            limit: 4,     default: 0
   end
 
   add_index "answers", ["poll_question_id"], name: "index_answers_on_poll_question_id", using: :btree
