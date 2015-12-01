@@ -110,3 +110,33 @@ User Load (0.2ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 2  ORDER 
   Rendered landing_page/index.html.erb within layouts/application (17.5ms)
 Completed 200 OK in 162ms (Views: 114.6ms | ActiveRecord: 6.4ms)
 
+== OPTIMIZE INCREMENT ==
+
+   (0.2ms)  BEGIN
+  CACHE (0.0ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 1 LIMIT 1  [["id", "1"]]
+  SQL (0.5ms)  UPDATE `answers` SET `votes` = 1, `updated_at` = '2015-12-01 16:28:06' WHERE `answers`.`id` = 1
+  Answer Load (0.3ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 11 LIMIT 1
+  SQL (0.3ms)  UPDATE `answers` SET `votes` = 1, `updated_at` = '2015-12-01 16:28:06' WHERE `answers`.`id` = 11
+  Answer Load (0.3ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 21 LIMIT 1
+  SQL (0.2ms)  UPDATE `answers` SET `votes` = 1, `updated_at` = '2015-12-01 16:28:06' WHERE `answers`.`id` = 21
+  Answer Load (0.3ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 31 LIMIT 1
+  SQL (0.2ms)  UPDATE `answers` SET `votes` = 1, `updated_at` = '2015-12-01 16:28:06' WHERE `answers`.`id` = 31
+  Answer Load (0.3ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 41 LIMIT 1
+  SQL (0.2ms)  UPDATE `answers` SET `votes` = 1, `updated_at` = '2015-12-01 16:28:06' WHERE `answers`.`id` = 41
+  Answer Load (0.2ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 51 LIMIT 1
+  SQL (0.2ms)  UPDATE `answers` SET `votes` = 1, `updated_at` = '2015-12-01 16:28:06' WHERE `answers`.`id` = 51
+  Answer Load (0.2ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 61 LIMIT 1
+  SQL (0.2ms)  UPDATE `answers` SET `votes` = 1, `updated_at` = '2015-12-01 16:28:06' WHERE `answers`.`id` = 61
+  Answer Load (0.2ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 71 LIMIT 1
+  SQL (0.2ms)  UPDATE `answers` SET `votes` = 1, `updated_at` = '2015-12-01 16:28:06' WHERE `answers`.`id` = 71
+  Answer Load (0.2ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 81 LIMIT 1
+  SQL (0.2ms)  UPDATE `answers` SET `votes` = 1, `updated_at` = '2015-12-01 16:28:06' WHERE `answers`.`id` = 81
+  Answer Load (0.2ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 91 LIMIT 1
+  SQL (0.2ms)  UPDATE `answers` SET `votes` = 1, `updated_at` = '2015-12-01 16:28:06' WHERE `answers`.`id` = 91
+  SQL (0.3ms)  INSERT INTO `user_votes` (`user_id`, `user_poll_id`, `created_at`, `updated_at`) VALUES (1, 1, '2015-12-01 16:28:06', '2015-12-01 16:28:06')
+   (37.8ms)  COMMIT
+
+By using the increment_counter method, we can reduce this large block into a single operation:
+
+  SQL (0.3ms)  UPDATE `answers` SET `votes` = COALESCE(`votes`, 0) + 1 WHERE `answers`.`id` IN (1, 12, 22, 38, 47, 52, 62, 74, 83, 92)
+  SQL (0.2ms)  INSERT INTO `user_votes` (`user_id`, `user_poll_id`, `created_at`, `updated_at`) VALUES (3, 1, '2015-12-01 16:36:04', '2015-12-01 16:36:04')

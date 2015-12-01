@@ -171,7 +171,6 @@ class UserPollsController < ApplicationController
   def submit_vote
     invalid = false
 
-    print params.key?(:answers)
     answers = params.key?(:answers) ? params[:answers] : Hash.new
 
     # Count the number of answers for each seen question, so that the input can be validated
@@ -186,7 +185,7 @@ class UserPollsController < ApplicationController
       end
     }
 
-    # Validate that the that the questions belongs to the right poll
+    # Validate that the questions belongs to the right poll
     answer_count.each { |question_id, count|
       if PollQuestion.find(question_id).user_poll_id != params[:poll_id].to_i
         invalid = true
@@ -197,7 +196,6 @@ class UserPollsController < ApplicationController
     # Check that the number of answers follows the necessary constraints
     @user_poll = UserPoll.find(params[:poll_id])
     @user_poll.poll_questions.each { |question|
-      print answer_count[question.id]
       if answer_count.key?(question.id) == false
         unless question.optional
           invalid = true
@@ -215,11 +213,13 @@ class UserPollsController < ApplicationController
 
     unless invalid or already_voted_on
       ActiveRecord::Base.transaction do
-        answers.each { |question_id, answer_id|
-          answer = Answer.find(answer_id)
-          answer.votes += 1
-          answer.save
-        }
+        answers_only = answers.map { |question_id, answer_id| answer_id }
+        Answer.increment_counter(:votes, answers_only)
+        #answers.each { |question_id, answer_id|
+        #  answer = Answer.find(answer_id)
+        #  answer.votes += 1
+        #  answer.save
+        #}
 
         UserVote.create(user_id: current_user.id, user_poll_id: @user_poll.id)
       end
