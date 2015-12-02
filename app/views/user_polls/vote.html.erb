@@ -1,47 +1,49 @@
 <%= render partial: "shared/navbar" %>
-<br><br>
-<div class="container CenterWhiteText">
-  <div class="row">
-    <div class="col-lg-6 col-lg-offset-3">
-      <p id="notice"><%= notice %></p>
-      <h1>Vote on <%= @user_poll.title %></h1>
-      <h3 class="CenterLightGreyText">
-        <%= image_tag @user_poll.poll_picture.url(:medium) %><br /><br />
-        <%= @user_poll.description %>
-      </h3>
+<% cache(@user_poll) do %>
+  <br><br>
+  <div class="container CenterWhiteText">
+    <div class="row">
+      <div class="col-lg-6 col-lg-offset-3">
+        <p id="notice"><%= notice %></p>
+        <h1>Vote on <%= @user_poll.title %></h1>
+        <h3 class="CenterLightGreyText">
+          <%= image_tag @user_poll.poll_picture.url(:medium) %><br /><br />
+          <%= @user_poll.description %>
+        </h3>
+      </div>
     </div>
-  </div>
-  <br>
-  <div class="row VoteContainer">
-    <div class="col-lg-2 col-lg-offset-5">
-      <%= form_tag submit_vote_path(@user_poll.id), method: :post do %>
-        <% answer_index = 0 %>
-        <% @user_poll.poll_questions.each_with_index do |poll_question, question_index| %>
-          <h4>Question <%= "#{question_index+1}" %>. <%= poll_question.text %></h4>
-          <% if poll_question.optional %> <%= raw("<i> (optional) </i>") %> <% end %>
-          <%= image_tag poll_question.poll_question_picture.url(:thumb) %><br><br>
-          <% if poll_question.allow_multiple_answers %>
-            <% poll_question.answers.each do |answer| %>
+    <br>
+    <div class="row VoteContainer">
+      <div class="col-lg-2 col-lg-offset-5">
+        <%= form_tag submit_vote_path(@user_poll.id), method: :post do %>
+          <% answer_index = 0 %>
+          <% @user_poll.poll_questions.each_with_index do |poll_question, question_index| %>
+            <h4>Question <%= "#{question_index+1}" %>. <%= poll_question.text %></h4>
+            <% if poll_question.optional %> <%= raw("<i> (optional) </i>") %> <% end %>
+            <%= image_tag poll_question.poll_question_picture.url(:thumb) %><br><br>
+            <% if poll_question.allow_multiple_answers %>
+              <% poll_question.answers.each do |answer| %>
+                <% input_name = "answers[#{answer_index}]" %>
+                <%= check_box_tag input_name, answer.id %>
+                <%= label_tag input_name, answer.text %>
+                <br>
+                <% answer_index += 1 %>
+              <% end %>
+            <% else %>
               <% input_name = "answers[#{answer_index}]" %>
-              <%= check_box_tag input_name, answer.id %>
-              <%= label_tag input_name, answer.text %>
-              <br>
+              <% poll_question.answers.each do |answer| %>
+                <%= radio_button_tag input_name, answer.id %>
+                <%= label_tag input_name, answer.text %>
+                <br>
+              <% end %>
               <% answer_index += 1 %>
             <% end %>
-          <% else %>
-            <% input_name = "answers[#{answer_index}]" %>
-            <% poll_question.answers.each do |answer| %>
-              <%= radio_button_tag input_name, answer.id %>
-              <%= label_tag input_name, answer.text %>
-              <br>
-            <% end %>
-            <% answer_index += 1 %>
+            <br>
           <% end %>
-          <br>
+          <%= submit_tag "Submit vote",{:style=>'color:#FFFFFF;', :class => "btn btn-primary Btn-White"}%><br><br>
+          <p><%= link_to " Back Home", :back, {:style=>'color:#FFFFFF;', :class => "btn btn-primary Btn-White"}%></p><br>
         <% end %>
-        <%= submit_tag "Submit vote",{:style=>'color:#FFFFFF;', :class => "btn btn-primary Btn-White"}%><br><br>
-        <p><%= link_to " Back Home", :back, {:style=>'color:#FFFFFF;', :class => "btn btn-primary Btn-White"}%></p><br>
-      <% end %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
