@@ -3,11 +3,10 @@
     <div class="col-md-5 col-sm-5">
        <% @counter = 0 %>
        <% @news_feed_polls.each do |user_poll_tuple| %>
-          <% user_poll = user_poll_tuple[0] %>
-          <% comment = user_poll_tuple[1] %>
-
           <% if @counter % 2 == 0 %>
-            <% cache(user_poll) do %>
+            <% cache(user_poll_tuple[0]) do %>
+              <% user_poll = user_poll_tuple[0] %>
+              <% comment = user_poll_tuple[1] %>
               <br>
               <div class="thumbnail center-block"  style="background-color: #000;">
                   <%= image_tag "login_bg.jpg", :class => 'img-responsive center-block' %>
@@ -40,10 +39,10 @@
     <div class="col-md-5 col-md-offset-2 col-sm-5 col-md-offset-2">
        <% @counter = 1 %>
        <% @news_feed_polls.each do |user_poll_tuple| %>
-          <% user_poll = user_poll_tuple[0] %>
-          <% comment = user_poll_tuple[1] %>
           <% if @counter % 2 == 0 %>
-            <% cache(user_poll) do %>
+            <% cache(user_poll_tuple[0]) do %>
+              <% user_poll = user_poll_tuple[0] %>
+              <% comment = user_poll_tuple[1] %>
               <br>
               <div class="thumbnail center-block"  style="background-color: #000;">
                   <%= image_tag "login_bg.jpg", :class => 'img-responsive center-block' %>
