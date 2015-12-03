@@ -125,7 +125,7 @@ class LandingPageController < ApplicationController
       shared_polls.select! { |shared_poll| !(UserVote.exists?(user_id: current_user.id, user_poll_id: shared_poll.id)) }
       shared_polls.map! { |shared_poll|
         sharer = User.find(shared_poll.sharer_id)
-        [shared_poll.user_poll, "Shared with you by #{sharer.first_name} #{sharer.last_name}!"]
+        [shared_poll.user_poll, "Shared with you by #{sharer.first_name} #{sharer.last_name}!", shared_poll.user]
       }
       if shared_polls.length > max_num_polls
         return shared_polls[0...max_num_polls], true
@@ -133,8 +133,8 @@ class LandingPageController < ApplicationController
 
       # If needed, fill with the most recently added polls
       # Grab one more poll than requested so that we can determine if there are more polls to show
-      other_polls = UserPoll.where.not(user_id: current_user.id).order(updated_at: :desc).limit(max_num_polls + 1).all
-      other_polls = other_polls.map { |poll| [poll, ""] }
+      other_polls = UserPoll.includes(:user).where.not(user_id: current_user.id).order(updated_at: :desc).limit(max_num_polls + 1).all
+      other_polls = other_polls.map { |poll| [poll, "", poll.user] }
 
       # Eliminate any polls in other_polls that are duplicates of ones in shared_polls
       other_polls.select! { |a| !(shared_polls.detect { |b| a[0].id == b[0].id }) }

@@ -8,7 +8,7 @@ class UserProfilesController < ApplicationController
     @created_polls = @profile_user.user_polls
     @created_polls = @created_polls[0...5] if @created_polls.length >= 5
 
-    @voted_polls = UserVote.where(user_id: @profile_user.id).limit(5)
+    @voted_polls = UserVote.includes(:user_poll).where(user_id: @profile_user.id).limit(5)
     @voted_polls = @voted_polls.map { |vote| vote.user_poll }
 
     @user_friends = @profile_user.friendships_to.map { |friendship| User.find(friendship.friend_id) }
