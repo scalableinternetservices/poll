@@ -45,14 +45,19 @@
           </div>
       </div>
       <div class="row">
-        <h4 class="CenterWhiteText">Comments</h4><br>
         <div class="col-lg-6 col-lg-offset-3 CenterWhiteText">
-            <% @user_poll.comments.each do |comment| %>
-                <% a = comment.commenter %>
-                <% if !a.blank? %>
-                    <p><strong><%= comment.commenter %> says</strong></p>
-                    <p><i><%= comment.body %></i></p>
-                    <br>
+            <% if @user_poll.comments.length == 0 %>
+              <h2 class="CenterWhiteText">Comments</h2>
+              <h4 class="CenterWhiteText">None Available</h4><br>
+            <% else %>
+                <h2 class="CenterWhiteText">Comments</h2><br>
+                <% @user_poll.comments.each do |comment| %>
+                    <% a = comment.commenter %>
+                    <% if !a.blank? %>
+                        <p><strong><%= comment.commenter %> says</strong></p>
+                        <p><i><%= comment.body %></i></p>
+                        <br>
+                    <% end %>
                 <% end %>
             <% end %>
         </div>

@@ -25,20 +25,27 @@
                 }
             end
         %>
+        <%  require 'date'
+            start_date = Time.at(time_range_start).to_datetime
+            start_date = start_date.strftime("%m/%d/%Y")
+            end_date = Time.at(time_range_end).to_datetime
+            end_date = end_date.strftime("%m/%d/%Y") %>
+        <h2 class="CenterWhiteText">Votes Collected Between</h1>
+        <h4 class="CenterWhiteText"><%= start_date %> and <%= end_date %></h3><br>
         <div class="container">
             <div id=<%= "trend"%> data-sort="false" data-width="300" class="jChart chart-lg WhiteText">
                 <% i = 0 %>
                 <% bin_votes.each do |date| %>
                     <%  require 'date'
                         time = Time.at(time_range_start + i*time_scale).to_datetime
-                        time2 = time_range_start + i*time_scale %>
+                        time = time.strftime("%m/%d/%Y at %I:%M%p") %>
                     <h1><%= time %></h1>
                     <% if i % 3 == 0 %>
-                        <div class="define-chart-row" data-color="#84d6ff" title=<%= time %>><%=date%></div>
+                        <div class="define-chart-row" data-color="#84d6ff" title="<%= time %>"><%=date%></div>
                     <% elsif i % 3 == 1 %>
-                        <div class="define-chart-row" data-color="#00A9FF" title=<%= time %>><%=date%></div>
+                        <div class="define-chart-row" data-color="#00A9FF" title="<%= time %>"><%=date%></div>
                     <% else %>
-                        <div class="define-chart-row" data-color="#005882" title=<%= time %>><%=date%></div>
+                        <div class="define-chart-row" data-color="#005882" title="<%= time %>"><%=date%></div>
                     <% end %>
                     <% i += 1 %>
                 <% end %>
