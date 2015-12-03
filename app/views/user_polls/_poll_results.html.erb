@@ -1,5 +1,6 @@
 <div class="col " id="test">
   <% @user_poll.poll_questions.each_with_index do |poll_question, index| %>
+    <% cache(poll_question) do %>
       <br>
       <div class="row">
           <div class="col-xs-3">
@@ -26,6 +27,7 @@
               <% end %>
           </div>
       </div>
+    <% end %>
   <% end %>
 </div>
 
