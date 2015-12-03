@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<!-- Using tsung on AWS -->
+<!-- Using tsung on AWS-->
 <!DOCTYPE tsung SYSTEM "/home/ec2-user/opt/tsung-1.5.0/share/tsung/tsung-1.0.dtd"> 
-<!-- Using tsung on local mac with homebrew install 
+<!-- Using tsung on local mac with homebrew install
 <!DOCTYPE tsung SYSTEM "/usr/local/Cellar/tsung/1.6.0/share/tsung/tsung-1.0.dtd">
 -->
 <!-- Using tsung on local Ubuntu machine 
@@ -16,11 +16,11 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="localhost" port="3000" type="tcp"></server>
+    <server host="localhost" port="80" type="tcp"></server>
   </servers>
 
   <load>
-    <arrivalphase phase="1" duration="1" unit="second">
+    <arrivalphase phase="1" duration="30" unit="second">
       <users arrivalrate="1" unit="second"></users>
     </arrivalphase>
     <arrivalphase phase="2" duration="30" unit="second">
@@ -41,10 +41,10 @@
    <arrivalphase phase="7" duration="30" unit="second">
      <users arrivalrate="64" unit="second"></users>
    </arrivalphase>
+<!--
    <arrivalphase phase="8" duration="30" unit="second">
      <users arrivalrate="128" unit="second"></users>
    </arrivalphase>
-<!--
 -->
 <!--   
    <arrivalphase phase="9" duration="30" unit="second">
@@ -80,6 +80,16 @@
               version='1.1'
               contents='user%5Bfirst_name%5D=Pollster%%_random_user_num%%&amp;user%5Blast_name%5D=Pollster%%_random_user_num%%&amp;user%5Bemail%5D=pollster%%_random_user_num%%%40pollster.com&amp;user%5Bpassword%5D=pollster%%_random_user_num%%&amp;user%5Bpassword_confirmation%5D=pollster%%_random_user_num%%&amp;commit=Sign+up'
               content_type="application/x-www-form-urlencoded" method="POST">              
+        </http>
+      </request>
+
+      <!-- User goes to landing page -->
+      <request subst="true">
+        <http
+            url='/'
+            version='1.1'
+            content_type='application/x-www-form-urlencoded'
+            method='GET'>
         </http>
       </request>
 

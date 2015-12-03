@@ -1,4 +1,4 @@
-<%= form_for(@user_poll, multipart: true) do |user_poll_form| %>
+<%= bootstrap_form_for(@user_poll, multipart: true) do |user_poll_form| %>
   <% if @user_poll.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user_poll.errors.count, "error") %> prohibited this user_poll from being saved:</h2>
@@ -15,11 +15,10 @@
     <%= user_poll_form.text_field :title, class: 'form-control', placeholder: 'Title' %>
   </div>
   <div class="field">
-    <%= user_poll_form.text_area :description, class: 'form-control', placeholder: 'Description' %>
+    <%= user_poll_form.text_area :description, autofocus: true, autocomplete: "on", icon: "edit", class: 'form-control', placeholder: 'Description'%>
   </div>
   <div class="field">
-    <%= user_poll_form.label :poll_picture %>
-    <%= user_poll_form.file_field :poll_picture %>
+    <%= user_poll_form.file_field :poll_picture %><br>
   </div>
   <% @poll_questions.each_with_index do |poll_question, index| %>
     <%= user_poll_form.fields_for "poll_questions", poll_question do |poll_question_form| %>
@@ -28,8 +27,14 @@
       </div>
     <% end %>
   <% end %>
-
-  <%= user_poll_form.submit id: "actions", class: "btn btn-primary" %> 
-
+  <br>
+  <div class="row">
+    <div class="col-lg-3 ">
+      <p><%= user_poll_form.submit id: "actions", class: "btn btn-primary" %></p><br>
+    </div>
+    <div class="col-lg-3">
+      <p><%= link_to " Back Home", :root, {:style=>'color:#FFFFFF;', :class => "btn btn-primary center-block"}%></p><br>
+    </div>
+  </div>
 <% end %>
 

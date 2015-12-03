@@ -63,6 +63,7 @@ class UserPollsController < ApplicationController
     @default_num_answers = 2
     @min_num_answers = 2
     @max_num_answers = PollQuestion.MAX_NUM_ANSWERS
+    expires_in 1440.minutes, :public => true
   end
 
   # GET /user_polls/1/edit

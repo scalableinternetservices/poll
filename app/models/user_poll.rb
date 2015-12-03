@@ -4,6 +4,7 @@ class UserPoll < ActiveRecord::Base
 
   has_many :poll_questions, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :user_votes, dependent: :destroy
   
   belongs_to :user
   accepts_nested_attributes_for :poll_questions

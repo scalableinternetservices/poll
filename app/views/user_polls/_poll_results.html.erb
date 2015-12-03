@@ -1,5 +1,6 @@
-<div class="col ">
+<div class="col " id="test">
   <% @user_poll.poll_questions.each_with_index do |poll_question, index| %>
+    <% cache(poll_question) do %>
       <br>
       <div class="row">
           <div class="col-xs-3">
@@ -24,6 +25,7 @@
               <% end %>
           </div>
       </div>
+    <% end %>
   <% end %>
 </div>
 
@@ -33,7 +35,19 @@
             for (i = 1; i <= no_polls; i++) { 
                 $("#chart"+i).jChart({x_label:"Population",width:300});
             }
-            $("#colors_chart").jChart();
+            $("#trend").jChart({x_label:"Population",width:300});
+        });
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            var target = $(e.target).attr("href") // activated tab
+            if(target == "#trends"){
+                $("#trend").jChart({x_label:"Population",width:300});
+            }
+            else if(target == "#results"){
+                var no_polls = '<%= @user_poll.poll_questions.length %>';
+                for (i = 1; i <= no_polls; i++) { 
+                    $("#chart"+i).jChart({x_label:"Population",width:300});
+                }
+            }
         });
         if(!window.location.hash) {
             window.location = window.location + '#loaded';
