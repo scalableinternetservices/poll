@@ -1,0 +1,165 @@
+
+=INFO REPORT==== 3-Dec-2015::20:52:09 ===
+    ts_config_server:(5:<0.39.0>) Config server started, logdir is "/home/ec2-user/.tsung/log/20151203-2052"
+ 
+=INFO REPORT==== 3-Dec-2015::20:52:09 ===
+              ts_mon:(5:<0.38.0>) starting monitor, global 
+
+=INFO REPORT==== 3-Dec-2015::20:52:09 ===
+           ts_config:(5:<0.39.0>) Reading config file: poll/load_tests/creating_dataset.xml
+
+=INFO REPORT==== 3-Dec-2015::20:52:10 ===
+      ts_config_http:(4:<0.39.0>) Get user agent: 100 "Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox/1.0.4" 
+
+=INFO REPORT==== 3-Dec-2015::20:52:10 ===
+           ts_config:(5:<0.39.0>) Session name for id 1 is "http-example"
+
+=INFO REPORT==== 3-Dec-2015::20:52:10 ===
+    ts_config_server:(4:<0.39.0>) SYSINFO:Tsung version: 1.5.0
+
+=INFO REPORT==== 3-Dec-2015::20:52:10 ===
+    ts_config_server:(4:<0.39.0>) SYSINFO:Erlang version: Erlang R16B03-1 (erts-5.10.4) [source] [64-bit] [smp:4:4] [async-threads:16] [hipe] [kernel-poll:true]
+
+
+=INFO REPORT==== 3-Dec-2015::20:52:10 ===
+    ts_config_server:(4:<0.39.0>) SYSINFO:System architecture x86_64-unknown-linux-gnu
+
+=INFO REPORT==== 3-Dec-2015::20:52:10 ===
+    ts_config_server:(4:<0.39.0>) SYSINFO:Current path: /home/ec2-user/opt/tsung-1.5.0/lib/erlang/lib/tsung-1.5.0/ebin/tsung.beam
+
+=INFO REPORT==== 3-Dec-2015::20:52:10 ===
+           ts_os_mon:(5:<0.36.0>) os_mon disabled
+=INFO REPORT==== 3-Dec-2015::20:52:10 ===
+              ts_mon:(5:<0.40.0>) Activate clients with text backend
+
+=INFO REPORT==== 3-Dec-2015::20:52:10 ===
+              ts_mon:(5:<0.40.0>) Starting tsung clients on hosts: [localhost]
+
+=INFO REPORT==== 3-Dec-2015::20:52:10 ===
+    ts_config_server:(5:<0.39.0>) Start a launcher on the controller beam localhost
+
+=INFO REPORT==== 3-Dec-2015::20:52:10 ===
+  ts_launcher_static:(5:<0.73.0>) Launch msg receive ("localhost")
+
+=INFO REPORT==== 3-Dec-2015::20:52:10 ===
+         ts_launcher:(5:<0.74.0>) Launch msg receive ("localhost")
+
+=INFO REPORT==== 3-Dec-2015::20:52:10 ===
+    ts_config_server:(5:<0.39.0>) All remote beams started, syncing 
+
+=INFO REPORT==== 3-Dec-2015::20:52:10 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 1 for client "localhost" (last ? true): will start 30 users
+
+=INFO REPORT==== 3-Dec-2015::20:52:10 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 2 for client "localhost" (last ? true): will start 60 users
+
+=INFO REPORT==== 3-Dec-2015::20:52:10 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 3 for client "localhost" (last ? true): will start 120 users
+
+=INFO REPORT==== 3-Dec-2015::20:52:10 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 4 for client "localhost" (last ? true): will start 240 users
+
+=INFO REPORT==== 3-Dec-2015::20:52:10 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 5 for client "localhost" (last ? true): will start 480 users
+
+=INFO REPORT==== 3-Dec-2015::20:52:10 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 6 for client "localhost" (last ? true): will start 960 users
+
+=INFO REPORT==== 3-Dec-2015::20:52:10 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 7 for client "localhost" (last ? true): will start 1920 users
+
+=INFO REPORT==== 3-Dec-2015::20:52:10 ===
+         ts_launcher:(5:<0.74.0>) Expected duration of first phase: 30.0 sec (30 users) 
+
+=INFO REPORT==== 3-Dec-2015::20:52:10 ===
+         ts_launcher:(5:<0.74.0>) Activate launcher (30 users) in 9263 msec 
+
+=INFO REPORT==== 3-Dec-2015::20:52:47 ===
+         ts_launcher:(4:<0.74.0>) Need to wait 2.077 sec before changing phase, going to sleep
+
+=INFO REPORT==== 3-Dec-2015::20:52:49 ===
+         ts_launcher:(5:<0.74.0>) Waking up
+
+=INFO REPORT==== 3-Dec-2015::20:52:49 ===
+         ts_launcher:(5:<0.74.0>) Start a new arrival phase (60 users, 0.002); expected duration=30.0 sec
+
+=INFO REPORT==== 3-Dec-2015::20:53:19 ===
+         ts_launcher:(4:<0.74.0>) Need to wait 0.028 sec before changing phase, going to sleep
+
+=INFO REPORT==== 3-Dec-2015::20:53:19 ===
+         ts_launcher:(5:<0.74.0>) Waking up
+
+=INFO REPORT==== 3-Dec-2015::20:53:19 ===
+         ts_launcher:(5:<0.74.0>) Start a new arrival phase (120 users, 0.004); expected duration=30.0 sec
+
+=INFO REPORT==== 3-Dec-2015::20:53:50 ===
+         ts_launcher:(5:<0.74.0>) Phase duration exceeded, but not all users were launched (10 users, 8.3% of phase)
+
+=INFO REPORT==== 3-Dec-2015::20:53:50 ===
+         ts_launcher:(5:<0.74.0>) Start a new arrival phase (240 users, 0.008); expected duration=30.0 sec
+
+=INFO REPORT==== 3-Dec-2015::20:54:20 ===
+         ts_launcher:(5:<0.74.0>) Phase duration exceeded, but not all users were launched (18 users, 7.5% of phase)
+
+=INFO REPORT==== 3-Dec-2015::20:54:20 ===
+         ts_launcher:(5:<0.74.0>) Start a new arrival phase (480 users, 0.016); expected duration=30.0 sec
+
+=INFO REPORT==== 3-Dec-2015::20:54:50 ===
+         ts_launcher:(5:<0.74.0>) Phase duration exceeded, but not all users were launched (10 users, 2.1% of phase)
+
+=INFO REPORT==== 3-Dec-2015::20:54:50 ===
+         ts_launcher:(5:<0.74.0>) Start a new arrival phase (960 users, 0.032); expected duration=30.0 sec
+
+=INFO REPORT==== 3-Dec-2015::20:55:20 ===
+         ts_launcher:(5:<0.74.0>) Phase duration exceeded, but not all users were launched (28 users, 2.9% of phase)
+
+=INFO REPORT==== 3-Dec-2015::20:55:20 ===
+         ts_launcher:(5:<0.74.0>) Start a new arrival phase (1920 users, 0.064); expected duration=30.0 sec
+
+=INFO REPORT==== 3-Dec-2015::20:55:30 ===
+           ts_search:(4:<0.2548.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::20:55:30 ===
+           ts_search:(4:<0.2548.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::20:55:38 ===
+           ts_search:(4:<0.2959.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::20:55:38 ===
+           ts_search:(4:<0.2959.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::20:55:49 ===
+           ts_search:(4:<0.3425.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::20:55:49 ===
+           ts_search:(4:<0.3425.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::20:55:49 ===
+           ts_search:(4:<0.3564.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::20:55:49 ===
+         ts_launcher:(5:<0.74.0>) This was the last phase, wait for connected users to finish their session
+
+=INFO REPORT==== 3-Dec-2015::20:55:49 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 1900 active client(s)
+
+=INFO REPORT==== 3-Dec-2015::20:55:49 ===
+           ts_search:(4:<0.3564.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::20:55:51 ===
+           ts_search:(4:<0.3833.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::20:55:51 ===
+           ts_search:(4:<0.3833.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::20:56:49 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 132 active client(s)
+
+=INFO REPORT==== 3-Dec-2015::20:57:49 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 8 active client(s)
+
+=INFO REPORT==== 3-Dec-2015::20:58:49 ===
+     ts_launcher_mgr:(5:<0.69.0>) No more active users 'tsung_controller@ip-172-31-16-160' "2924"
+
+=INFO REPORT==== 3-Dec-2015::20:58:49 ===
+              ts_mon:(5:<0.40.0>) stopping monitor (normal)

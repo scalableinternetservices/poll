@@ -1,0 +1,3054 @@
+
+=INFO REPORT==== 2-Dec-2015::08:55:38 ===
+    ts_config_server:(5:<0.39.0>) Config server started, logdir is "/home/ec2-user/.tsung/log/20151202-0855"
+ 
+=INFO REPORT==== 2-Dec-2015::08:55:38 ===
+              ts_mon:(5:<0.38.0>) starting monitor, global 
+
+=INFO REPORT==== 2-Dec-2015::08:55:38 ===
+           ts_config:(5:<0.39.0>) Reading config file: app/load_tests/creating_dataset2.xml
+
+=INFO REPORT==== 2-Dec-2015::08:55:38 ===
+      ts_config_http:(4:<0.39.0>) Get user agent: 100 "Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox/1.0.4" 
+
+=INFO REPORT==== 2-Dec-2015::08:55:38 ===
+           ts_config:(5:<0.39.0>) Session name for id 1 is "http-example"
+
+=INFO REPORT==== 2-Dec-2015::08:55:38 ===
+    ts_config_server:(4:<0.39.0>) SYSINFO:Tsung version: 1.5.0
+
+=INFO REPORT==== 2-Dec-2015::08:55:38 ===
+    ts_config_server:(4:<0.39.0>) SYSINFO:Erlang version: Erlang R16B03-1 (erts-5.10.4) [source] [64-bit] [smp:4:4] [async-threads:16] [hipe] [kernel-poll:true]
+
+
+=INFO REPORT==== 2-Dec-2015::08:55:38 ===
+    ts_config_server:(4:<0.39.0>) SYSINFO:System architecture x86_64-unknown-linux-gnu
+
+=INFO REPORT==== 2-Dec-2015::08:55:38 ===
+    ts_config_server:(4:<0.39.0>) SYSINFO:Current path: /home/ec2-user/opt/tsung-1.5.0/lib/erlang/lib/tsung-1.5.0/ebin/tsung.beam
+
+=INFO REPORT==== 2-Dec-2015::08:55:38 ===
+           ts_os_mon:(5:<0.36.0>) os_mon disabled
+=INFO REPORT==== 2-Dec-2015::08:55:38 ===
+              ts_mon:(5:<0.40.0>) Activate clients with text backend
+
+=INFO REPORT==== 2-Dec-2015::08:55:38 ===
+              ts_mon:(5:<0.40.0>) Starting tsung clients on hosts: [localhost]
+
+=INFO REPORT==== 2-Dec-2015::08:55:38 ===
+    ts_config_server:(5:<0.39.0>) Start a launcher on the controller beam localhost
+
+=INFO REPORT==== 2-Dec-2015::08:55:38 ===
+  ts_launcher_static:(5:<0.73.0>) Launch msg receive ("localhost")
+
+=INFO REPORT==== 2-Dec-2015::08:55:38 ===
+         ts_launcher:(5:<0.74.0>) Launch msg receive ("localhost")
+
+=INFO REPORT==== 2-Dec-2015::08:55:38 ===
+    ts_config_server:(5:<0.39.0>) All remote beams started, syncing 
+
+=INFO REPORT==== 2-Dec-2015::08:55:38 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 1 for client "localhost" (last ? true): will start 30 users
+
+=INFO REPORT==== 2-Dec-2015::08:55:38 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 2 for client "localhost" (last ? true): will start 60 users
+
+=INFO REPORT==== 2-Dec-2015::08:55:38 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 3 for client "localhost" (last ? true): will start 120 users
+
+=INFO REPORT==== 2-Dec-2015::08:55:38 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 4 for client "localhost" (last ? true): will start 240 users
+
+=INFO REPORT==== 2-Dec-2015::08:55:38 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 5 for client "localhost" (last ? true): will start 480 users
+
+=INFO REPORT==== 2-Dec-2015::08:55:38 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 6 for client "localhost" (last ? true): will start 960 users
+
+=INFO REPORT==== 2-Dec-2015::08:55:38 ===
+         ts_launcher:(5:<0.74.0>) Expected duration of first phase: 30.0 sec (30 users) 
+
+=INFO REPORT==== 2-Dec-2015::08:55:39 ===
+         ts_launcher:(5:<0.74.0>) Activate launcher (30 users) in 9362 msec 
+
+=INFO REPORT==== 2-Dec-2015::08:56:19 ===
+         ts_launcher:(5:<0.74.0>) Phase duration exceeded, but not all users were launched (1 users, 3.3% of phase)
+
+=INFO REPORT==== 2-Dec-2015::08:56:19 ===
+         ts_launcher:(5:<0.74.0>) Start a new arrival phase (60 users, 0.002); expected duration=30.0 sec
+
+=INFO REPORT==== 2-Dec-2015::08:56:49 ===
+         ts_launcher:(4:<0.74.0>) Phase duration exceeded, more than 20% (35.0%) of users were not launched in time (21 users), tsung may be overloaded !
+
+=INFO REPORT==== 2-Dec-2015::08:56:49 ===
+         ts_launcher:(5:<0.74.0>) Start a new arrival phase (120 users, 0.004); expected duration=30.0 sec
+
+=INFO REPORT==== 2-Dec-2015::08:57:17 ===
+         ts_launcher:(4:<0.74.0>) Need to wait 1.654 sec before changing phase, going to sleep
+
+=INFO REPORT==== 2-Dec-2015::08:57:19 ===
+         ts_launcher:(5:<0.74.0>) Waking up
+
+=INFO REPORT==== 2-Dec-2015::08:57:19 ===
+         ts_launcher:(5:<0.74.0>) Start a new arrival phase (240 users, 0.008); expected duration=30.0 sec
+
+=INFO REPORT==== 2-Dec-2015::08:57:47 ===
+         ts_launcher:(4:<0.74.0>) Need to wait 1.321 sec before changing phase, going to sleep
+
+=INFO REPORT==== 2-Dec-2015::08:57:49 ===
+         ts_launcher:(5:<0.74.0>) Waking up
+
+=INFO REPORT==== 2-Dec-2015::08:57:49 ===
+         ts_launcher:(5:<0.74.0>) Start a new arrival phase (480 users, 0.016); expected duration=30.0 sec
+
+=INFO REPORT==== 2-Dec-2015::08:58:17 ===
+           ts_search:(4:<0.782.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:17 ===
+           ts_search:(4:<0.782.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:19 ===
+         ts_launcher:(5:<0.74.0>) Phase duration exceeded, but not all users were launched (5 users, 1.0% of phase)
+
+=INFO REPORT==== 2-Dec-2015::08:58:19 ===
+         ts_launcher:(5:<0.74.0>) Start a new arrival phase (960 users, 0.032); expected duration=30.0 sec
+
+=INFO REPORT==== 2-Dec-2015::08:58:26 ===
+           ts_search:(4:<0.1110.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:26 ===
+           ts_search:(4:<0.1110.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:26 ===
+           ts_search:(4:<0.1110.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:26 ===
+           ts_search:(4:<0.1080.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:26 ===
+           ts_search:(4:<0.983.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:26 ===
+           ts_search:(4:<0.983.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:26 ===
+           ts_search:(4:<0.983.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:26 ===
+           ts_search:(4:<0.1038.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:27 ===
+           ts_search:(4:<0.1102.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:27 ===
+           ts_search:(4:<0.1120.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:27 ===
+           ts_search:(4:<0.1120.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:27 ===
+           ts_search:(4:<0.1140.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:27 ===
+           ts_search:(4:<0.1140.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:27 ===
+           ts_search:(4:<0.1140.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:27 ===
+           ts_search:(4:<0.1118.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:27 ===
+           ts_search:(4:<0.1118.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:27 ===
+           ts_search:(4:<0.1118.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:27 ===
+           ts_search:(4:<0.1120.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:28 ===
+           ts_search:(4:<0.973.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:28 ===
+           ts_search:(4:<0.973.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:28 ===
+           ts_search:(4:<0.973.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:28 ===
+           ts_search:(4:<0.1036.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:28 ===
+           ts_search:(4:<0.1036.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:28 ===
+           ts_search:(4:<0.1036.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:28 ===
+           ts_search:(4:<0.979.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:28 ===
+           ts_search:(4:<0.1227.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:28 ===
+           ts_search:(4:<0.1227.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:28 ===
+           ts_search:(4:<0.1227.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:28 ===
+           ts_search:(4:<0.1148.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:28 ===
+           ts_search:(4:<0.1148.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:28 ===
+           ts_search:(4:<0.1162.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:28 ===
+           ts_search:(4:<0.1134.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:28 ===
+           ts_search:(4:<0.1134.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:28 ===
+           ts_search:(4:<0.1134.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:28 ===
+           ts_search:(4:<0.1088.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:28 ===
+           ts_search:(4:<0.1088.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:28 ===
+           ts_search:(4:<0.1088.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:29 ===
+           ts_search:(4:<0.1124.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:29 ===
+           ts_search:(4:<0.1032.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:29 ===
+           ts_search:(4:<0.1146.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:29 ===
+           ts_search:(4:<0.1146.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:29 ===
+           ts_search:(4:<0.1146.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:29 ===
+           ts_search:(4:<0.1148.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1259.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1259.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1259.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1293.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1122.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1122.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1122.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1222.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1222.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1222.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1235.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1235.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1244.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1244.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1244.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1150.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1150.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1150.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1142.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1142.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1142.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1135.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1135.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1135.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1270.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1270.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1270.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1283.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1226.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:30 ===
+           ts_search:(4:<0.1226.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:31 ===
+           ts_search:(4:<0.1203.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:31 ===
+           ts_search:(4:<0.1203.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:31 ===
+           ts_search:(4:<0.1213.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:31 ===
+           ts_search:(4:<0.1293.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:31 ===
+           ts_search:(4:<0.1116.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:31 ===
+           ts_search:(4:<0.1116.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:31 ===
+           ts_search:(4:<0.1116.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:31 ===
+           ts_search:(4:<0.1166.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:31 ===
+           ts_search:(4:<0.1166.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:31 ===
+           ts_search:(4:<0.1171.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:31 ===
+           ts_search:(4:<0.1287.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:31 ===
+           ts_search:(4:<0.1310.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:31 ===
+           ts_search:(4:<0.1235.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:31 ===
+           ts_search:(4:<0.1283.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:31 ===
+           ts_search:(4:<0.1226.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:31 ===
+           ts_search:(4:<0.1203.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:31 ===
+           ts_search:(4:<0.1241.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:31 ===
+           ts_search:(4:<0.1166.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:31 ===
+           ts_search:(4:<0.1287.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:32 ===
+           ts_search:(4:<0.1310.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:32 ===
+           ts_search:(4:<0.1289.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:32 ===
+           ts_search:(4:<0.1289.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:32 ===
+           ts_search:(4:<0.1289.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:32 ===
+           ts_search:(4:<0.1138.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:32 ===
+           ts_search:(4:<0.1075.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:32 ===
+           ts_search:(4:<0.1314.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:32 ===
+           ts_search:(4:<0.1314.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:32 ===
+           ts_search:(4:<0.1241.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:32 ===
+           ts_search:(4:<0.1218.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:32 ===
+           ts_search:(4:<0.1149.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:32 ===
+           ts_search:(4:<0.1149.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:32 ===
+           ts_search:(4:<0.1149.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:33 ===
+           ts_search:(4:<0.1271.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:33 ===
+           ts_search:(4:<0.1271.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:33 ===
+           ts_search:(4:<0.1271.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:33 ===
+           ts_search:(4:<0.1260.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:33 ===
+           ts_search:(4:<0.1260.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:33 ===
+           ts_search:(4:<0.1260.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:33 ===
+           ts_search:(4:<0.1237.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:33 ===
+           ts_search:(4:<0.1349.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:33 ===
+           ts_search:(4:<0.1285.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:33 ===
+           ts_search:(4:<0.1285.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:33 ===
+           ts_search:(4:<0.1285.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:33 ===
+           ts_search:(4:<0.1196.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:33 ===
+           ts_search:(4:<0.1314.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:33 ===
+           ts_search:(4:<0.1335.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:33 ===
+           ts_search:(4:<0.1335.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:33 ===
+           ts_search:(4:<0.1335.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:33 ===
+           ts_search:(4:<0.1221.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:33 ===
+           ts_search:(4:<0.1221.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:33 ===
+           ts_search:(4:<0.1221.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:33 ===
+           ts_search:(4:<0.1265.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:33 ===
+           ts_search:(4:<0.1237.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:34 ===
+           ts_search:(4:<0.1349.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:34 ===
+           ts_search:(4:<0.1224.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:34 ===
+           ts_search:(4:<0.1327.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:34 ===
+           ts_search:(4:<0.1327.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:34 ===
+           ts_search:(4:<0.1307.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:34 ===
+           ts_search:(4:<0.1274.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:34 ===
+           ts_search:(4:<0.1265.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:34 ===
+           ts_search:(4:<0.1338.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:34 ===
+           ts_search:(4:<0.1323.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:34 ===
+           ts_search:(4:<0.1323.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:34 ===
+           ts_search:(4:<0.1323.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:34 ===
+           ts_search:(4:<0.1286.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:34 ===
+           ts_search:(4:<0.1197.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:34 ===
+           ts_search:(4:<0.1197.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:34 ===
+           ts_search:(4:<0.1197.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:34 ===
+           ts_search:(4:<0.1254.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:34 ===
+           ts_search:(4:<0.1254.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:34 ===
+           ts_search:(4:<0.1254.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:34 ===
+           ts_search:(4:<0.1432.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:34 ===
+           ts_search:(4:<0.1432.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:34 ===
+           ts_search:(4:<0.1371.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1317.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1317.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1317.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1311.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1311.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1311.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1415.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1415.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1415.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1327.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1251.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1318.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1365.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1286.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1442.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1442.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1442.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1401.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1401.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1401.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1362.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1331.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1331.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1331.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1366.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1366.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1403.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1403.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1410.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1410.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1366.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1403.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1410.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1371.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1432.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1363.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1363.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1363.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:35 ===
+           ts_search:(4:<0.1395.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1318.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1370.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1370.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1347.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1347.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1347.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1345.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1345.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1345.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1428.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1202.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1391.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1391.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1391.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1346.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1346.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1346.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1417.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1426.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1426.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1426.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1365.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1316.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1362.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1476.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1476.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1476.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1379.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1355.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1427.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1236.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1236.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1486.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1486.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1236.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1486.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1424.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1451.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1312.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1404.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1404.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1404.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1249.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1249.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1249.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1475.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1475.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1475.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1398.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1398.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1443.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1443.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1443.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1257.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1370.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1450.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1450.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1450.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:36 ===
+           ts_search:(4:<0.1431.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1428.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1360.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1184.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1400.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1400.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1400.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1367.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1367.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1429.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1429.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1429.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1316.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1378.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1427.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1355.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1423.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1344.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1344.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1344.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1380.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1380.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1380.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1424.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1451.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1312.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1466.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1398.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1373.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1373.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1373.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1431.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1402.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1402.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1402.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1360.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:37 ===
+           ts_search:(4:<0.1381.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1463.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1463.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1463.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1455.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1423.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1339.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1484.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1484.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1361.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1385.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1385.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1385.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1477.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1477.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1390.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1390.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1390.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1430.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1219.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1481.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1509.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1469.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1303.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1303.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1303.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1436.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1457.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1396.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1396.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1441.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1441.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1441.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1507.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1507.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1526.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1526.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1507.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1526.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1320.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1320.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1210.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1210.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1484.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1425.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1425.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:38 ===
+           ts_search:(4:<0.1321.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1337.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1502.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1502.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1533.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1533.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1533.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1322.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1322.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1322.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1205.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1205.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1205.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1481.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1430.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1509.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1536.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1536.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1536.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1457.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1418.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1418.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1418.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1396.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1568.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1320.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1210.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1462.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1337.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1425.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1352.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1351.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1351.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:39 ===
+           ts_search:(4:<0.1351.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1267.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1267.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1437.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1495.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1541.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1568.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1532.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1462.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1575.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1519.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1519.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1519.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1510.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1510.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1513.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1513.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1352.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1566.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1566.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1308.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1308.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1308.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1549.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1281.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1281.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1281.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1604.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1604.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1604.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1622.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1267.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1531.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1531.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1551.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1551.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1551.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1541.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:40 ===
+           ts_search:(4:<0.1520.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1256.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1256.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1527.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1527.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1256.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1527.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1329.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1329.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1460.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1460.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1329.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1553.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1532.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1505.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1505.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1575.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1543.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1510.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1560.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1560.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1560.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1566.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1579.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1579.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1528.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1528.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1528.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1549.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1622.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1576.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1576.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1576.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1384.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1384.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1384.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1531.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1336.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1336.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1336.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1288.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1288.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1288.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1562.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1573.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1573.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1573.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1520.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1478.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1591.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1521.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1521.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1521.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1578.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1569.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1569.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1569.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1501.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1501.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1501.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1460.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1553.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:41 ===
+           ts_search:(4:<0.1505.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1547.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1356.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1543.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1557.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1557.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1557.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1498.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1498.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1498.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1483.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1483.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1483.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1579.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1478.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1499.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1499.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1499.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1640.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1640.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1640.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1496.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1496.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1496.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1591.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1535.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1530.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1530.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1530.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1547.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1514.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1514.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1514.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1492.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1492.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1492.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1544.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1544.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1544.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1629.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1629.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1356.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1610.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1605.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1605.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1605.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1674.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1674.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1674.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:42 ===
+           ts_search:(4:<0.1607.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1590.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1545.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1515.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1651.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1651.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1651.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1369.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1464.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1464.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1464.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1564.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1638.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1638.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1642.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1642.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1559.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1559.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1559.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1629.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1607.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1590.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1500.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1610.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1694.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1688.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1545.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1515.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:43 ===
+           ts_search:(4:<0.1687.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1619.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1619.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1619.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1641.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1654.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1369.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1709.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1709.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1564.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1713.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1625.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1625.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1625.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1642.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1500.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1632.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1632.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1341.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1341.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1341.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1644.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1644.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1644.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1523.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1523.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1523.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1529.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1529.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1529.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1701.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1701.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1701.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1582.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1582.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1582.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1645.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1633.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1633.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1633.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1694.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1688.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1650.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1687.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1580.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1406.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1406.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1406.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1656.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1656.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1620.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:44 ===
+           ts_search:(4:<0.1620.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1654.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1713.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1597.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1696.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1696.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1696.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1712.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1497.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1768.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1632.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1681.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1650.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1705.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1725.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1725.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1614.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1653.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1671.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1594.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1594.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1594.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1597.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1656.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1620.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1554.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1554.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1554.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1712.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1639.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1639.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1639.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1497.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1628.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1768.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:45 ===
+           ts_search:(4:<0.1706.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1636.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1636.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1636.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1736.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1614.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1725.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1653.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1671.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1672.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1602.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1602.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1733.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1676.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1676.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1628.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1676.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1787.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1648.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1736.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1724.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1724.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1724.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1706.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1716.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1716.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1716.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1637.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1637.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1637.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1758.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1618.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1618.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1618.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1727.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1727.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1727.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1764.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1764.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1764.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1546.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1583.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1583.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1583.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1720.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1720.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1720.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1811.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1811.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1811.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1491.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1491.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:46 ===
+           ts_search:(4:<0.1491.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1757.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1757.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1757.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1565.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1565.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1565.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1779.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1779.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1779.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1774.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1588.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1588.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1588.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1602.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1468.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1771.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1771.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1771.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1781.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1781.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1787.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1685.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1733.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1742.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1742.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1742.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1648.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1772.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1772.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1772.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1692.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1480.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1480.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1480.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1766.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1762.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1762.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1762.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1546.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1774.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1662.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1630.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1685.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1698.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1698.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1719.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1719.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1739.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1739.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1730.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:47 ===
+           ts_search:(4:<0.1781.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1796.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1667.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1667.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1667.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1835.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1797.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1524.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1524.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1524.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1691.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1686.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1686.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1686.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1766.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1711.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1707.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1692.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1684.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1684.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1684.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1662.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1710.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1710.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1719.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1796.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1790.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1816.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1816.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1816.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1702.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1866.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1866.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1866.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1883.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1883.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1883.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1835.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1691.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1785.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1731.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1731.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1698.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1731.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1745.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1893.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1893.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1893.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1800.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1800.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1715.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1715.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1715.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1809.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1809.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1809.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1626.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1626.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1711.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1707.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1770.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:48 ===
+           ts_search:(4:<0.1797.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1819.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1819.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1550.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1550.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1550.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1746.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1746.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1823.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1823.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1746.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1823.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1857.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1710.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1790.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1752.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1752.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1752.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+         ts_launcher:(5:<0.74.0>) Phase duration exceeded, but not all users were launched (24 users, 2.5% of phase)
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+         ts_launcher:(5:<0.74.0>) This was the last phase, wait for connected users to finish their session
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 1050 active client(s)
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1812.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1785.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1646.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1858.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1589.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1589.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1589.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1745.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1800.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1770.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1626.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1819.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1548.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1548.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1548.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1833.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1833.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1833.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1721.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1721.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1740.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1740.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:49 ===
+           ts_search:(4:<0.1825.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1857.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1782.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1782.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1782.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1689.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1743.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1699.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1812.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1751.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1858.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1875.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1775.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1777.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1721.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1825.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1897.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1689.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1699.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1873.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1606.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1906.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1776.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1920.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1870.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1751.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1875.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1775.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1777.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:50 ===
+           ts_search:(4:<0.1793.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1886.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1853.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1897.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1776.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1873.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1870.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1606.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1906.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1920.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1829.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1603.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1603.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1886.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1793.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1683.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1683.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1683.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1853.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1914.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1842.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1842.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1842.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1852.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1889.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1889.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1889.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1786.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1786.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1786.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:51 ===
+           ts_search:(4:<0.1890.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:52 ===
+           ts_search:(4:<0.1829.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:52 ===
+           ts_search:(4:<0.1822.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:52 ===
+           ts_search:(4:<0.1822.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:52 ===
+           ts_search:(4:<0.1822.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:52 ===
+           ts_search:(4:<0.1783.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:52 ===
+           ts_search:(4:<0.1862.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:52 ===
+           ts_search:(4:<0.1872.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:52 ===
+           ts_search:(4:<0.1603.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:52 ===
+           ts_search:(4:<0.1798.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:52 ===
+           ts_search:(4:<0.1799.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:52 ===
+           ts_search:(4:<0.1852.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:52 ===
+           ts_search:(4:<0.1908.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:52 ===
+           ts_search:(4:<0.1914.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:52 ===
+           ts_search:(4:<0.1922.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:52 ===
+           ts_search:(4:<0.1859.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:52 ===
+           ts_search:(4:<0.1890.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:52 ===
+           ts_search:(4:<0.1879.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:52 ===
+           ts_search:(4:<0.1867.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:52 ===
+           ts_search:(4:<0.1783.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:52 ===
+           ts_search:(4:<0.1862.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:52 ===
+           ts_search:(4:<0.1872.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:52 ===
+           ts_search:(4:<0.1798.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:52 ===
+           ts_search:(4:<0.1741.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:52 ===
+           ts_search:(4:<0.1799.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:52 ===
+           ts_search:(4:<0.1908.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:53 ===
+           ts_search:(4:<0.1922.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:53 ===
+           ts_search:(4:<0.1859.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:53 ===
+           ts_search:(4:<0.1867.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:53 ===
+           ts_search:(4:<0.1865.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:53 ===
+           ts_search:(4:<0.1879.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:53 ===
+           ts_search:(4:<0.1803.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:53 ===
+           ts_search:(4:<0.1864.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:53 ===
+           ts_search:(4:<0.1741.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:53 ===
+           ts_search:(4:<0.1818.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:53 ===
+           ts_search:(4:<0.1810.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:53 ===
+           ts_search:(4:<0.1865.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:53 ===
+           ts_search:(4:<0.1895.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:53 ===
+           ts_search:(4:<0.1864.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:53 ===
+           ts_search:(4:<0.1803.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:53 ===
+           ts_search:(4:<0.1930.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:54 ===
+           ts_search:(4:<0.1818.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:54 ===
+           ts_search:(4:<0.1810.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:54 ===
+           ts_search:(4:<0.1926.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:54 ===
+           ts_search:(4:<0.1930.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:54 ===
+           ts_search:(4:<0.1592.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:54 ===
+           ts_search:(4:<0.1895.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:54 ===
+           ts_search:(4:<0.1902.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:54 ===
+           ts_search:(4:<0.1863.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:54 ===
+           ts_search:(4:<0.1863.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:54 ===
+           ts_search:(4:<0.1863.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:54 ===
+           ts_search:(4:<0.1926.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:54 ===
+           ts_search:(4:<0.1847.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:55 ===
+           ts_search:(4:<0.1869.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:55 ===
+           ts_search:(4:<0.1592.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:55 ===
+           ts_search:(4:<0.1936.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:55 ===
+           ts_search:(4:<0.1896.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:55 ===
+           ts_search:(4:<0.1827.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:55 ===
+           ts_search:(4:<0.1902.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:55 ===
+           ts_search:(4:<0.1910.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:55 ===
+           ts_search:(4:<0.1784.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:55 ===
+           ts_search:(4:<0.1847.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:55 ===
+           ts_search:(4:<0.1869.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:55 ===
+           ts_search:(4:<0.1896.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:55 ===
+           ts_search:(4:<0.1855.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:55 ===
+           ts_search:(4:<0.1936.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:55 ===
+           ts_search:(4:<0.1827.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:55 ===
+           ts_search:(4:<0.1708.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:55 ===
+           ts_search:(4:<0.1880.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:56 ===
+           ts_search:(4:<0.1791.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:56 ===
+           ts_search:(4:<0.1784.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:56 ===
+           ts_search:(4:<0.1910.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:56 ===
+           ts_search:(4:<0.1880.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:56 ===
+           ts_search:(4:<0.1855.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:56 ===
+           ts_search:(4:<0.1708.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:56 ===
+           ts_search:(4:<0.1791.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:57 ===
+           ts_search:(4:<0.1817.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:57 ===
+           ts_search:(4:<0.1773.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:58 ===
+           ts_search:(4:<0.1931.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:58 ===
+           ts_search:(4:<0.1817.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:58 ===
+           ts_search:(4:<0.1773.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:58 ===
+           ts_search:(4:<0.1931.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:58 ===
+           ts_search:(4:<0.1761.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:58:59 ===
+           ts_search:(4:<0.1761.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:59:02 ===
+           ts_search:(4:<0.1916.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:59:02 ===
+           ts_search:(4:<0.1925.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 2-Dec-2015::08:59:02 ===
+           ts_search:(4:<0.1916.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:59:02 ===
+           ts_search:(4:<0.1925.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 2-Dec-2015::08:59:49 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 76 active client(s)
+
+=INFO REPORT==== 2-Dec-2015::09:00:49 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 3 active client(s)
+
+=INFO REPORT==== 2-Dec-2015::09:01:49 ===
+     ts_launcher_mgr:(5:<0.69.0>) No more active users 'tsung_controller@ip-172-31-22-42' "3924"
+
+=INFO REPORT==== 2-Dec-2015::09:01:49 ===
+              ts_mon:(5:<0.40.0>) stopping monitor (normal)

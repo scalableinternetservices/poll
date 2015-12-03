@@ -1,0 +1,312 @@
+
+=INFO REPORT==== 3-Dec-2015::18:26:27 ===
+    ts_config_server:(5:<0.39.0>) Config server started, logdir is "/home/ec2-user/.tsung/log/20151203-1826"
+ 
+=INFO REPORT==== 3-Dec-2015::18:26:27 ===
+              ts_mon:(5:<0.38.0>) starting monitor, global 
+
+=INFO REPORT==== 3-Dec-2015::18:26:27 ===
+           ts_config:(5:<0.39.0>) Reading config file: poll/load_tests/creating_dataset.xml
+
+=INFO REPORT==== 3-Dec-2015::18:26:27 ===
+      ts_config_http:(4:<0.39.0>) Get user agent: 100 "Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox/1.0.4" 
+
+=INFO REPORT==== 3-Dec-2015::18:26:27 ===
+           ts_config:(5:<0.39.0>) Session name for id 1 is "http-example"
+
+=INFO REPORT==== 3-Dec-2015::18:26:27 ===
+    ts_config_server:(4:<0.39.0>) SYSINFO:Tsung version: 1.5.0
+
+=INFO REPORT==== 3-Dec-2015::18:26:27 ===
+    ts_config_server:(4:<0.39.0>) SYSINFO:Erlang version: Erlang R16B03-1 (erts-5.10.4) [source] [64-bit] [smp:4:4] [async-threads:16] [hipe] [kernel-poll:true]
+
+
+=INFO REPORT==== 3-Dec-2015::18:26:27 ===
+    ts_config_server:(4:<0.39.0>) SYSINFO:System architecture x86_64-unknown-linux-gnu
+
+=INFO REPORT==== 3-Dec-2015::18:26:27 ===
+    ts_config_server:(4:<0.39.0>) SYSINFO:Current path: /home/ec2-user/opt/tsung-1.5.0/lib/erlang/lib/tsung-1.5.0/ebin/tsung.beam
+
+=INFO REPORT==== 3-Dec-2015::18:26:27 ===
+           ts_os_mon:(5:<0.36.0>) os_mon disabled
+=INFO REPORT==== 3-Dec-2015::18:26:27 ===
+              ts_mon:(5:<0.40.0>) Activate clients with text backend
+
+=INFO REPORT==== 3-Dec-2015::18:26:27 ===
+              ts_mon:(5:<0.40.0>) Starting tsung clients on hosts: [localhost]
+
+=INFO REPORT==== 3-Dec-2015::18:26:27 ===
+    ts_config_server:(5:<0.39.0>) Start a launcher on the controller beam localhost
+
+=INFO REPORT==== 3-Dec-2015::18:26:27 ===
+  ts_launcher_static:(5:<0.73.0>) Launch msg receive ("localhost")
+
+=INFO REPORT==== 3-Dec-2015::18:26:27 ===
+         ts_launcher:(5:<0.74.0>) Launch msg receive ("localhost")
+
+=INFO REPORT==== 3-Dec-2015::18:26:27 ===
+    ts_config_server:(5:<0.39.0>) All remote beams started, syncing 
+
+=INFO REPORT==== 3-Dec-2015::18:26:27 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 1 for client "localhost" (last ? true): will start 30 users
+
+=INFO REPORT==== 3-Dec-2015::18:26:27 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 2 for client "localhost" (last ? true): will start 60 users
+
+=INFO REPORT==== 3-Dec-2015::18:26:27 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 3 for client "localhost" (last ? true): will start 120 users
+
+=INFO REPORT==== 3-Dec-2015::18:26:27 ===
+    ts_config_server:(5:<0.39.0>) New arrival phase 4 for client "localhost" (last ? true): will start 240 users
+
+=INFO REPORT==== 3-Dec-2015::18:26:27 ===
+         ts_launcher:(5:<0.74.0>) Expected duration of first phase: 30.0 sec (30 users) 
+
+=INFO REPORT==== 3-Dec-2015::18:26:28 ===
+         ts_launcher:(5:<0.74.0>) Activate launcher (30 users) in 9682 msec 
+
+=INFO REPORT==== 3-Dec-2015::18:26:57 ===
+         ts_launcher:(4:<0.74.0>) Need to wait 9.322 sec before changing phase, going to sleep
+
+=INFO REPORT==== 3-Dec-2015::18:27:07 ===
+         ts_launcher:(5:<0.74.0>) Waking up
+
+=INFO REPORT==== 3-Dec-2015::18:27:07 ===
+         ts_launcher:(5:<0.74.0>) Start a new arrival phase (60 users, 0.002); expected duration=30.0 sec
+
+=INFO REPORT==== 3-Dec-2015::18:27:37 ===
+         ts_launcher:(5:<0.74.0>) Phase duration exceeded, but not all users were launched (2 users, 3.3% of phase)
+
+=INFO REPORT==== 3-Dec-2015::18:27:37 ===
+         ts_launcher:(5:<0.74.0>) Start a new arrival phase (120 users, 0.004); expected duration=30.0 sec
+
+=INFO REPORT==== 3-Dec-2015::18:28:03 ===
+         ts_launcher:(4:<0.74.0>) Need to wait 3.606 sec before changing phase, going to sleep
+
+=INFO REPORT==== 3-Dec-2015::18:28:07 ===
+         ts_launcher:(5:<0.74.0>) Waking up
+
+=INFO REPORT==== 3-Dec-2015::18:28:07 ===
+         ts_launcher:(5:<0.74.0>) Start a new arrival phase (240 users, 0.008); expected duration=30.0 sec
+
+=INFO REPORT==== 3-Dec-2015::18:28:31 ===
+           ts_search:(4:<0.374.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:31 ===
+           ts_search:(4:<0.374.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:31 ===
+           ts_search:(4:<0.374.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:31 ===
+           ts_search:(4:<0.387.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:31 ===
+           ts_search:(4:<0.387.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:31 ===
+           ts_search:(4:<0.416.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:31 ===
+           ts_search:(4:<0.416.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:32 ===
+           ts_search:(4:<0.416.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:32 ===
+           ts_search:(4:<0.318.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:32 ===
+           ts_search:(4:<0.392.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:32 ===
+           ts_search:(4:<0.392.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:32 ===
+           ts_search:(4:<0.392.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:33 ===
+           ts_search:(4:<0.436.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:33 ===
+           ts_search:(4:<0.436.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:33 ===
+           ts_search:(4:<0.436.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:33 ===
+           ts_search:(4:<0.403.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:33 ===
+           ts_search:(4:<0.403.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:33 ===
+           ts_search:(4:<0.403.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:33 ===
+           ts_search:(4:<0.421.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:33 ===
+           ts_search:(4:<0.421.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:34 ===
+           ts_search:(4:<0.421.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:34 ===
+           ts_search:(4:<0.434.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:34 ===
+           ts_search:(4:<0.434.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:34 ===
+           ts_search:(4:<0.434.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:34 ===
+           ts_search:(4:<0.426.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:34 ===
+           ts_search:(4:<0.426.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:34 ===
+           ts_search:(4:<0.426.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:35 ===
+           ts_search:(4:<0.415.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:35 ===
+           ts_search:(4:<0.415.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:35 ===
+           ts_search:(4:<0.415.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:35 ===
+           ts_search:(4:<0.373.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:35 ===
+           ts_search:(4:<0.373.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:35 ===
+           ts_search:(4:<0.386.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:36 ===
+           ts_search:(4:<0.405.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:36 ===
+           ts_search:(4:<0.405.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:36 ===
+           ts_search:(4:<0.405.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:36 ===
+           ts_search:(4:<0.378.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:36 ===
+           ts_search:(4:<0.414.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:36 ===
+           ts_search:(4:<0.414.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:36 ===
+           ts_search:(4:<0.414.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:37 ===
+           ts_search:(4:<0.387.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:38 ===
+         ts_launcher:(5:<0.74.0>) Phase duration exceeded, but not all users were launched (5 users, 2.1% of phase)
+
+=INFO REPORT==== 3-Dec-2015::18:28:38 ===
+         ts_launcher:(5:<0.74.0>) This was the last phase, wait for connected users to finish their session
+
+=INFO REPORT==== 3-Dec-2015::18:28:38 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 308 active client(s)
+
+=INFO REPORT==== 3-Dec-2015::18:28:39 ===
+           ts_search:(4:<0.497.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:39 ===
+           ts_search:(4:<0.373.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:40 ===
+           ts_search:(4:<0.425.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:40 ===
+           ts_search:(4:<0.425.0>) Dyn Var (RE): no Match (varname=created_poll_results_url), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:40 ===
+           ts_search:(4:<0.425.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:42 ===
+           ts_search:(4:<0.497.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:43 ===
+           ts_search:(4:<0.511.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:43 ===
+           ts_search:(4:<0.501.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:43 ===
+           ts_search:(4:<0.515.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:43 ===
+           ts_search:(4:<0.525.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:44 ===
+           ts_search:(4:<0.502.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:44 ===
+           ts_search:(4:<0.521.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:45 ===
+           ts_search:(4:<0.507.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:45 ===
+           ts_search:(4:<0.511.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:45 ===
+           ts_search:(4:<0.501.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:45 ===
+           ts_search:(4:<0.524.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:46 ===
+           ts_search:(4:<0.515.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:46 ===
+           ts_search:(4:<0.502.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:46 ===
+           ts_search:(4:<0.525.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:46 ===
+           ts_search:(4:<0.521.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:47 ===
+           ts_search:(4:<0.532.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:47 ===
+           ts_search:(4:<0.507.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:47 ===
+           ts_search:(4:<0.524.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:49 ===
+           ts_search:(4:<0.532.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:51 ===
+           ts_search:(4:<0.519.0>) Dyn Var (RE): no Match (varname=created_poll_id), 
+
+=INFO REPORT==== 3-Dec-2015::18:28:54 ===
+           ts_search:(4:<0.519.0>) Dyn Var (RE): no Match (varname=option1_num), 
+
+=INFO REPORT==== 3-Dec-2015::18:29:38 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 89 active client(s)
+
+=INFO REPORT==== 3-Dec-2015::18:30:38 ===
+     ts_launcher_mgr:(5:<0.69.0>) Still 4 active client(s)
+
+=INFO REPORT==== 3-Dec-2015::18:31:38 ===
+     ts_launcher_mgr:(5:<0.69.0>) No more active users 'tsung_controller@ip-172-31-16-160' "1711"
+
+=INFO REPORT==== 3-Dec-2015::18:31:38 ===
+              ts_mon:(5:<0.40.0>) stopping monitor (normal)
