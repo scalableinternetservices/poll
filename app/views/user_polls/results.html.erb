@@ -14,12 +14,38 @@
           <%= @user_poll.description %>
         </h3>
       </div>
+      <br><br>
+      <!-- Service Tabs -->
       <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
-          <%= render "poll_results" %>
-        </div>
+          <div class="col-lg-12">
+              <ul id="myTab" class="nav nav-tabs nav-justified">
+                  <li class="active"><a href="#results" data-toggle="tab"><i class="fa fa-medkit"></i>Final Results</a>
+                  </li>
+                  <li class=""><a href="#trends" data-toggle="tab"><i class="fa fa-globe"></i>Trends over Time</a>
+                  </li>
+              </ul>
+
+              <div id="myTabContent" class="tab-content">
+                  <div class="tab-pane fade active in" id="results">
+                      <div class="col-lg-8 col-lg-offset-2">
+                        <br><%= render "poll_results" %><br>
+                      </div>
+                  </div>
+                  <div class="tab-pane fade" id="trends">
+                      <div class="col-lg-8 col-lg-offset-2">
+                        <br><%= render "poll_trends" %><br>
+                      </div>
+                  </div>
+              </div>
+          </div>
       </div>
       <div class="row">
+          <div class="col-xs-4 col-xs-offset-4">
+              <p><%= link_to " Back Home", :root, {:style=>'color:#FFFFFF;', :class => "btn btn-primary Btn-White center-block"}%></p><br>
+          </div>
+      </div>
+      <div class="row">
+        <h4 class="CenterWhiteText">Comments</h4><br>
         <div class="col-lg-6 col-lg-offset-3 CenterWhiteText">
             <% @user_poll.comments.each do |comment| %>
                 <% a = comment.commenter %>
@@ -30,11 +56,6 @@
                 <% end %>
             <% end %>
         </div>
-      </div>
-      <div class="row">
-          <div class="col-xs-4 col-xs-offset-4">
-              <p><%= link_to " Back Home", :root, {:style=>'color:#FFFFFF;', :class => "btn btn-primary Btn-White center-block"}%></p><br>
-          </div>
       </div>
     </div>
   </div>

@@ -1,0 +1,48 @@
+<div class="col">
+    <br>
+    <% vote_array = Array[] %>
+    <% @user_poll.user_votes.each do |vote| %>
+        <% vote_array.push(vote.created_at) %>
+    <% end %>
+    <% vote_array.sort %>
+    <% if vote_array.empty? %>
+        <h2 class="CenterWhiteText">Currently Zero Votes</h1>
+        <h4 class="CenterWhiteText">Cannot Display Results</h3><br>
+    <% else  %>
+        <% 
+            time_range_start = vote_array[0].to_i 
+            time_range_end = vote_array[-1].to_i
+            num_bins = 5
+            time_scale = (time_range_end - time_range_start) / num_bins
+            if time_scale == 0.0
+                bin_votes = [vote_array.count]
+            else
+                bin_votes = Array.new(num_bins) { 0 }
+                vote_array.each { |vote|
+                    index = ((vote.to_i - time_range_start) / time_scale).floor
+                    index = [[index, 0].max, num_bins - 1].min
+                    bin_votes[index] += 1
+                }
+            end
+        %>
+        <div class="container">
+            <div id=<%= "trend"%> data-sort="false" data-width="300" class="jChart chart-lg WhiteText">
+                <% i = 0 %>
+                <% bin_votes.each do |date| %>
+                    <%  require 'date'
+                        time = Time.at(time_range_start + i*time_scale).to_datetime
+                        time2 = time_range_start + i*time_scale %>
+                    <h1><%= time %></h1>
+                    <% if i % 3 == 0 %>
+                        <div class="define-chart-row" data-color="#84d6ff" title=<%= time %>><%=date%></div>
+                    <% elsif i % 3 == 1 %>
+                        <div class="define-chart-row" data-color="#00A9FF" title=<%= time %>><%=date%></div>
+                    <% else %>
+                        <div class="define-chart-row" data-color="#005882" title=<%= time %>><%=date%></div>
+                    <% end %>
+                    <% i += 1 %>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+</div>
