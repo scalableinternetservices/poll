@@ -45,6 +45,30 @@ john_smith = User.create(first_name: "John", last_name: "Smith", email: "johnsmi
   poll.save
 end
 
+# Build Jane Smith, who we will use to make friend requests to John
+jane_smith = User.create(first_name: "Jane", last_name: "Smith", email: "janesmith@gmail.com", password: "janesmith")
+poll = jane_smith.user_polls.new(title: "My very popular poll!", description: "Lot's of people like to take it!")
+question = poll.poll_questions.new(text: "What's your favorite primary color?")
+question.answers.new(text: "Red", votes: 10552)
+question.answers.new(text: "Blue", votes: 10321)
+question.answers.new(text: "Green", votes: 2324)
+
+question = poll.poll_questions.new(text: "Are you having fun?")
+question.answers.new(text: "Yes", votes: 16312)
+question.answers.new(text: "No", votes: 11423)
+
+poll.save
+
+ActiveRecord::Base.transaction do
+  200.times do |num|
+    new_user = User.create(first_name: "Seed", last_name: "User#{num+1}", email: "seeduser#{num+1}@pollster.com", password: "pollster")
+
+    vote = UserVote.create(user_id: new_user.id, user_poll_id: poll.id)
+    vote.created_at -= num * num
+    vote.save
+  end
+end
+
 if ENV["loadtest_seed"]
   ActiveRecord::Base.transaction do
     2000.times do |num|
