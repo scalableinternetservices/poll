@@ -7,71 +7,79 @@
       <div class="table-responsive" id="search-polls">   
         <div class="row">
           <br><h3 style="color:#fff;">Search Results</h3><br>
-          <div class="col-md-5 col-sm-5">
-            <% @counter = 0 %>
-            <% @search_polls.each do |user_poll_tuple| %>
-              <% if @counter % 2 == 0 %>
-                <% cache(user_poll_tuple[0]) do %>
-                  <% user_poll = user_poll_tuple[0] %>
-                  <% user_poll_owner = user_poll_tuple[1] %>
-                  <br>
-                  <div class="thumbnail center-block"  style="background-color: #000;">
+          <% if @search_polls.count > 0 %>
+            <div class="col-md-5 col-sm-5">
+              <% @counter = 0 %>
+              <% @search_polls.each do |user_poll_tuple| %>
+                <% if @counter % 2 == 0 %>
+                  <% cache(user_poll_tuple[0]) do %>
+                    <% user_poll = user_poll_tuple[0] %>
+                    <% user_poll_owner = user_poll_tuple[1] %>
+                    <br>
+                    <div class="thumbnail center-block"  style="background-color: #000;">
                       <%= image_tag "login_bg.jpg", :class => 'img-responsive center-block' %>
                       <div class="caption">
                         <h3><%= link_to user_poll.title, vote_on_poll_path(user_poll.id), {:style=>'color:#FFF;'}%></h3>
                         <%= "#{user_poll_owner.first_name} #{user_poll_owner.last_name}" %>
                         <%= user_poll.created_at.to_s(:long) %>
                         <div class="row">
-                            <div class="col-md-8 col-md-offset-2">
-                                <%= link_to user_poll_results_path(user_poll.id), {:style=>'color:#FFF;', class: "btn btn-primary"} do %>
-                                  <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>  Results
-                                <% end %>
-                                <%= button_tag type: "button", class: "btn btn-primary", data: {toggle: "modal", target: "#share-modal", poll_id: user_poll.id} do %>
-                                  <span class="glyphicon glyphicon-share" aria-hidden="true"></span>   Share Poll
-                                <% end %>
-                            </div>
+                          <div class="col-md-8 col-md-offset-2">
+                            <%= link_to user_poll_results_path(user_poll.id), {:style=>'color:#FFF;', class: "btn btn-primary"} do %>
+                              <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>  Results
+                            <% end %>
+                            <%= button_tag type: "button", class: "btn btn-primary", data: {toggle: "modal", target: "#share-modal", poll_id: user_poll.id} do %>
+                              <span class="glyphicon glyphicon-share" aria-hidden="true"></span>   Share Poll
+                            <% end %>
+                          </div>
                         </div>
                       </div>
-                  </div>
+                    </div>
+                  <% end %>
                 <% end %>
+                <% @counter += 1 %>
               <% end %>
-              <% @counter += 1 %>
-            <% end %>
-    </div>
-    <div class="col-md-5 col-md-offset-2 col-sm-5 col-md-offset-2">
-       <% @counter = 1 %>
-       <% @search_polls.each do |user_poll_tuple| %>
-          <% if @counter % 2 == 0 %>
-            <% cache(user_poll_tuple[0]) do %>
-                <% user_poll = user_poll_tuple[0] %>
-                <% user_poll_owner = user_poll_tuple[1] %>
-                <br>
-                <div class="thumbnail center-block"  style="background-color: #000;">
-                    <%= image_tag "login_bg.jpg", :class => 'img-responsive center-block' %>
-                    <div class="caption">
-                      <h3><%= link_to user_poll.title, vote_on_poll_path(user_poll.id), {:style=>'color:#FFF;'}%></h3>
-                      <%= "#{user_poll_owner.first_name} #{user_poll_owner.last_name}" %>
-                      <%= user_poll.created_at.to_s(:long) %>
-                      <div class="row">
+            </div>
+            <div class="col-md-5 col-md-offset-2 col-sm-5 col-md-offset-2">
+              <% @counter = 1 %>
+              <% @search_polls.each do |user_poll_tuple| %>
+                <% if @counter % 2 == 0 %>
+                  <% cache(user_poll_tuple[0]) do %>
+                    <% user_poll = user_poll_tuple[0] %>
+                    <% user_poll_owner = user_poll_tuple[1] %>
+                    <br>
+                    <div class="thumbnail center-block"  style="background-color: #000;">
+                      <%= image_tag "login_bg.jpg", :class => 'img-responsive center-block' %>
+                      <div class="caption">
+                        <h3><%= link_to user_poll.title, vote_on_poll_path(user_poll.id), {:style=>'color:#FFF;'}%></h3>
+                        <%= "#{user_poll_owner.first_name} #{user_poll_owner.last_name}" %>
+                        <%= user_poll.created_at.to_s(:long) %>
+                        <div class="row">
                           <div class="col-md-8 col-md-offset-2">
-                              <%= link_to user_poll_results_path(user_poll.id), {:style=>'color:#FFF;', class: "btn btn-primary"} do %>
-                                <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>  Results
-                              <% end %>
-                              <%= button_tag type: "button", class: "btn btn-primary", data: {toggle: "modal", target: "#share-modal", poll_id: user_poll.id} do %>
-                                <span class="glyphicon glyphicon-share" aria-hidden="true"></span>   Share Poll
-                              <% end %>
+                            <%= link_to user_poll_results_path(user_poll.id), {:style=>'color:#FFF;', class: "btn btn-primary"} do %>
+                              <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>  Results
+                            <% end %>
+                            <%= button_tag type: "button", class: "btn btn-primary", data: {toggle: "modal", target: "#share-modal", poll_id: user_poll.id} do %>
+                              <span class="glyphicon glyphicon-share" aria-hidden="true"></span>   Share Poll
+                            <% end %>
                           </div>
+                        </div>
                       </div>
                     </div>
-                </div>
+                  <% end %>
+                <% end %>
+                <% @counter += 1 %>
               <% end %>
+            </div>
+          <% else %>
+            <p style="color:#fff; text-align:center;">No search results found!</p>
           <% end %>
-          <% @counter += 1 %>
+        </div>
+
+        <% if @can_show_more_search_polls %>
+          <button style="color:#FFFFFF" class="btn btn-primary Btn-White" data-search-polls-request-size=<%= raw("\"#{@next_search_polls_request_size}\"") %> data-search-polls-query=<%= raw("\"#{@search}\"") %>>Show more</button>
         <% end %>
+        <p><%= link_to " Back Home", :back, {:style=>'color:#FFFFFF;', :class => "btn btn-primary Btn-White"}%></p><br>
+      </div>
     </div>
   </div>
-
-  <% if @can_show_more_search_polls %>
-    <button data-search-polls-request-size=<%= raw("\"#{@next_search_polls_request_size}\"") %> data-search-polls-query=<%= raw("\"#{@search}\"") %>>Show more</button>
-  <% end %>
 </div>
