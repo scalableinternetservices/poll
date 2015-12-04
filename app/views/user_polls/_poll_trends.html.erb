@@ -33,7 +33,7 @@
         <h2 class="CenterWhiteText">Votes Collected Between</h1>
         <h4 class="CenterWhiteText"><%= start_date %> and <%= end_date %></h3><br>
         <div class="container">
-            <div id=<%= "trend"%> data-sort="false" data-width="300" class="jChart chart-lg WhiteText">
+            <div id="<%="trend"%>" data-sort="false" data-width="300" class="jChart chart-lg WhiteText">
                 <% i = 0 %>
                 <% bin_votes.each do |date| %>
                     <%  require 'date'
