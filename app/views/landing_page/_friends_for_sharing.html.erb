@@ -5,7 +5,7 @@
     <tbody>
       <% @friends.each do |friend| %>
         <tr>
-          <td><%= link_to "#{friend.first_name} #{friend.last_name}", share_poll_with_path(@poll_id, friend.id), method: :post %></td>
+          <td><%= link_to "#{friend.first_name} #{friend.last_name}", share_poll_with_path(@poll_id, friend.id), method: :post, style: "color:#000;" %></td>
         </tr>
       <% end %>
     </tbody>
