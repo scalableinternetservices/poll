@@ -2,7 +2,7 @@
 <%= render 'share_modal' %>
 <div class="container">
   <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-10 col-lg-offset-1">
       <p id="notice"><%= notice %></p>
       <div class="table-responsive" id="search-polls">   
         <div class="row">
@@ -51,8 +51,8 @@
                       <%= image_tag "login_bg.jpg", :class => 'img-responsive center-block' %>
                       <div class="caption">
                         <h3><%= link_to user_poll.title, vote_on_poll_path(user_poll.id), {:style=>'color:#FFF;'}%></h3>
-                        <%= "#{user_poll_owner.first_name} #{user_poll_owner.last_name}" %>
-                        <%= user_poll.created_at.to_s(:long) %>
+                        <p class="CenterWhiteText"><%= "#{user_poll_owner.first_name} #{user_poll_owner.last_name}" %></p>
+                        <p class="CenterWhiteText"><%= user_poll.created_at.to_s(:long)%></p>
                         <div class="row">
                           <div class="col-md-8 col-md-offset-2">
                             <%= link_to user_poll_results_path(user_poll.id), {:style=>'color:#FFF;', class: "btn btn-primary"} do %>
