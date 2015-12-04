@@ -3,10 +3,12 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
-      <br>
-      <% if !notice.nil? %>
-          <div class="alert alert-info " role="alert"><p id="notice"><%= notice %></p></div>
-      <% end %>
+      <br><br>
+      <div class="col-lg-10 col-lg-offset-1">
+          <% if !notice.nil? %>
+              <div class="alert alert-info " role="alert"><p id="notice"><%= notice %></p></div>
+          <% end %>
+      </div>
       
       <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
