@@ -3,7 +3,9 @@
 <div class="container CenterWhiteText">
   <div class="row">
     <div class="col-lg-6 col-lg-offset-3">
-      <p id="notice"><%= notice %></p>
+      <% if !notice.nil? %>
+          <div class="alert alert-info " role="alert"><p id="notice"><%= notice %></p></div>
+      <% end %>
       <h1>Vote on <%= @user_poll.title %></h1>
       <h3 class="CenterLightGreyText">
         <%= image_tag @user_poll.poll_picture.url(:medium) %><br /><br />
