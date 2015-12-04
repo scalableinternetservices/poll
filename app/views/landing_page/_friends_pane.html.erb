@@ -1,4 +1,4 @@
-<h3>Friends</h3>
+<h3 style="color:#fff;">Friends</h3>
 <% if @current_user_friends.length == 0 %>
   <p>You have no friends!</p>
 <% else %>
@@ -16,7 +16,7 @@
     <button data-current-user-friends-request-size=<%= raw("\"#{@next_current_user_friends_request_size}\"") %>>Show more</button>
   <% end %>
 <% end %>
-<%= link_to "Add a friend", new_friend_request_path %>
+<%= link_to "Add a friend", new_friend_request_path, style: "color:#FFFFFF;", class: "btn btn-primary Btn-White" %>
 
 <% if @current_user_friend_requests.length > 0 %>
   <h4>Friend Requests</h4>
