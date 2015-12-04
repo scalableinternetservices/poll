@@ -1,12 +1,13 @@
-<h3>Friends</h3>
+<h3 style="color:#fff;">Friends</h3>
 <% if @current_user_friends.length == 0 %>
-  <p>You have no friends!</p>
+  <p style="color:#fff">You have no friends!</p>
 <% else %>
   <table class="table table-striped">
     <tbody>
       <% @current_user_friends.each do |friend| %>
         <tr>
-          <td><%= link_to "#{friend.first_name} #{friend.last_name}", view_user_profile_path(friend.id) %></td>
+          <td><%= image_tag friend.profile_picture.url(:thumb), width: 32, height: 32, style: "vertical-align:middle" %></td>
+          <td><%= link_to "#{friend.first_name} #{friend.last_name}", view_user_profile_path(friend.id), style: "vertical-align:middle" %></td>
         </tr>
       <% end %>
     </tbody>
@@ -16,7 +17,7 @@
     <button data-current-user-friends-request-size=<%= raw("\"#{@next_current_user_friends_request_size}\"") %>>Show more</button>
   <% end %>
 <% end %>
-<%= link_to "Add a friend", new_friend_request_path %>
+<%= link_to "Add a friend", new_friend_request_path, style: "color:#FFFFFF;", class: "btn btn-primary Btn-White" %>
 
 <% if @current_user_friend_requests.length > 0 %>
   <h4>Friend Requests</h4>
@@ -24,8 +25,7 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Actions</th>
-        <th colspan="1"></th>
+        <th colspan="2"></th>
       </tr>
     </thead>
 

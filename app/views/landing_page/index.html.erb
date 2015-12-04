@@ -1,6 +1,6 @@
 <%= render partial: "shared/navbar" %>
 <%= render 'share_modal' %>
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
       <br>
@@ -10,21 +10,19 @@
       <div class="table-responsive" id="news-feed-polls">   
         <%= render 'news_feed_polls' %>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2">
-      <div class="table-responsive" id="current-user-polls">   
-        <%= render 'current_user_polls' %>
-      </div>
-    </div>
-  </div>
-  <br> <br>
-  <div class="row CenterWhiteText">  
-      <div class="col-lg-8 col-lg-offset-2">
-          <div id="friends_pane">
-            <%= render "friends_pane" %>
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <div class="table-responsive" id="current-user-polls">   
+            <%= render 'current_user_polls' %>
           </div>
+        </div>
       </div>
+    </div>
+    <div class="col-lg-2"> <!-- style="background-color:#02B18C"> -->
+      <br>
+      <div id="friends_pane">
+        <%= render "friends_pane" %>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,0 +1,162 @@
+QUERY OPTIMIZATION NOTES:
+
+== REMOVING RESULTS ==
+
+Originally, we had the votes for an answer stored in a separate Result table. However, when looking at the results of a poll, it resulted in a query like the one below:
+
+User Load (0.1ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1
+  PollQuestion Load (0.1ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 2 LIMIT 1
+  Answer Load (0.1ms)  SELECT `answers`.* FROM `answers` WHERE `answers`.`poll_question_id` = 2
+  Result Load (0.1ms)  SELECT `results`.* FROM `results` WHERE `results`.`answer_id` = 4
+  Result Load (0.1ms)  SELECT `results`.* FROM `results` WHERE `results`.`answer_id` = 5
+  Result Load (0.1ms)  SELECT `results`.* FROM `results` WHERE `results`.`answer_id` = 6
+  Result Load (0.1ms)  SELECT `results`.* FROM `results` WHERE `results`.`answer_id` = 7
+  Result Load (0.1ms)  SELECT `results`.* FROM `results` WHERE `results`.`answer_id` = 8
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 0.7ms)
+
+While normally we would opt to use the "includes" method to eliminate these extraneous queries to Result, we noticed that the Result table was entirely unnecessary. We therefore dropped the Result table and included the vote count in an Answer record, resulting in a much simpler query:
+
+User Load (0.1ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1
+  PollQuestion Load (0.3ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 2 LIMIT 1
+  Answer Load (0.2ms)  SELECT `answers`.* FROM `answers` WHERE `answers`.`poll_question_id` = 2
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.7ms)
+
+The difference in time is not pronounced due to the small number of answers, but for longer polls this can save a lot of time.
+
+Furthermore, this also helps when creating polls. Before, we had to explicitly create an additional Result record for each Answer, but now it is created alongside the Answer.
+
+== LANDING PAGE ==
+
+One of the operations on the landing page is to show recently made polls. The information we decided to show on the landing page involves performing a join on the Users table. Unfortunately, the initial implementation we used resulted in queries that looked like this:
+
+User Load (0.2ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 2  ORDER BY `users`.`id` ASC LIMIT 1
+  SharedPoll Load (0.1ms)  SELECT `shared_polls`.* FROM `shared_polls` WHERE `shared_polls`.`sharee_id` = 2
+  UserPoll Load (0.1ms)  SELECT  `user_polls`.* FROM `user_polls` WHERE (`user_polls`.`user_id` != 2)  ORDER BY `user_polls`.`updated_at` DESC LIMIT 6
+  UserPoll Load (0.1ms)  SELECT  `user_polls`.* FROM `user_polls` WHERE `user_polls`.`user_id` = 2  ORDER BY `user_polls`.`updated_at` DESC LIMIT 6
+  Friendship Load (0.1ms)  SELECT `friendships`.* FROM `friendships` WHERE `friendships`.`user_id` = 2
+  Friendship Load (0.1ms)  SELECT `friendships`.* FROM `friendships` WHERE `friendships`.`friend_id` = 2
+  PendingFriendship Load (0.1ms)  SELECT `pending_friendships`.* FROM `pending_friendships` WHERE `pending_friendships`.`receiver_id` = 2
+  Rendered shared/_navbar.html.erb (1.8ms)
+  Rendered landing_page/_share_modal.html.erb (0.0ms)
+  User Load (0.1ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1992 LIMIT 1
+  User Load (0.1ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1994 LIMIT 1
+  User Load (0.1ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1996 LIMIT 1
+  User Load (0.1ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1993 LIMIT 1
+  User Load (0.1ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1995 LIMIT 1
+  Rendered landing_page/_news_feed_polls.html.erb (6.0ms)
+  Rendered landing_page/_current_user_polls.html.erb (4.5ms)
+  Rendered landing_page/_friends_pane.html.erb (0.1ms)
+  Rendered landing_page/index.html.erb within layouts/application (14.7ms)
+
+Notice the multiple "User Load" queries. We can avoid the overhead of issuing multiple queries by pre-fetching this data as we gather the polls, resulting in a query like this:
+
+User Load (0.2ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 2  ORDER BY `users`.`id` ASC LIMIT 1
+  SharedPoll Load (0.1ms)  SELECT `shared_polls`.* FROM `shared_polls` WHERE `shared_polls`.`sharee_id` = 2
+  UserPoll Load (0.1ms)  SELECT  `user_polls`.* FROM `user_polls` WHERE (`user_polls`.`user_id` != 2)  ORDER BY `user_polls`.`updated_at` DESC LIMIT 6
+  User Load (0.2ms)  SELECT `users`.* FROM `users` WHERE `users`.`id` IN (1992, 1993, 1994, 1995, 1996, 1997)
+  UserPoll Load (0.2ms)  SELECT  `user_polls`.* FROM `user_polls` WHERE `user_polls`.`user_id` = 2  ORDER BY `user_polls`.`updated_at` DESC LIMIT 6
+  Friendship Load (0.1ms)  SELECT `friendships`.* FROM `friendships` WHERE `friendships`.`user_id` = 2
+  Friendship Load (0.1ms)  SELECT `friendships`.* FROM `friendships` WHERE `friendships`.`friend_id` = 2
+  PendingFriendship Load (0.1ms)  SELECT `pending_friendships`.* FROM `pending_friendships` WHERE `pending_friendships`.`receiver_id` = 2
+  Rendered shared/_navbar.html.erb (2.0ms)
+  Rendered landing_page/_share_modal.html.erb (0.0ms)
+  Rendered landing_page/_news_feed_polls.html.erb (8.1ms)
+  Rendered landing_page/_current_user_polls.html.erb (5.0ms)
+  Rendered landing_page/_friends_pane.html.erb (0.1ms)
+  Rendered landing_page/index.html.erb within layouts/application (17.5ms)
+Completed 200 OK in 162ms (Views: 114.6ms | ActiveRecord: 6.4ms)
+
+== OPTIMIZE VOTE VALIDATION ==
+
+Another pattern in which we can use pre-fetching to optimize:
+
+  Answer Load (0.3ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 1 LIMIT 1
+  Answer Load (0.2ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 17 LIMIT 1
+  Answer Load (0.2ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 29 LIMIT 1
+  Answer Load (0.2ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 33 LIMIT 1
+  Answer Load (0.4ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 41 LIMIT 1
+  Answer Load (0.3ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 53 LIMIT 1
+  Answer Load (0.4ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 65 LIMIT 1
+  Answer Load (0.4ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 73 LIMIT 1
+  Answer Load (0.3ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 84 LIMIT 1
+  Answer Load (0.1ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 94 LIMIT 1
+  PollQuestion Load (0.2ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 1 LIMIT 1
+  PollQuestion Load (0.1ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 2 LIMIT 1
+  PollQuestion Load (0.1ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 3 LIMIT 1
+  PollQuestion Load (0.1ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 4 LIMIT 1
+  PollQuestion Load (0.1ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 5 LIMIT 1
+  PollQuestion Load (0.1ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 6 LIMIT 1
+  PollQuestion Load (0.1ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 7 LIMIT 1
+  PollQuestion Load (0.1ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 8 LIMIT 1
+  PollQuestion Load (0.1ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 9 LIMIT 1
+  PollQuestion Load (0.1ms)  SELECT  `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` = 10 LIMIT 1
+
+reducing this query to
+
+  Answer Load (0.5ms)  SELECT `answers`.* FROM `answers` WHERE `answers`.`id` IN (2, 13, 23, 31, 45, 57, 65, 72, 86, 96)
+  PollQuestion Load (0.5ms)  SELECT `poll_questions`.* FROM `poll_questions` WHERE `poll_questions`.`id` IN (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+== OPTIMIZE INCREMENT ==
+
+   (0.2ms)  BEGIN
+  CACHE (0.0ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 1 LIMIT 1  [["id", "1"]]
+  SQL (0.5ms)  UPDATE `answers` SET `votes` = 1, `updated_at` = '2015-12-01 16:28:06' WHERE `answers`.`id` = 1
+  Answer Load (0.3ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 11 LIMIT 1
+  SQL (0.3ms)  UPDATE `answers` SET `votes` = 1, `updated_at` = '2015-12-01 16:28:06' WHERE `answers`.`id` = 11
+  Answer Load (0.3ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 21 LIMIT 1
+  SQL (0.2ms)  UPDATE `answers` SET `votes` = 1, `updated_at` = '2015-12-01 16:28:06' WHERE `answers`.`id` = 21
+  Answer Load (0.3ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 31 LIMIT 1
+  SQL (0.2ms)  UPDATE `answers` SET `votes` = 1, `updated_at` = '2015-12-01 16:28:06' WHERE `answers`.`id` = 31
+  Answer Load (0.3ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 41 LIMIT 1
+  SQL (0.2ms)  UPDATE `answers` SET `votes` = 1, `updated_at` = '2015-12-01 16:28:06' WHERE `answers`.`id` = 41
+  Answer Load (0.2ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 51 LIMIT 1
+  SQL (0.2ms)  UPDATE `answers` SET `votes` = 1, `updated_at` = '2015-12-01 16:28:06' WHERE `answers`.`id` = 51
+  Answer Load (0.2ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 61 LIMIT 1
+  SQL (0.2ms)  UPDATE `answers` SET `votes` = 1, `updated_at` = '2015-12-01 16:28:06' WHERE `answers`.`id` = 61
+  Answer Load (0.2ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 71 LIMIT 1
+  SQL (0.2ms)  UPDATE `answers` SET `votes` = 1, `updated_at` = '2015-12-01 16:28:06' WHERE `answers`.`id` = 71
+  Answer Load (0.2ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 81 LIMIT 1
+  SQL (0.2ms)  UPDATE `answers` SET `votes` = 1, `updated_at` = '2015-12-01 16:28:06' WHERE `answers`.`id` = 81
+  Answer Load (0.2ms)  SELECT  `answers`.* FROM `answers` WHERE `answers`.`id` = 91 LIMIT 1
+  SQL (0.2ms)  UPDATE `answers` SET `votes` = 1, `updated_at` = '2015-12-01 16:28:06' WHERE `answers`.`id` = 91
+  SQL (0.3ms)  INSERT INTO `user_votes` (`user_id`, `user_poll_id`, `created_at`, `updated_at`) VALUES (1, 1, '2015-12-01 16:28:06', '2015-12-01 16:28:06')
+   (37.8ms)  COMMIT
+
+By using the increment_counter method, we can reduce this large block into a single operation:
+
+  SQL (0.3ms)  UPDATE `answers` SET `votes` = COALESCE(`votes`, 0) + 1 WHERE `answers`.`id` IN (1, 12, 22, 38, 47, 52, 62, 74, 83, 92)
+  SQL (0.2ms)  INSERT INTO `user_votes` (`user_id`, `user_poll_id`, `created_at`, `updated_at`) VALUES (3, 1, '2015-12-01 16:36:04', '2015-12-01 16:36:04')
+
+== REDUCE QUERIES IN COMMENTING ==
+
+The original code we used to add comments was naive and created comments in a two-step process, because we used create instead of new:
+
+   (0.2ms)  BEGIN
+  SQL (0.3ms)  INSERT INTO `comments` (`body`, `user_poll_id`, `created_at`, `updated_at`) VALUES ('fuck this gay earth', 2010, '2015-12-01 16:59:22', '2015-12-01 16:59:22')
+   (37.2ms)  COMMIT
+  User Load (0.1ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1
+   (0.1ms)  BEGIN
+  SQL (0.2ms)  UPDATE `comments` SET `commenter` = 'Pollster ', `updated_at` = '2015-12-01 16:59:22' WHERE `comments`.`id` = 2001
+   (48.4ms)  COMMIT
+
+When using new and then manually adding the commenter, we get this reduced query:
+
+   (0.1ms)  BEGIN
+  SQL (0.2ms)  INSERT INTO `comments` (`body`, `user_poll_id`, `commenter`, `created_at`, `updated_at`) VALUES ('shitty poll', 2, 'Pollster ', '2015-12-01 17:01:57', '2015-12-01 17:01:57')
+   (34.1ms)  COMMIT
+
+== PROFILE OPTIMIZATIONS ==
+
+In the profile, we join UserVotes with UserPoll to determine which polls a user has voted in. Again, we use pre-fetching to reduce the number of queries we need to execute:
+
+  UserVote Load (0.4ms)  SELECT  `user_votes`.* FROM `user_votes` WHERE `user_votes`.`user_id` = 1 LIMIT 5
+  UserPoll Load (0.3ms)  SELECT  `user_polls`.* FROM `user_polls` WHERE `user_polls`.`id` = 2015 LIMIT 1
+  UserPoll Load (0.1ms)  SELECT  `user_polls`.* FROM `user_polls` WHERE `user_polls`.`id` = 2012 LIMIT 1
+  UserPoll Load (0.2ms)  SELECT  `user_polls`.* FROM `user_polls` WHERE `user_polls`.`id` = 2013 LIMIT 1
+  UserPoll Load (0.2ms)  SELECT  `user_polls`.* FROM `user_polls` WHERE `user_polls`.`id` = 2010 LIMIT 1
+  UserPoll Load (0.2ms)  SELECT  `user_polls`.* FROM `user_polls` WHERE `user_polls`.`id` = 2 LIMIT 1
+
+to
+
+  UserVote Load (0.1ms)  SELECT  `user_votes`.* FROM `user_votes` WHERE `user_votes`.`user_id` = 1 LIMIT 5
+  UserPoll Load (0.5ms)  SELECT `user_polls`.* FROM `user_polls` WHERE `user_polls`.`id` IN (2015, 2012, 2013, 2010, 2)

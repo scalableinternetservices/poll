@@ -13,7 +13,7 @@
         </div>
         <%= form_tag(search_polls_path, :method => "get", id: "search-form", class: "navbar-form navbar-left") do %>
           <%= text_field_tag :search, params[:search], placeholder: "Search Polls", class: "form-control" %>
-          <%= hidden_field_tag "num_search_polls", 5 %>
+          <%= hidden_field_tag "num_search_polls", 6 %>
           <%= submit_tag "Search", class: "btn btn-default" %>
         <% end %>
         <!-- Collect the nav links, forms, and other content for toggling -->
