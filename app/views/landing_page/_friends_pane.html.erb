@@ -1,4 +1,4 @@
-<h2 style="color:#fff;">Friends</h2>
+<h2 style="color:#fff;"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp&nbspFriends</h2>
 <% if @current_user_friends.length == 0 %>
   <h4 style="color:#fff">You have no friends!</h4>
 <% else %>
@@ -28,8 +28,8 @@
 <% end %>
 <%= link_to "Add a friend", new_friend_request_path, style: "color:#FFFFFF;", class: "btn btn-primary Btn-White" %><br>
 
+<br><h2 class="WhiteText"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp&nbspFriend Requests</h2>
 <% if @current_user_friend_requests.length > 0 %>
-  <br><h2 class="WhiteText">Friend Requests</h2>
   <table class="table table-striped">
     <thead class="WhiteText">
       <tr>
@@ -59,6 +59,8 @@
       <% end %>
     </tbody>
   </table>
+<% else %>
+  <h4 class="WhiteText">You have no requests currently!</h4>
 <% end %>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
