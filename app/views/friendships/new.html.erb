@@ -1,12 +1,16 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-8 col-lg-offset-2">
-      <h1>Add a friend</h1>
-      <input type="text" id="user-search-field" placeholder="Name"></input><br>
-      <button data-search-users>Search users</button>
-      <div id="search-users-friend-request-results"></div>
+    <div class="col-lg-4 col-lg-offset-4">
+      <h1 class="WhiteText">Add a friend</h1><br>
+
+      <div class="input-group">
+        <span class="input-group-btn">
+          <button data-search-users class="btn btn-default" type="button">Search Users</button>
+        </span>
+        <input type="text" id="user-search-field" class="form-control" placeholder="Name">
+      </div>
+      <div id="search-users-friend-request-results"></div><br>
+      <p><%= link_to " Back Home", :root, {:style=>'color:#FFFFFF;', :class => "btn btn-primary Btn-White"}%></p><br>
     </div>
   </div>
-
-  <%= link_to "Back", root_path %>
 </div>
