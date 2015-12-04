@@ -151,17 +151,28 @@
     <% end %>
   </div>
   
-  <div>
+  <div class="row">
+          <br><h1 style="color:#fff; background-color:#16a085;text-align: center;"><hr style="height:1px; visibility:hidden;" />
+                                                                      <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                                                                      &nbspFriends<hr style="height:1px; visibility:hidden;" /></h1><br>
     <div class="col-md-6 col-md-offset-3">
-      <h3 class="row CenterWhiteText">Friends</h3><br>
       <table class="table table-striped">
         <tbody>
           <% if @user_friends.count > 0 %>
+            <% i = 0 %>
             <% @user_friends.each do |friend| %>
-              <tr>
-                <td><%= image_tag friend.profile_picture.url(:thumb), width: 32, height: 32, style: "vertical-align:middle" %></td>
-                <td><%= link_to "#{friend.first_name} #{friend.last_name}", view_user_profile_path(friend.id) %></td>
-              </tr>
+              <% if i % 2 == 0 %>
+                <tr>
+                  <td><%= image_tag friend.profile_picture.url(:thumb), width: 32, height: 32, style: "vertical-align:middle" %></td>
+                  <td><%= link_to "#{friend.first_name} #{friend.last_name}", view_user_profile_path(friend.id) %></td>
+                </tr>
+              <% else %>
+                <tr class="tableOddBG">
+                  <td><%= image_tag friend.profile_picture.url(:thumb), width: 32, height: 32, style: "vertical-align:middle" %></td>
+                  <td><%= link_to "#{friend.first_name} #{friend.last_name}", view_user_profile_path(friend.id), style: "color:#fff;" %></td>
+                </tr>
+              <% end %>
+              <% i += 1 %>
             <% end %>
           <% else %>
             <h4 class="row CenterWhiteText"><%= "#{@profile_user.first_name} #{@profile_user.last_name} doesn't have any friends yet!" %></h4>
