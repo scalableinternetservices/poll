@@ -1,7 +1,7 @@
 <%= render partial: "shared/navbar" %>
 <% cache(@user_poll) do %>
   <br><br>
-  <div class="container CenterWhiteText">
+  <div class="container WhiteText">
     <div class="row">
       <div class="col-lg-6 col-lg-offset-3">
         <% if !notice.nil? %>
@@ -16,12 +16,11 @@
     </div>
     <br>
     <div class="row VoteContainer">
-      <div class="col-lg-2 col-lg-offset-5">
+      <div class="col-lg-6 col-lg-offset-3">
         <%= form_tag submit_vote_path(@user_poll.id), method: :post do %>
           <% answer_index = 0 %>
           <% @user_poll.poll_questions.each_with_index do |poll_question, question_index| %>
-            <h4>Question <%= "#{question_index+1}" %>. <%= poll_question.text %></h4>
-            <% if poll_question.optional %> <%= raw("<i> (optional) </i>") %> <% end %>
+            <h4>Question <%= "#{question_index+1}" %>. <%= poll_question.text %> <% if poll_question.optional %> <%= raw("<i> (optional) </i>") %> <% end %></h4>
             <%= image_tag poll_question.poll_question_picture.url(:thumb) %><br><br>
             <% if poll_question.allow_multiple_answers %>
               <% poll_question.answers.each do |answer| %>
