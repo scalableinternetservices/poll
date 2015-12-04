@@ -15,11 +15,11 @@
               <% i = 0 %>
               <% poll_question.answers.each do |answer| %>
                 <% if i % 3 == 0 %>
-                  <div class="define-chart-row" data-color="#84d6ff" title=<%= answer.text %>><%=answer.votes%></div>
+                  <div class="define-chart-row" data-color="#84d6ff" title="<%= answer.text %>"><%=answer.votes%></div>
                 <% elsif i % 3 == 1 %>
-                  <div class="define-chart-row" data-color="#00A9FF" title=<%= answer.text %>><%=answer.votes%></div>
+                  <div class="define-chart-row" data-color="#00A9FF" title="<%= answer.text %>"><%=answer.votes%></div>
                 <% else %>
-                  <div class="define-chart-row" data-color="#005882" title=<%= answer.text %>><%=answer.votes%></div>
+                  <div class="define-chart-row" data-color="#005882" title="<%= answer.text %>"><%=answer.votes%></div>
                 <% end %>
                 <% i += 1 %>
               <% end %>
