@@ -32,7 +32,9 @@
 
 <div class="container">
   <div class="row">
-    <br><h3 style="color:#fff;">My Polls</h3><br>
+ <br><h1 style="color:#fff; background-color:#16a085;text-align: center;"><hr style="height:1px; visibility:hidden;" />
+                                                                      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                                                      &nbspMy Polls<hr style="height:1px; visibility:hidden;" /></h1><br>
     <% if @created_polls.count > 0 %>
       <div class="col-md-4 col-md-offset-1">
         <% @counter = 0 %>
@@ -90,7 +92,9 @@
   </div>
 
   <div class="row">
-    <br><h3 style="color:#fff;">Voted Polls</h3><br>
+ <br><h1 style="color:#fff; background-color:#16a085;text-align: center;"><hr style="height:1px; visibility:hidden;" />
+                                                                      <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                                                                      &nbspVoted Polls<hr style="height:1px; visibility:hidden;" /></h1><br>
     <% if @voted_polls.count > 0 %>
       <div class="col-md-4 col-md-offset-1">
         <% @counter = 0 %>
