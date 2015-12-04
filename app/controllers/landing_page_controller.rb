@@ -3,18 +3,18 @@ class LandingPageController < ApplicationController
 
   # GET /
   def index
-    num_news_feed_polls = 5
+    num_news_feed_polls = 6
     @news_feed_polls, @can_show_more_news_feed_polls = get_news_feed_polls(num_news_feed_polls)
-    @next_news_feed_polls_request_size = 10
+    @next_news_feed_polls_request_size = 12
 
-    num_current_user_polls = 5
+    num_current_user_polls = 6
     @current_user_polls, @can_show_more_current_user_polls = get_current_user_polls(num_current_user_polls)
-    @next_current_user_polls_request_size = 10
+    @next_current_user_polls_request_size = 12
 
-    num_current_user_friends = 5
+    num_current_user_friends = 6
     @current_user_friends = get_current_user_friends(num_current_user_friends)
     @can_show_more_current_user_friends = can_request_more_current_user_friends?(num_current_user_friends)
-    @next_current_user_friends_request_size = 10
+    @next_current_user_friends_request_size = 12
 
     @current_user_friend_requests = get_current_user_pending_friendships.map { |friendship|
       requestor = User.find(friendship.requestor_id)
@@ -28,14 +28,14 @@ class LandingPageController < ApplicationController
     num_search_polls = cleaned_params[:num_search_polls].to_i
     @search = cleaned_params[:search]
     @search_polls, @can_show_more_search_polls = get_polls(num_search_polls, @search)
-    @next_search_polls_request_size = num_search_polls + 5
+    @next_search_polls_request_size = num_search_polls + 6
   end
 
   # GET /news_feed_polls
   def news_feed_polls
     num_news_feed_polls = news_feed_polls_params.to_i
     @news_feed_polls, @can_show_more_news_feed_polls = get_news_feed_polls(num_news_feed_polls)
-    @next_news_feed_polls_request_size = num_news_feed_polls + 5
+    @next_news_feed_polls_request_size = num_news_feed_polls + 6
     render(layout: false)
   end
 
@@ -43,7 +43,7 @@ class LandingPageController < ApplicationController
   def current_user_polls
     num_current_user_polls = current_user_polls_params.to_i
     @current_user_polls, @can_show_more_current_user_polls = get_current_user_polls(num_current_user_polls)
-    @next_current_user_polls_request_size = num_current_user_polls + 5
+    @next_current_user_polls_request_size = num_current_user_polls + 6
     render(layout: false)
   end
 
@@ -52,7 +52,7 @@ class LandingPageController < ApplicationController
     num_current_user_friends = friends_pane_params.to_i
     @current_user_friends = get_current_user_friends(num_current_user_friends)
     @can_show_more_current_user_friends = can_request_more_current_user_friends?(num_current_user_friends)
-    @next_current_user_friends_request_size = num_current_user_friends + 5
+    @next_current_user_friends_request_size = num_current_user_friends + 6
 
     @current_user_friend_requests = get_current_user_pending_friendships.map { |friendship|
       requestor = User.find(friendship.requestor_id)
