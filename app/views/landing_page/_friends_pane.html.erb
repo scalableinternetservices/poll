@@ -6,7 +6,8 @@
     <tbody>
       <% @current_user_friends.each do |friend| %>
         <tr>
-          <td><%= link_to "#{friend.first_name} #{friend.last_name}", view_user_profile_path(friend.id) %></td>
+          <td><%= image_tag friend.profile_picture.url(:thumb), width: 32, height: 32, style: "vertical-align:middle" %></td>
+          <td><%= link_to "#{friend.first_name} #{friend.last_name}", view_user_profile_path(friend.id), style: "vertical-align:middle" %></td>
         </tr>
       <% end %>
     </tbody>
@@ -24,8 +25,7 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Actions</th>
-        <th colspan="1"></th>
+        <th colspan="2"></th>
       </tr>
     </thead>
 
