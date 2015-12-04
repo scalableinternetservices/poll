@@ -125,7 +125,7 @@ class LandingPageController < ApplicationController
       shared_polls.select! { |shared_poll| !(UserVote.exists?(user_id: current_user.id, user_poll_id: shared_poll.id)) }
       shared_polls.map! { |shared_poll|
         sharer = User.find(shared_poll.sharer_id)
-        [shared_poll.user_poll, "Shared with you by #{sharer.first_name} #{sharer.last_name}!", shared_poll.user]
+        [shared_poll.user_poll, "Shared with you by #{sharer.first_name} #{sharer.last_name}!", shared_poll.user_poll.user]
       }
       if shared_polls.length > max_num_polls
         return shared_polls[0...max_num_polls], true

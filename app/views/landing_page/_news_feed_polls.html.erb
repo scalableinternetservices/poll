@@ -21,7 +21,7 @@
                       <h4 class="CenterWhiteText"><%= link_to user_poll.title, vote_on_poll_path(user_poll.id), {:style=>'color:#FFF;'}%></h4>
                       <p class="CenterWhiteText"><%= "#{user_poll_owner.first_name} #{user_poll_owner.last_name}" %></p>
                       <p class="CenterWhiteText"><%= user_poll.created_at.to_s(:long)%></p>
-                      <%= comment %>
+                      <p class="CenterWhiteText"><%= comment %></p>
                       <div class="row  center-block">
                           <div class="col-md-6">
                               <%= link_to user_poll_results_path(user_poll.id), {:style=>'color:#FFF;', class: "btn btn-primary"} do %>
@@ -57,7 +57,7 @@
                     <h4 class="CenterWhiteText"><%= link_to user_poll.title, vote_on_poll_path(user_poll.id), {:style=>'color:#FFF;'}%></h4>
                     <p class="CenterWhiteText"><%= "#{user_poll_owner.first_name} #{user_poll_owner.last_name}" %></p>
                     <p class="CenterWhiteText"><%= user_poll.created_at.to_s(:long)%></p>
-                    <%= comment %>
+                    <p class="CenterWhiteText"><%= comment %></p>
                     <div class="row  center-block">
                         <div class="col-md-6">
                             <%= link_to user_poll_results_path(user_poll.id), {:style=>'color:#FFF;', class: "btn btn-primary"} do %>

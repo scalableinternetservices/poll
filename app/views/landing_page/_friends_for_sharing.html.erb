@@ -5,6 +5,7 @@
     <tbody>
       <% @friends.each do |friend| %>
         <tr>
+          <td><%= image_tag friend.profile_picture.url(:thumb), width: 32, height: 32, style: "vertical-align:middle" %></td>
           <td><%= link_to "#{friend.first_name} #{friend.last_name}", share_poll_with_path(@poll_id, friend.id), method: :post, style: "color:#000;" %></td>
         </tr>
       <% end %>
