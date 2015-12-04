@@ -1,14 +1,23 @@
-<h3 style="color:#fff;">Friends</h3>
+<h2 style="color:#fff;">Friends</h2>
 <% if @current_user_friends.length == 0 %>
-  <p style="color:#fff">You have no friends!</p>
+  <h4 style="color:#fff">You have no friends!</h4>
 <% else %>
   <table class="table table-striped">
     <tbody>
+      <% i = 0 %>
       <% @current_user_friends.each do |friend| %>
-        <tr>
-          <td><%= image_tag friend.profile_picture.url(:thumb), width: 32, height: 32, style: "vertical-align:middle" %></td>
-          <td><%= link_to "#{friend.first_name} #{friend.last_name}", view_user_profile_path(friend.id), style: "vertical-align:middle" %></td>
-        </tr>
+        <% if i % 2 == 0 %>
+          <tr>
+            <td><%= image_tag friend.profile_picture.url(:thumb), width: 32, height: 32, style: "vertical-align:middle" %></td>
+            <td><%= link_to "#{friend.first_name} #{friend.last_name}", view_user_profile_path(friend.id), style: "vertical-align:middle" %></td>
+          </tr>
+        <% else %>
+          <tr class="tableOddBG">
+            <td><%= image_tag friend.profile_picture.url(:thumb), width: 32, height: 32, style: "vertical-align:middle" %></td>
+            <td><%= link_to "#{friend.first_name} #{friend.last_name}", view_user_profile_path(friend.id), :style=>'color:#FFFFFF;vertical-align:middle;' %></td>
+          </tr>
+        <% end %>
+        <% i += 1 %>
       <% end %>
     </tbody>
   </table>
@@ -30,12 +39,22 @@
     </thead>
 
     <tbody>
+      <% i = 0 %>
       <% @current_user_friend_requests.each do |friend_request| %>
-        <tr>
-          <td><%= friend_request[0] %></td>
-          <td><%= link_to 'Accept', accept_friend_request_path(friend_request[1]), method: :post %></td>
-          <td><%= link_to 'Reject', reject_friend_request_path(friend_request[1]), method: :post %></td>
-        </tr>
+        <% if i % 2 == 0 %>
+          <tr>
+            <td><p><%= friend_request[0] %></p></td>
+            <td><%= link_to 'Accept', accept_friend_request_path(friend_request[1]), method: :post, :style=>'color:#FFFFFF', :class=>'btn btn-primary'%></td>
+            <td><%= link_to 'Reject', reject_friend_request_path(friend_request[1]), method: :post, class: "btn btn-primary WhiteText" %></td>
+          </tr>
+        <% else %>
+          <tr class="tableOddBG">
+            <td><p><%= friend_request[0] %></p></td>
+            <td class="WhiteText"><%= link_to 'Accept', accept_friend_request_path(friend_request[1]), method: :post, class: "btn btn-primary WhiteText" %></td>
+            <td><%= link_to 'Reject', reject_friend_request_path(friend_request[1]), method: :post, class: "btn btn-primary WhiteText" %></td>
+          </tr>
+        <% end %>
+        <% i += 1 %>
       <% end %>
     </tbody>
 <% end %>

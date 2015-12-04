@@ -87,7 +87,7 @@
         <% end %>
       </div>
     <% else %>
-      <p class="CenterWhiteText"><%= "#{@profile_user.first_name} #{@profile_user.last_name} hasn't made any polls yet!" %></p>
+      <h4 class="CenterWhiteText"><%= "#{@profile_user.first_name} #{@profile_user.last_name} hasn't made any polls yet!" %></h4>
     <% end %>
   </div>
 
@@ -147,7 +147,7 @@
         <% end %>
       </div>
     <% else %>
-      <p class="CenterWhiteText"><%= "#{@profile_user.first_name} #{@profile_user.last_name} hasn't voted on any polls yet!" %></p>
+      <h4 class="CenterWhiteText"><%= "#{@profile_user.first_name} #{@profile_user.last_name} hasn't voted on any polls yet!" %></h4>
     <% end %>
   </div>
   
@@ -164,7 +164,7 @@
               </tr>
             <% end %>
           <% else %>
-            <p class="row CenterWhiteText"><%= "#{@profile_user.first_name} #{@profile_user.last_name} doesn't have any friends yet!" %></p>
+            <h4 class="row CenterWhiteText"><%= "#{@profile_user.first_name} #{@profile_user.last_name} doesn't have any friends yet!" %></h4>
           <% end %>
         </tbody>
       </table>

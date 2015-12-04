@@ -2,33 +2,33 @@
 <%= render 'share_modal' %>
 <div class="container-fluid">
   <div class="row">
-    <div class="col-lg-8 col-lg-offset-2">
-      <br><br>
-      <div class="col-lg-10 col-lg-offset-1">
-          <% if !notice.nil? %>
-              <div class="alert alert-info " role="alert"><p id="notice"><%= notice %></p></div>
-          <% end %>
-      </div>
-      
-      <div class="row">
+    <div class="col-lg-8 col-lg-offset-1">
+        <br><br>
         <div class="col-lg-10 col-lg-offset-1">
-            <div class="table-responsive" id="news-feed-polls">   
-              <%= render 'news_feed_polls' %>
-            </div>
+            <% if !notice.nil? %>
+                <div class="alert alert-info " role="alert"><p id="notice"><%= notice %></p></div>
+            <% end %>
         </div>
-      </div>
-      
-      <div class="row">
-        <div class="col-lg-10 col-lg-offset-1">
-          <div class="table-responsive" id="current-user-polls">   
-            <%= render 'current_user_polls' %>
+        
+        <div class="row">
+          <div class="col-lg-10 col-lg-offset-1">
+              <div class="table-responsive" id="news-feed-polls">   
+                <%= render 'news_feed_polls' %>
+              </div>
           </div>
         </div>
-      </div>
-      
+        
+        <div class="row">
+          <div class="col-lg-10 col-lg-offset-1">
+            <div class="table-responsive" id="current-user-polls">   
+              <%= render 'current_user_polls' %>
+            </div>
+          </div>
+        </div>
     </div>
+    
     <div class="col-lg-2"> <!-- style="background-color:#02B18C"> -->
-      <br>
+      <br><br>
       <div id="friends_pane">
         <%= render "friends_pane" %>
       </div>
