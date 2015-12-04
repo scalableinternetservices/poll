@@ -14,7 +14,7 @@ class PollQuestion < ActiveRecord::Base
     thumb: '100x100>',
     square: '200x200#',
     medium: '300x300>'
-  }, :default_url => "/images/:style/placeholder-poll.jpg"
+  }, :default_url => ""
 
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :poll_question_picture, :content_type => /\Aimage\/.*\Z/
