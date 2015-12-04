@@ -67,6 +67,8 @@
 		
 		//Calculate what the chart width should be
 		var max_data = Math.max.apply(Math,settings.values);
+                if (max_data == 0)
+                    max_data = 1;
 		var max_footer = Math.max.apply(Math,settings.footers);
 		var maxes = [max_data,max_footer];
 		var chart_max = Math.max.apply(Math,maxes);
