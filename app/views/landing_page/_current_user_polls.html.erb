@@ -59,6 +59,6 @@
     </div>
   </div>
   <% if @can_show_more_current_user_polls %>
-    <button data-current-user-polls-request-size=<%= raw("\"#{@next_current_user_polls_request_size}\"") %>>Show more</button>
+    <button class="btn btn-primary" data-current-user-polls-request-size=<%= raw("\"#{@next_current_user_polls_request_size}\"") %>>Show more</button>
   <% end %>
 <% end %>

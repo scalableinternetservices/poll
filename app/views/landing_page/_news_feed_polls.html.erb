@@ -73,9 +73,6 @@
     </div>
   </div>
 
-
-
-
 <% if @can_show_more_news_feed_polls %>
-  <button data-news-feed-polls-request-size=<%= "#{@next_news_feed_polls_request_size}" %>>Show more</button>
+  <button class="btn btn-primary" data-news-feed-polls-request-size=<%= "#{@next_news_feed_polls_request_size}" %>>Show more</button>
 <% end %>
