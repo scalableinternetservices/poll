@@ -17,16 +17,16 @@
       <% i = 0 %>
       <% @matching_users.each do |user| %>
         <% if i % 2 == 0 %>
-            <tr class="tableEvenBG">
+            <tr>
               <td><%= "#{user.first_name} #{user.last_name}" %></td>
               <td><%= user.description %></td>
-              <td><%= get_friend_action(user)%></td>
+              <td ><button class="btn btn-primary WhiteText"><%= get_friend_action(user)%></button></td>
             </tr>
         <% else %>
             <tr class="tableOddBG">
               <td><%= "#{user.first_name} #{user.last_name}" %></td>
               <td><%= user.description %></td>
-              <td><%= get_friend_action(user) %></td>
+              <td ><button class="btn btn-primary WhiteText"><%= get_friend_action(user)%></button></td>
             </tr>
         <% end %>
         <% i += 1 %>

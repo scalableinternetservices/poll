@@ -26,12 +26,12 @@
     <button data-current-user-friends-request-size=<%= raw("\"#{@next_current_user_friends_request_size}\"") %>>Show more</button>
   <% end %>
 <% end %>
-<%= link_to "Add a friend", new_friend_request_path, style: "color:#FFFFFF;", class: "btn btn-primary Btn-White" %>
+<%= link_to "Add a friend", new_friend_request_path, style: "color:#FFFFFF;", class: "btn btn-primary Btn-White" %><br>
 
 <% if @current_user_friend_requests.length > 0 %>
-  <h4>Friend Requests</h4>
+  <br><h2 class="WhiteText">Friend Requests</h2>
   <table class="table table-striped">
-    <thead>
+    <thead class="WhiteText">
       <tr>
         <th>Name</th>
         <th colspan="2"></th>
@@ -52,9 +52,14 @@
             <td><p><%= friend_request[0] %></p></td>
             <td class="WhiteText"><%= link_to 'Accept', accept_friend_request_path(friend_request[1]), method: :post, class: "btn btn-primary WhiteText" %></td>
             <td><%= link_to 'Reject', reject_friend_request_path(friend_request[1]), method: :post, class: "btn btn-primary WhiteText" %></td>
+            <br>
           </tr>
         <% end %>
         <% i += 1 %>
       <% end %>
     </tbody>
+  </table>
 <% end %>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

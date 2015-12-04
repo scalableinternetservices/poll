@@ -1,6 +1,6 @@
 <%= render partial: "shared/navbar" %>
 <%= render 'share_modal' %>
-<div class="container-fluid">
+<div class="container-fluid HomeContainer">
   <div class="row">
     <div class="col-lg-8 col-lg-offset-1">
         <br><br>
@@ -27,7 +27,7 @@
         </div>
     </div>
     
-    <div class="col-lg-2"> <!-- style="background-color:#02B18C"> -->
+    <div class="col-lg-3" style="background-color:#16a085">
       <br><br>
       <div id="friends_pane">
         <%= render "friends_pane" %>
@@ -35,3 +35,13 @@
     </div>
   </div>
 </div>
+
+<script>
+    $("HomeContainer").css("min-height",$(window).height()*2);
+    window.onresize = function(event) {
+        resizeDiv();
+    }
+    function resizeDiv() {
+        $(".HomeContainer").css("min-height",$(window).height()*2);
+    }
+</script>
