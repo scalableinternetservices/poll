@@ -1,5 +1,5 @@
 <% if @friends.length == 0 %>
-  <p>You don't have any friends yet! Maybe you should go <%= link_to 'add one', new_friend_request_path %> first!</p>
+  <p>You don't have any friends yet! Maybe you should go <%= link_to 'add one', new_friend_request_path, style: "color:#000;" %> first!</p>
 <% else %>
   <table class="table table-striped">
     <tbody>
