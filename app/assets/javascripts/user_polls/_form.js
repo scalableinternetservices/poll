@@ -161,7 +161,7 @@ function setupChangeAnswerButtons() {
         var answerToAdd = answerToCopy.clone();
 
         // Clear any existing contents in the text field
-        answerToAdd.find("input[type=text]").html("");
+        answerToAdd.find("input[type=text]").val("");
 
         // Insert the clone
         answerToCopy.after(answerToAdd);
